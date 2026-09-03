@@ -197,7 +197,8 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public Status attackHero(Player playerAttacking, hotstone.framework.Card attackingCard) {
-        return null;
+        if (attackingCard.isActive()) return null;
+        return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
     }
 
     @Override

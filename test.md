@@ -30,11 +30,11 @@ Playing cards and the Field
 [OK] When a player plays a card, the mana cost of the card is deducted from their mana.
 [OK] When a player plays a card, it enters the field.
 [] When a card enters the field, it invokes its Effect. - Not alphastone
-[] A card becomes active at the beginning of its owner's turn, except for the turn it is played.
-[] A card should not go active on turn its played.
+[OK] A card becomes active at the beginning of its owner's turn, except for the turn it is played.
+[OK] A card should not go active on turn its played.
 
 Attacks
-[] A card can only attack when it is active.
+[OK] A card can only attack when it is active.
 [] When a card attacks, it becomes inactive.
 [] When a card attacks, it deals X damage to its target, where X is the card's attack power.
 [] A card can only attack the opponent hero.
