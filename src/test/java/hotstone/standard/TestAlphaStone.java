@@ -312,4 +312,26 @@ public class TestAlphaStone {
       assertThat(hero.getMana(), is(mana - cost));
   }
 
+    @Test
+    public void shouldBecomeActiveAtNextTurn() {
+        // Given a card,
+        Card playedCard = game.getCardInHand(playerInTurn,0);
+        // When a new turn occurs,
+        game.playCard(playerInTurn, 0, 0);
+        game.endTurn();
+        game.endTurn();
+        // Then that card becomes active.
+        assertThat(playedCard.isActive(), is(true));
+    }
+
+    @Test
+  public void shouldNotBecomeActiveOnTurnPlayed() {
+      // Given a card,
+        Card playedCard = game.getCardInHand(playerInTurn,0);
+      // When played on turn,
+        game.playCard(playerInTurn, 0, 0);
+      // Then that card is inactive.
+        assertThat(playedCard.isActive(), is(true));
+  }
+
 }

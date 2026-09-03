@@ -29,9 +29,9 @@ Playing cards and the Field
 [OK] A player can only play a card if they have enough mana for the card's mana cost.
 [OK] When a player plays a card, the mana cost of the card is deducted from their mana.
 [OK] When a player plays a card, it enters the field.
-[] If a card tries to occupy an occupied position when entering the field, the existing cards are moved up.
-[] When a card enters the field, it invokes its Effect.
+[] When a card enters the field, it invokes its Effect. - Not alphastone
 [] A card becomes active at the beginning of its owner's turn, except for the turn it is played.
+[] A card should not go active on turn its played.
 
 Attacks
 [] A card can only attack when it is active.
