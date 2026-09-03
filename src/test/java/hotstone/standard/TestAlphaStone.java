@@ -331,7 +331,7 @@ public class TestAlphaStone {
       // When played on turn,
         game.playCard(playerInTurn, 0, 0);
       // Then that card is inactive.
-        assertThat(playedCard.isActive(), is(true));
+        assertThat(playedCard.isActive(), is(false));
   }
 
 }

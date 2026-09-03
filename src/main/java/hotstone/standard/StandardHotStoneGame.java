@@ -147,8 +147,9 @@ public class StandardHotStoneGame implements Game {
     }
 
     @Override
-    public Iterable<? extends StandardCard> getField(Player who) {
-        return null;
+    public List<Card> getField(Player who) {
+        if (who == Player.PEDDERSEN) return fieldPeddersen;
+        else return fieldFindus;
     }
 
     @Override
@@ -164,6 +165,9 @@ public class StandardHotStoneGame implements Game {
         BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
         currentHero.setMana(3);
         currentHero.resetUsedPower();
+        for(Card c: getField(getPlayerInTurn())) {
+            ((StandardCard) c).setActive(true);
+        }
     }
 
     @Override

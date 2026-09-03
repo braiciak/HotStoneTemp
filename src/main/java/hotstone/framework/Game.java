@@ -16,6 +16,8 @@
 
 package hotstone.framework;
 
+import java.util.List;
+
 /** The role of a single HotStone game, allowing clients to access and
  * modify the state of a game.
  * 
@@ -131,7 +133,7 @@ public interface Game {
    * @param who the player owning the field
    * @return an iterable over the cards on the field
    */
-  Iterable<? extends Card> getField(Player who);
+  List<Card> getField(Player who);
   
   /** Get the number of cards on the field.
    *

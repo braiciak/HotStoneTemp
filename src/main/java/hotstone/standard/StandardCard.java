@@ -8,6 +8,7 @@ public class StandardCard implements hotstone.framework.Card {
     private int mana;
     private int attack;
     private int health;
+    private boolean isActive = false;
 
     public StandardCard(String name) {
         this.name = name;
@@ -72,7 +73,7 @@ public class StandardCard implements hotstone.framework.Card {
 
     @Override
     public boolean isActive() {
-        return false;
+        return isActive;
     }
 
     @Override
@@ -84,4 +85,9 @@ public class StandardCard implements hotstone.framework.Card {
     public String getEffectDescription() {
         return "";
     }
+
+    public void setActive(boolean b) {
+        isActive = b;
+    }
+
 }
