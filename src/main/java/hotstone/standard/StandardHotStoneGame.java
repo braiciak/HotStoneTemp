@@ -53,8 +53,6 @@ public class StandardHotStoneGame implements Game {
     private final HashMap<Player, SpanishDeck> deck = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
-
-    private boolean isPeddersenTurn = false;
     private int turnNumber = 0;
 
 
@@ -80,11 +78,8 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public Player getPlayerInTurn() {
-        if (!isPeddersenTurn) {
-            return Player.FINDUS;
-        } else {
-            return Player.PEDDERSEN;
-        }
+        if(turnNumber%2 == 0) return Player.FINDUS;
+        return Player.PEDDERSEN;
     }
 
     @Override
@@ -149,7 +144,6 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public void endTurn() {
-        isPeddersenTurn = !isPeddersenTurn;
         turnNumber++;
 
         BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
