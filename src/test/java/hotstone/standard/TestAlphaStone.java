@@ -334,4 +334,27 @@ public class TestAlphaStone {
         assertThat(playedCard.isActive(), is(false));
   }
 
+  @Test
+  public void shouldOnlyAttackWhenActive() {
+      // Given a card is played on the field
+      game.playCard(playerInTurn, 0, 0);
+      // When a player tries to attack with the card
+      Status result = game.attackHero(Player.computeOpponent(playerInTurn), game.getCardInField(playerInTurn, 0));
+      // Then they can't (if it's inactive)
+      assertThat(result, is(Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION));
+  }
+
+  @Test
+  public void shouldBecomeInactiveAfterAttacking() {
+      // Given a card on the field,
+      game.playCard(playerInTurn, 0, 0);
+      Card card = game.getCardInField(playerInTurn,0);
+      game.endTurn();
+      game.endTurn();
+      // When that card attacks,
+      game.attackHero(Player.computeOpponent(playerInTurn), card);
+      // Then the card should become inactive.
+      assertThat(card.isActive(), is(false));
+  }
+
 }
