@@ -19,7 +19,9 @@ package hotstone.standard;
 import hotstone.framework.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is the 'temporary test stub' in TDD
@@ -48,17 +50,23 @@ public class StandardHotStoneGame implements Game {
 
     private final BabyHero findus;
     private final BabyHero peddersen;
-    private final SpanishDeck deckFindus = new SpanishDeck();
-    private final SpanishDeck deckPeddersen = new SpanishDeck();
-    private final List<Card> handFindus = new ArrayList<>();
-    private final List<Card> handPeddersen = new ArrayList<>();
-    private final List<Card> fieldFindus = new ArrayList<>();
-    private final List<Card> fieldPeddersen = new ArrayList<>();
+    private final HashMap<Player, SpanishDeck> deck = new HashMap<>();
+    private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
+    private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
 
     private boolean isPeddersenTurn = false;
     private int turnNumber = 0;
 
+
+
     public StandardHotStoneGame() {
+
+        deck.put(Player.FINDUS, new SpanishDeck());
+        deck.put(Player.PEDDERSEN, new SpanishDeck());
+        hand.put(Player.FINDUS, new ArrayList<>());
+        hand.put(Player.PEDDERSEN, new ArrayList<>());
+        field.put(Player.FINDUS, new ArrayList<>());
+        field.put(Player.PEDDERSEN, new ArrayList<>());
 
         findus = new BabyHero();
         peddersen = new BabyHero();
@@ -101,36 +109,22 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public int getDeckSize(Player who) {
-        return switch (who) {
-            case Player.FINDUS -> deckFindus.getSize();
-            case Player.PEDDERSEN -> deckPeddersen.getSize();
-        };
+        return deck.get(who).getSize();
     }
 
     @Override
     public Card getCardInDeck(Player who, int indexInDeck) {
-        return switch (who) {
-            case Player.FINDUS -> deckFindus.getCard(indexInDeck);
-            case Player.PEDDERSEN -> deckPeddersen.getCard(indexInDeck);
-        };
+        return deck.get(who).getCard(indexInDeck);
     }
 
     @Override
     public Card getCardInHand(Player who, int indexInHand) {
-        return switch (who) {
-            case Player.FINDUS -> handFindus.get(indexInHand);
-            case Player.PEDDERSEN -> handPeddersen.get(indexInHand);
-        };
+        return hand.get(who).get(indexInHand);
     }
 
     @Override
     public Card getCardInField(Player who, int indexInField) {
-        List<Card> field =
-                who == Player.FINDUS ? fieldFindus : fieldPeddersen;
-        if (indexInField > field.size() - 1) {
-            return null;
-        }
-        return field.get(indexInField);
+        return field.get(who).get(indexInField);
     }
 
     @Override
@@ -140,16 +134,12 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public int getHandSize(Player who) {
-        return switch (who) {
-            case Player.FINDUS -> handFindus.size();
-            case Player.PEDDERSEN -> handPeddersen.size();
-        };
+        return hand.get(who).size();
     }
 
     @Override
     public List<Card> getField(Player who) {
-        if (who == Player.PEDDERSEN) return fieldPeddersen;
-        else return fieldFindus;
+        return field.get(who);
     }
 
     @Override
@@ -177,16 +167,8 @@ public class StandardHotStoneGame implements Game {
             hero.hurt(2);
             return false;
         }
-        switch (who) {
-            case Player.FINDUS:
-                handFindus.addFirst(getCardInDeck(Player.FINDUS, 0));
-                deckFindus.removeCard();
-                break;
-            case Player.PEDDERSEN:
-                handPeddersen.addFirst(getCardInDeck(Player.PEDDERSEN, 0));
-                deckPeddersen.removeCard();
-                break;
-        }
+        hand.get(who).addFirst(getCardInDeck(who, 0));
+        deck.get(who).removeCard();
         return true;
     }
 
@@ -208,24 +190,13 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public Status playCard(Player who, int handIndex, int fieldIndex) {
-        List<Card> hand;
-        List<Card> field;
-
-        if (who == Player.PEDDERSEN) {
-            hand = handPeddersen;
-            field = fieldPeddersen;
-        } else {
-            hand = handFindus;
-            field = fieldFindus;
-        }
-
-        Card card = hand.get(handIndex);
+        Card card = getCardInHand(who, handIndex);
         BabyHero hero = (BabyHero) getHero(who);
 
         if (hero.getMana() < card.getManaCost()) {
             return Status.NOT_ENOUGH_MANA;
         }
-        field.add(fieldIndex, hand.remove(handIndex));
+        field.get(who).add(fieldIndex, hand.get(who).remove(handIndex));
         hero.setMana(hero.getMana() - card.getManaCost());
         return Status.OK;
     }
