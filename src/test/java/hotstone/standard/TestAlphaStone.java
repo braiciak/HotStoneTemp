@@ -357,4 +357,17 @@ public class TestAlphaStone {
       assertThat(card.isActive(), is(false));
   }
 
+    @Test
+    public void shouldHurtHeroOnAttack() {
+        // Given a card with x attack power
+        game.playCard(playerInTurn, 0, 0);
+        Card card = game.getCardInField(playerInTurn, 0);
+        Hero hero = game.getHero(Player.computeOpponent(playerInTurn));
+        int healthBefore = hero.getHealth();
+        // When the card attacks the opponent hero
+        game.attackHero(Player.computeOpponent(playerInTurn), card);
+        // Then the opponent hero loses x health
+        assertThat(card.getAttack(), is(healthBefore - hero.getHealth()));
+    }
+
 }
