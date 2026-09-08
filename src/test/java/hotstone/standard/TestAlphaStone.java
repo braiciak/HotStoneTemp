@@ -370,4 +370,51 @@ public class TestAlphaStone {
         // Then the opponent hero loses x health
         assertThat(healthBefore - hero.getHealth(), is(card.getAttack()));
     }
+
+    @Test
+    public void shouldHurtCardOnAttack() {
+      // Given a card with X attack power,
+      Player opponent = Player.computeOpponent(playerInTurn);
+
+      // (Play our card.)
+      game.playCard(playerInTurn,0,0);
+      Card card = game.getCardInField(playerInTurn,0);
+      game.endTurn();
+
+      // (Opponent plays their card.)
+      game.playCard(opponent,0,0);
+      Card oppCard = game.getCardInField(opponent,0);
+      game.endTurn();
+      // (Our card is now active.)
+
+      // When the card attacks an opponent card,
+      int healthBefore = oppCard.getHealth();
+      game.attackCard(playerInTurn,card,oppCard);
+      // Then the opponent card loses X health.
+      assertThat(healthBefore - oppCard.getHealth(), is(card.getAttack()));
+    }
+
+    @Test
+    public void shouldHurtOwnCardOnAttack() {
+        // Given a card,
+        Player opponent = Player.computeOpponent(playerInTurn);
+
+        // (Play our card.)
+        game.playCard(playerInTurn,0,0);
+        Card card = game.getCardInField(playerInTurn,0);
+        game.endTurn();
+
+        // (Opponent plays their card.)
+        game.playCard(opponent,0,0);
+        Card oppCard = game.getCardInField(opponent,0);
+        game.endTurn();
+        // (Our card is now active.)
+
+        // When our card attacks an opponent card who has X attack power,
+        int healthBefore = card.getHealth();
+        game.attackCard(playerInTurn,card,oppCard);
+        // Then our card is dealt X damage.
+        assertThat(healthBefore - card.getHealth(), is(oppCard.getAttack()));
+    }
+
 }

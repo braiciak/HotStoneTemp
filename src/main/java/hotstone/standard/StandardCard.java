@@ -90,4 +90,8 @@ public class StandardCard implements hotstone.framework.Card {
         isActive = b;
     }
 
+    public void hurt(int amount) {
+        health -= amount;
+    }
+
 }

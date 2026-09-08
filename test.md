@@ -39,9 +39,8 @@ Attacks
 [OK] When a card attacks, it deals X damage to its target (hero), where X is the card's attack power.
 [] A card can only attack the opponent hero.
 [] A card can only attack opponent cards on the field.
-[] Hero health decreases every time its attacked by an opponent card.
-[] When a card is dealt X damage points, it loses X health points.
-[] When a card attacks another card, it takes X damage, where X is the attack value of the target card.
+[OK] When a card is dealt X damage points, it loses X health points.
+[OK] When a card attacks another card, it takes X damage, where X is the attack value of the target card.
 [] When a card's health <= 0, the card is defeated and removed from the field and from the game.
 
 Defeat and vicotry
