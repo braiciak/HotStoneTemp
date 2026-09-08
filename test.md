@@ -36,7 +36,7 @@ Playing cards and the Field
 Attacks
 [OK] A card can only attack when it is active.
 [OK] When a card attacks, it becomes inactive.
-[] When a card attacks, it deals X damage to its target, where X is the card's attack power.
+[OK] When a card attacks, it deals X damage to its target (hero), where X is the card's attack power.
 [] A card can only attack the opponent hero.
 [] A card can only attack opponent cards on the field.
 [] Hero health decreases every time its attacked by an opponent card.

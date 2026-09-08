@@ -176,6 +176,8 @@ public class StandardHotStoneGame implements Game {
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
         }
         ((StandardCard) attackingCard).setActive(false);
+        BabyHero hero = (BabyHero) getHero(Player.computeOpponent(playerAttacking));
+        hero.hurt(attackingCard.getAttack());
         return Status.OK;
     }
 

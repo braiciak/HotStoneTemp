@@ -339,7 +339,7 @@ public class TestAlphaStone {
       // Given a card is played on the field
       game.playCard(playerInTurn, 0, 0);
       // When a player tries to attack with the card
-      Status result = game.attackHero(Player.computeOpponent(playerInTurn), game.getCardInField(playerInTurn, 0));
+      Status result = game.attackHero(playerInTurn, game.getCardInField(playerInTurn, 0));
       // Then they can't (if it's inactive)
       assertThat(result, is(Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION));
   }
@@ -352,22 +352,22 @@ public class TestAlphaStone {
       game.endTurn();
       game.endTurn();
       // When that card attacks,
-      game.attackHero(Player.computeOpponent(playerInTurn), card);
+      game.attackHero(playerInTurn, card);
       // Then the card should become inactive.
       assertThat(card.isActive(), is(false));
   }
-
     @Test
     public void shouldHurtHeroOnAttack() {
         // Given a card with x attack power
         game.playCard(playerInTurn, 0, 0);
+        game.endTurn();
+        game.endTurn();
         Card card = game.getCardInField(playerInTurn, 0);
         Hero hero = game.getHero(Player.computeOpponent(playerInTurn));
         int healthBefore = hero.getHealth();
         // When the card attacks the opponent hero
-        game.attackHero(Player.computeOpponent(playerInTurn), card);
+        game.attackHero(playerInTurn, card);
         // Then the opponent hero loses x health
-        assertThat(card.getAttack(), is(healthBefore - hero.getHealth()));
+        assertThat(healthBefore - hero.getHealth(), is(card.getAttack()));
     }
-
 }
