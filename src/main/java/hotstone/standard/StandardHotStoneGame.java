@@ -70,8 +70,7 @@ public class StandardHotStoneGame implements Game {
         peddersen = new BabyHero();
 
         for (int i = 0; i < 3; i++) {
-            drawCard(Player.FINDUS);
-            drawCard(Player.PEDDERSEN);
+            drawCard();
         }
     }
 
@@ -152,10 +151,17 @@ public class StandardHotStoneGame implements Game {
         for(Card c: getField(getPlayerInTurn())) {
             ((StandardCard) c).setActive(true);
         }
+        // Second player draws three cards on their first turn.
+        if (getTurnNumber() == 1) {
+            for (int i = 0; i < 2; i++) {
+                drawCard();
+            }
+        }
     }
 
     @Override
-    public boolean drawCard(Player who) {
+    public boolean drawCard() {
+        Player who = getPlayerInTurn();
         if (this.getDeckSize(who) <= 0) {
             BabyHero hero = (BabyHero) getHero(who);
             hero.hurt(2);
@@ -167,7 +173,12 @@ public class StandardHotStoneGame implements Game {
     }
 
     @Override
-    public Status attackCard(Player playerAttacking, hotstone.framework.Card attackingCard, hotstone.framework.Card defendingCard) {
+    public Status attackCard(int ownFieldIndex, int oppFieldIndex) {
+        Player playerInTurn = getPlayerInTurn();
+        Player opponent = Player.computeOpponent(playerInTurn);
+        Card attackingCard = getCardInField(playerInTurn, ownFieldIndex);
+        Card defendingCard = getCardInField(opponent, oppFieldIndex);
+
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION; }
         ((StandardCard) attackingCard).setActive(false);
 
@@ -175,10 +186,10 @@ public class StandardHotStoneGame implements Game {
         ((StandardCard) attackingCard).hurt(defendingCard.getAttack());
 
         if (defendingCard.getHealth() <= 0) {
-            removeFromField(Player.computeOpponent(playerAttacking), defendingCard);
+            removeFromField(opponent, defendingCard);
         }
         if (attackingCard.getHealth() <= 0) {
-            removeFromField(playerAttacking, attackingCard);
+            removeFromField(playerInTurn, attackingCard);
         }
 
         return Status.OK;
@@ -189,23 +200,27 @@ public class StandardHotStoneGame implements Game {
     }
 
     @Override
-    public Status attackHero(Player playerAttacking, hotstone.framework.Card attackingCard) {
+    public Status attackHero(int fieldIndex) {
+        Player playerInTurn = getPlayerInTurn();
+        Card attackingCard = getCardInField(getPlayerInTurn(), fieldIndex);
+
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
         }
         ((StandardCard) attackingCard).setActive(false);
-        BabyHero hero = (BabyHero) getHero(Player.computeOpponent(playerAttacking));
+        BabyHero hero = (BabyHero) getHero(Player.computeOpponent(playerInTurn));
         hero.hurt(attackingCard.getAttack());
         return Status.OK;
     }
 
     @Override
-    public Status usePower(Player who) {
+    public Status usePower() {
         BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
         return currentHero.usePower();
     }
 
     @Override
-    public Status playCard(Player who, int handIndex, int fieldIndex) {
+    public Status playCard(int handIndex, int fieldIndex) {
+        Player who = getPlayerInTurn();
         Card card = getCardInHand(who, handIndex);
         BabyHero hero = (BabyHero) getHero(who);
 

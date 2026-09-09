@@ -153,15 +153,17 @@ public interface Game {
    */
   void endTurn();
 
-  boolean drawCard(Player who);
+    /**
+     * Draws a card for the current player in turn.
+     * @return whether the draw succeeded
+     */
+  boolean drawCard();
 
-  /** Play a card from the hand to the field.
+  /** Play a card from the hand of the player-in-turn to the field.
    *
-   * PRECONDITION: 'who' is never null.
    * PRECONDITION: handIndex in range [0, getHandSize(who)]
    * PRECONDITION: fieldIndex in range [0, getFieldSize(who)]
    *
-   * @param who player to play card
    * @param handIndex where the card is in the hand
    * @param fieldIndex index at which the card should be
    *                entered on the field. 0 = left of
@@ -170,45 +172,33 @@ public interface Game {
    *
    * @return the status of the play
    */
-   Status playCard(Player who, int handIndex, int fieldIndex);
+   Status playCard(int handIndex, int fieldIndex);
 
-  /** Attack one card with another on the fields.
+  /** The player-in-turn attacks a defending card with one of their cards.
    *
-   * PRECONDITION: 'who' is never null.
-   * PRECONDITION: both cards are a non-null card retrieved by the
-   * 'getCardInField()' method.
+   * PRECONDITION: the indices are within range of their fields
    *
-   * @param playerAttacking the player making the attack
-   * @param attackingCard the card attacking
-   * @param defendingCard the card defending
+   * @param ownFieldIndex the index of the card in the player-in-turn's field
+   * @param oppFieldIndex the index of the card in the opposing field
    * @return a status identifying the outcome of the attack, which is
    *    either OK or some value explaining why the action was invalid.
    */
-  Status attackCard(Player playerAttacking,
-                    Card attackingCard, Card defendingCard);
+  Status attackCard(int ownFieldIndex, int oppFieldIndex);
 
-  /** Attack a hero with a card in the field.
+  /** Attack the opposing hero with a card in the field.
    *
-   * PRECONDITION: 'who' is never null.
-   * PRECONDITION: the card is a non-null card retrieved by the
-   * 'getCardInField()' method.
+   * PRECONDITION: fieldIndex is within range of the field
    *
-   * @param playerAttacking the player making the attack
-   * @param attackingCard the card attacking
-   * @return a status identifying the outcome of the attack, which is
-   *    either OK or some value explaining why the action was invalid.
+   * @param fieldIndex index of the attacking card
    */
-  Status attackHero(Player playerAttacking, Card attackingCard);
+  Status attackHero(int fieldIndex);
 
-  /** Use a hero's special power/effect.
+  /** Use the player-in-turn hero's special power/effect.
    *
-   * PRECONDITION: 'who' is never null.
-   *
-   * @param who the player using his/her hero's power
    * @return a status identifying the outcome of the power use, which
    *    is either OK or some value explaining why the action was
    *    invalid.
    */
-  Status usePower(Player who);
+  Status usePower();
 
 }

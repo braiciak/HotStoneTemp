@@ -47,7 +47,7 @@ Defeat and vicotry
 [] When a player's hero is defeated, the other player wins. - Not alphastone.
 
 Other Functionalities
-[] A player can only perform allowed actions on their turn.
+[OK] A player can only perform allowed actions on their turn.
 
 Tests for hero type Baby:
 [OK] Hero health starts at 21.
