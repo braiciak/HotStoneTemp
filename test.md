@@ -36,12 +36,10 @@ Playing cards and the Field
 Attacks
 [OK] A card can only attack when it is active.
 [OK] When a card attacks, it becomes inactive.
-[OK] When a card attacks, it deals X damage to its target (hero), where X is the card's attack power.
-[] A card can only attack the opponent hero.
-[] A card can only attack opponent cards on the field.
+[OK] When a card attacks, it deals X damage to its target (hero or card), where X is the card's attack power.
 [OK] When a card is dealt X damage points, it loses X health points.
 [OK] When a card attacks another card, it takes X damage, where X is the attack value of the target card.
-[] When a card's health <= 0, the card is defeated and removed from the field and from the game.
+[OK] When a card's health <= 0, the card is defeated and removed from the field and from the game.
 
 Defeat and vicotry
 [OK] Findus wins at the start of turn 8.
@@ -50,7 +48,6 @@ Defeat and vicotry
 
 Other Functionalities
 [] A player can only perform allowed actions on their turn.
-
 
 Tests for hero type Baby:
 [OK] Hero health starts at 21.

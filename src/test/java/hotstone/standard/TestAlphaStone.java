@@ -33,6 +33,7 @@ import hotstone.framework.*;
 import org.junit.jupiter.api.*;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /** Template for your own ongoing TDD process.
@@ -415,6 +416,25 @@ public class TestAlphaStone {
         game.attackCard(playerInTurn,card,oppCard);
         // Then our card is dealt X damage.
         assertThat(healthBefore - card.getHealth(), is(oppCard.getAttack()));
+    }
+
+    @Test
+    public void shouldRemoveCardOnDefeat() {
+      // Given an attacking and defending card,
+      Player opp = Player.computeOpponent(playerInTurn);
+
+      game.playCard(playerInTurn,0,0);
+      Card attacker = game.getCardInField(playerInTurn,0);
+      game.endTurn();
+
+      game.playCard(opp,0,0);
+      Card defender = game.getCardInField(opp,0);
+      game.endTurn();
+      // When the defender is attacked and has <= 0 health,
+      assertThat(attacker.getAttack(), is(greaterThanOrEqualTo(defender.getHealth())));
+      game.attackCard(playerInTurn,attacker,defender);
+      // Then the defender is removed from the game.
+      assertThat(game.getField(opp), not(hasItem(defender)));
     }
 
 }

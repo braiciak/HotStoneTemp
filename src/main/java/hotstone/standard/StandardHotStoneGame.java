@@ -170,9 +170,22 @@ public class StandardHotStoneGame implements Game {
     public Status attackCard(Player playerAttacking, hotstone.framework.Card attackingCard, hotstone.framework.Card defendingCard) {
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION; }
         ((StandardCard) attackingCard).setActive(false);
+
         ((StandardCard) defendingCard).hurt(attackingCard.getAttack());
         ((StandardCard) attackingCard).hurt(defendingCard.getAttack());
+
+        if (defendingCard.getHealth() <= 0) {
+            removeFromField(Player.computeOpponent(playerAttacking), defendingCard);
+        }
+        if (attackingCard.getHealth() <= 0) {
+            removeFromField(playerAttacking, attackingCard);
+        }
+
         return Status.OK;
+    }
+
+    private void removeFromField(Player who, Card card) {
+        field.get(who).remove(card);
     }
 
     @Override
