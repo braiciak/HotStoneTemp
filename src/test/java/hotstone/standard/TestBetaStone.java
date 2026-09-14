@@ -8,13 +8,15 @@ public class TestBetaStone {
     private Game game;
     private ManaStrategy manaStrategy;
     private VictoryStrategy victoryStrategy;
+    private HeroStrategy heroStrategy;
 
     /** Fixture for BetaStone testing. */
     @BeforeEach
     public void setUp() {
         manaStrategy = new BetaManaStrategy();
         victoryStrategy = new BetaVictoryStrategy();
-        game = new StandardHotStoneGame(manaStrategy, victoryStrategy);
+        heroStrategy = new AlphaHeroStrategy(); // TODO: CHANGE TO BETA STRAT ONCE BETA IS IMPLEMENTED!
+        game = new StandardHotStoneGame(manaStrategy, victoryStrategy, heroStrategy);
     }
 
     @Test

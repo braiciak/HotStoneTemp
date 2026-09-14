@@ -92,7 +92,7 @@ BetaStone:
 [OK] Winner is the player that decreases opponent health to zero or less.
 
 GammaStone:
-[] Findus has hero type ThaiChef.
+Findus has hero type ThaiChef.
 Pedderson has hero type DanishChef.
 Hero thaiChef has power named Chili.
 Chili power decreases opponent health by 2.
@@ -103,9 +103,9 @@ Sovs minion has 1 attack 1 health.
 Sovs has description "Summon Sovs card."
 Winner is the player that first clears the other persons field. 
 Player can only win after round 3. 
-If both fields are empty after round 3, Pedderson wins.
+If both fields are empty after round 3, Pedderson wins. 
 
-DeltaStone: (identical to alphastone)
+DeltaStone: (identical to alphastone).
 Each turn starts with 5 mana for each hero. 
 The deck called DishDeck has (mana cost, attack, health): 
 - Brown rice: (1,1,2)

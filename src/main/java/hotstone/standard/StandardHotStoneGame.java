@@ -53,12 +53,18 @@ public class StandardHotStoneGame implements Game {
     private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
     private int turnNumber = 0;
+
     private ManaStrategy manaStrategy;
     private VictoryStrategy victoryStrategy;
+    private HeroStrategy heroStrategy;
 
 
 
-    public StandardHotStoneGame(ManaStrategy manaStrategy, VictoryStrategy victoryStrategy) {
+    public StandardHotStoneGame(
+            ManaStrategy manaStrategy,
+            VictoryStrategy victoryStrategy,
+            HeroStrategy heroStrategy
+    ) {
 
         deck.put(Player.FINDUS, new SpanishDeck());
         deck.put(Player.PEDDERSEN, new SpanishDeck());
@@ -67,8 +73,9 @@ public class StandardHotStoneGame implements Game {
         field.put(Player.FINDUS, new ArrayList<>());
         field.put(Player.PEDDERSEN, new ArrayList<>());
 
-        findus = new BabyHero();
-        peddersen = new BabyHero();
+        // TODO: Expose mutators in the Hero interface so that we can use the Hero interface in game logic.
+        findus = (BabyHero) heroStrategy.generate(Player.FINDUS);
+        peddersen = (BabyHero) heroStrategy.generate(Player.PEDDERSEN);
         this.manaStrategy = manaStrategy;
         this.victoryStrategy = victoryStrategy;
 
