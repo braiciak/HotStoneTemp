@@ -21,7 +21,6 @@ import hotstone.framework.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This is the 'temporary test stub' in TDD
@@ -54,10 +53,11 @@ public class StandardHotStoneGame implements Game {
     private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
     private int turnNumber = 0;
+    private ManaStrategy manaStrategy;
 
 
 
-    public StandardHotStoneGame() {
+    public StandardHotStoneGame(ManaStrategy manaStrategy) {
 
         deck.put(Player.FINDUS, new SpanishDeck());
         deck.put(Player.PEDDERSEN, new SpanishDeck());
@@ -68,6 +68,7 @@ public class StandardHotStoneGame implements Game {
 
         findus = new BabyHero();
         peddersen = new BabyHero();
+        this.manaStrategy = manaStrategy;
 
         for (int i = 0; i < 3; i++) {
             drawCard();
@@ -146,7 +147,7 @@ public class StandardHotStoneGame implements Game {
         turnNumber++;
 
         BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
-        currentHero.setMana(3);
+        currentHero.setMana(manaStrategy.calculate(getTurnNumber()));
         currentHero.resetUsedPower();
         for(Card c: getField(getPlayerInTurn())) {
             ((StandardCard) c).setActive(true);
@@ -230,6 +231,11 @@ public class StandardHotStoneGame implements Game {
         field.get(who).add(fieldIndex, hand.get(who).remove(handIndex));
         hero.setMana(hero.getMana() - card.getManaCost());
         return Status.OK;
+    }
+
+    @Override
+    public int getRoundCount() {
+        return Math.round(turnNumber/2);
     }
 }
 

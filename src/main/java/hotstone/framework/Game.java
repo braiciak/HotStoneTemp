@@ -201,4 +201,5 @@ public interface Game {
    */
   Status usePower();
 
+  int getRoundCount();
 }

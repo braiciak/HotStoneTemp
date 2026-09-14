@@ -87,8 +87,8 @@ Tests for each card:
 All 3 are identical to alphastone, except following changes: 
 
 BetaStone:
-Player mana should equal number of rounds.
-Max val of player mana is 7.
+[OK] Player mana should equal number of rounds.
+[OK] Max val of player mana is 7.
 Mana does not transfer between turns.
 Winner is the player that decreases opponent health to zero or less.
 

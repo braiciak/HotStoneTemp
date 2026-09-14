@@ -47,7 +47,8 @@ public class TestAlphaStone {
   /** Fixture for AlphaStone testing. */
   @BeforeEach
   public void setUp() {
-    game = new StandardHotStoneGame();
+
+    game = new StandardHotStoneGame(new AlphaManaStrategy());
     playerInTurn = game.getPlayerInTurn();
   }
 
