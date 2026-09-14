@@ -16,7 +16,7 @@ public class TestCards {
 
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(new AlphaManaStrategy());
+        game = new StandardHotStoneGame(new AlphaManaStrategy(), new AlphaVictoryStrategy());
         playerInTurn = game.getPlayerInTurn();
     }
 

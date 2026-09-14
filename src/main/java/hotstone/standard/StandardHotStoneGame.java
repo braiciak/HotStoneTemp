@@ -54,10 +54,11 @@ public class StandardHotStoneGame implements Game {
     private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
     private int turnNumber = 0;
     private ManaStrategy manaStrategy;
+    private VictoryStrategy victoryStrategy;
 
 
 
-    public StandardHotStoneGame(ManaStrategy manaStrategy) {
+    public StandardHotStoneGame(ManaStrategy manaStrategy, VictoryStrategy victoryStrategy) {
 
         deck.put(Player.FINDUS, new SpanishDeck());
         deck.put(Player.PEDDERSEN, new SpanishDeck());
@@ -69,6 +70,7 @@ public class StandardHotStoneGame implements Game {
         findus = new BabyHero();
         peddersen = new BabyHero();
         this.manaStrategy = manaStrategy;
+        this.victoryStrategy = victoryStrategy;
 
         for (int i = 0; i < 3; i++) {
             drawCard();
@@ -90,11 +92,7 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public Player getWinner() {
-        if (turnNumber == 8) {
-            return Player.FINDUS;
-        } else {
-            return null;
-        }
+        return victoryStrategy.getWinner(this);
     }
 
     @Override

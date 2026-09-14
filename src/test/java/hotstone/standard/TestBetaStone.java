@@ -3,17 +3,18 @@ import hotstone.framework.*;
 import org.junit.jupiter.api.*;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 public class TestBetaStone {
     private Game game;
-    private ManaStrategy betaManaStrategy;
+    private ManaStrategy manaStrategy;
+    private VictoryStrategy victoryStrategy;
 
     /** Fixture for BetaStone testing. */
     @BeforeEach
     public void setUp() {
-        betaManaStrategy = new BetaManaStrategy();
-        game = new StandardHotStoneGame(betaManaStrategy);
+        manaStrategy = new BetaManaStrategy();
+        victoryStrategy = new BetaVictoryStrategy();
+        game = new StandardHotStoneGame(manaStrategy, victoryStrategy);
     }
 
     @Test
@@ -21,7 +22,7 @@ public class TestBetaStone {
         // Given a game
         // When turn ends
         // Then mana sets to number of rounds
-        assertThat(game.getRoundCount(), is(betaManaStrategy.calculate(game.getRoundCount())));
+        assertThat(game.getRoundCount(), is(manaStrategy.calculate(game.getRoundCount())));
     }
 
     @Test
@@ -31,6 +32,18 @@ public class TestBetaStone {
         for(int i = 0; i < 8*2; i++)
             game.endTurn();
         // Then mana defaults to 7.
-        assertThat(7, is(betaManaStrategy.calculate(game.getRoundCount())));
+        assertThat(7, is(manaStrategy.calculate(game.getRoundCount())));
     }
+
+    @Test
+    public void shouldWinIfOppHeroDead() {
+        // Given a game,
+        // When the opponent's hero's health >= 0,
+        while (game.getHero(Player.FINDUS).getHealth() > 0) {
+            game.drawCard();
+        }
+        // Then the other player wins.
+        assertThat(game.getWinner(), is(Player.PEDDERSEN));
+    }
+
 }

@@ -89,12 +89,10 @@ All 3 are identical to alphastone, except following changes:
 BetaStone:
 [OK] Player mana should equal number of rounds.
 [OK] Max val of player mana is 7.
-Mana does not transfer between turns.
-Winner is the player that decreases opponent health to zero or less.
-
+[OK] Winner is the player that decreases opponent health to zero or less.
 
 GammaStone:
-Findus has hero type ThaiChef.
+[] Findus has hero type ThaiChef.
 Pedderson has hero type DanishChef.
 Hero thaiChef has power named Chili.
 Chili power decreases opponent health by 2.

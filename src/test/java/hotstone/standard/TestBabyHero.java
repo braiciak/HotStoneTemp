@@ -16,7 +16,7 @@ public class TestBabyHero {
 
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(new AlphaManaStrategy());
+        game = new StandardHotStoneGame(new AlphaManaStrategy(), new AlphaVictoryStrategy());
         heroFindus = (BabyHero) game.getHero(Player.FINDUS); // Both players are type babyHero
     }
 
