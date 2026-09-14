@@ -83,3 +83,43 @@ Tests for each card:
 
 -- Siete --
 [OK] Has attributes: (3,2,4)
+
+All 3 are identical to alphastone, except following changes: 
+
+BetaStone:
+Player mana should equal number of rounds.
+Max val of player mana is 7.
+Mana does not transfer between turns.
+Winner is the player that decreases opponent health to zero or less.
+
+
+GammaStone:
+Findus has hero type ThaiChef.
+Pedderson has hero type DanishChef.
+Hero thaiChef has power named Chili.
+Chili power decreases opponent health by 2.
+Chili has description. "Deal 2 damage to opponent hero."
+DanishChef has power named "Sovs".
+Sovs adds special minion to field.
+Sovs minion has 1 attack 1 health.
+Sovs has description "Summon Sovs card."
+Winner is the player that first clears the other persons field. 
+Player can only win after round 3. 
+If both fields are empty after round 3, Pedderson wins.
+
+DeltaStone: (identical to alphastone)
+Each turn starts with 5 mana for each hero. 
+The deck called DishDeck has (mana cost, attack, health): 
+- Brown rice: (1,1,2)
+- French Fries: (1,2,1)
+- Green salad: (2,2,3)
+- Tomato salad: (2,3,2)
+- Poke bowl: (3,2,4)
+- Pumpkin Soup: (4,2,7)
+- Noodle soup: (4,5,3)
+- Spring rolls: (5,3,7)
+- Baked Salmon: (5,8,2)
+
+Deck has 2 of each(18 in total), and randomly shuffled.
+Such that, the first card in deck, costs 1 mana. Second card costs 2 mana or less. And third card costs 4 mana or less.
+No restrictions on rest of cards.
