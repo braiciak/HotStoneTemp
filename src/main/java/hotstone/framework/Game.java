@@ -164,7 +164,7 @@ public interface Game {
    * PRECONDITION: handIndex in range [0, getHandSize(who)]
    * PRECONDITION: fieldIndex in range [0, getFieldSize(who)]
    *
-   * @param handIndex where the card is in the hand
+   * @param handIndex the index of the card to be played
    * @param fieldIndex index at which the card should be
    *                entered on the field. 0 = left of
    *                leftmost position, 1 = between first

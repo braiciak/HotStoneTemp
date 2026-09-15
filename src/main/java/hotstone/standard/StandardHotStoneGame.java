@@ -83,7 +83,6 @@ public class StandardHotStoneGame implements Game {
         }
     }
 
-
     @Override
     public Player getPlayerInTurn() {
         if(turnNumber%2 == 0) return Player.FINDUS;
@@ -223,16 +222,20 @@ public class StandardHotStoneGame implements Game {
         return currentHero.usePower(this);
     }
 
+    public void addToField(Player who, Card card, int index) {
+        field.get(who).add(index, card);
+    }
+
     @Override
     public Status playCard(int handIndex, int fieldIndex) {
         Player who = getPlayerInTurn();
-        Card card = getCardInHand(who, handIndex);
         StandardHero hero = getHero(who);
+        Card card = getCardInHand(who, handIndex);
 
         if (hero.getMana() < card.getManaCost()) {
             return Status.NOT_ENOUGH_MANA;
         }
-        field.get(who).add(fieldIndex, hand.get(who).remove(handIndex));
+        addToField(who, hand.get(who).remove(handIndex), fieldIndex);
         hero.setMana(hero.getMana() - card.getManaCost());
         return Status.OK;
     }

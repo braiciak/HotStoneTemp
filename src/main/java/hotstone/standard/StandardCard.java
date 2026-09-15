@@ -48,6 +48,13 @@ public class StandardCard implements hotstone.framework.Card {
                 attack = 2;
                 health = 4;
                 break;
+            case GameConstants.SOVS_CARD:
+                mana = 0;
+                attack = 1;
+                health = 1;
+                break;
+            default:
+                throw(new RuntimeException("Name not recognized."));
         }
     }
 

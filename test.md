@@ -96,13 +96,13 @@ GammaStone:
 [OK] Pedderson has hero type DanishChef.
 [OK] Hero thaiChef has power named Chili.
 [OK] Chili power decreases opponent health by 2.
-[OK] Chili has description. "Deal 2 damage to opponent hero.".
+[OK] Chili has description. "Deal 2 damage to opponent hero."
 [OK] DanishChef has power named "Sovs".
-[] Sovs adds special minion to field.
-Sovs minion has 1 attack 1 health.
+[OK] Sovs adds a card to field.
+[OK] Sovs card has 1 attack 1 health.
 [OK] Sovs has description "Summon Sovs card."
 Winner is the player that first clears the other persons field. 
-Player can only win after round 3. 
+Player can only win after round 3.
 If both fields are empty after round 3, Pedderson wins. 
 
 DeltaStone: (identical to alphastone).

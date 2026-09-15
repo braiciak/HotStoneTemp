@@ -1,9 +1,11 @@
 package hotstone.standard;
 
-import hotstone.framework.Game;
-import hotstone.framework.Player;
+import hotstone.framework.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collection;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -14,7 +16,6 @@ public class TestGammaStone {
     /** Fixture for AlphaStone testing. */
     @BeforeEach
     public void setUp() {
-
         game = new StandardHotStoneGame(new AlphaManaStrategy(), new AlphaVictoryStrategy(), new GammaHeroStrategy());
     }
 
@@ -36,6 +37,22 @@ public class TestGammaStone {
         int afterDamage = game.getHero(Player.PEDDERSEN).getHealth();
         // Then opponent loses 2 health
         assertThat(afterDamage, is(beforeDamage-2));
+    }
+
+    @Test
+    public void shouldAddMinionForSovsPower() {
+        // Given some field for Peddersen,
+        game.endTurn();
+        Player player = game.getPlayerInTurn();
+        int fieldSize = game.getFieldSize(player);
+        // When the Sovs power is invoked,
+        game.endTurn();
+        game.endTurn();
+        game.usePower();
+        // Then the Sovs card is added to the field.
+        // (Assume that the Sovs card is added to the 0th index of the field.)
+        List<Card> field = game.getField(player);
+        assertThat(field.get(0).getName(), is(GameConstants.SOVS_CARD));
     }
 
 }
