@@ -107,7 +107,7 @@ GammaStone:
 
 DeltaStone: (identical to alphastone).
 [OK] Each turn starts with 5 mana for each hero. 
-The deck called DishDeck has (mana cost, attack, health): 
+[OK] The deck called DishDeck has (mana cost, attack, health): 
 - Brown rice: (1,1,2)
 - French Fries: (1,2,1)
 - Green salad: (2,2,3)
@@ -118,6 +118,6 @@ The deck called DishDeck has (mana cost, attack, health):
 - Spring rolls: (5,3,7)
 - Baked Salmon: (5,8,2)
 
-Deck has 2 of each(18 in total), and randomly shuffled.
-Such that, the first card in deck, costs 1 mana. Second card costs 2 mana or less. And third card costs 4 mana or less.
-No restrictions on rest of cards.
+[OK] Deck has 2 of each(18 in total), and randomly shuffled.
+[OK] Such that, the first card in deck, costs 1 mana. Second card costs 2 mana or less. And third card costs 4 mana or less.
+[OK] No restrictions on rest of cards.

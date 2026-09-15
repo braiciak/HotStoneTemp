@@ -10,50 +10,50 @@ public class StandardCard implements hotstone.framework.Card {
     private int health;
     private boolean isActive = false;
 
+    private void init(int mana, int attack, int health) {
+        this.mana = mana;
+        this.attack = attack;
+        this.health = health;
+    }
+
     public StandardCard(String name) {
         this.name = name;
         switch (name) {
-            case GameConstants.UNO_CARD:
-               mana = 1;
-               attack = 1;
-               health = 1;
-               break;
-            case GameConstants.DOS_CARD:
-                mana = 2;
-                attack = 2;
-                health = 2;
-                break;
-            case GameConstants.TRES_CARD:
-                mana = 3;
-                attack = 3;
-                health = 3;
-                break;
-            case GameConstants.CUATRO_CARD:
-                mana = 2;
-                attack = 3;
-                health = 1;
-                break;
-            case GameConstants.CINCO_CARD:
-                mana = 3;
-                attack = 5;
-                health = 1;
-                break;
-            case GameConstants.SEIS_CARD:
-                mana = 2;
-                attack = 1;
-                health = 3;
-                break;
-            case GameConstants.SIETE_CARD:
-                mana = 3;
-                attack = 2;
-                health = 4;
-                break;
-            case GameConstants.SOVS_CARD:
-                mana = 0;
-                attack = 1;
-                health = 1;
-                break;
-            default:
+            case GameConstants.UNO_CARD ->
+               init(1,1,1);
+            case GameConstants.DOS_CARD ->
+                init(2,2,2);
+            case GameConstants.TRES_CARD ->
+                init(3,3,3);
+            case GameConstants.CUATRO_CARD ->
+                init(2,3,1);
+            case GameConstants.CINCO_CARD ->
+                init(3,5,1);
+            case GameConstants.SEIS_CARD ->
+                init(2,1,3);
+            case GameConstants.SIETE_CARD ->
+                init(3,2,4);
+            case GameConstants.SOVS_CARD ->
+                init(0,1,1);
+            case GameConstants.BROWN_RICE_CARD ->
+                init(1,1,2);
+            case GameConstants.FRENCH_FRIES_CARD ->
+                init(1,2,1);
+            case GameConstants.GREEN_SALAD_CARD ->
+                init(2,2,3);
+            case GameConstants.TOMATO_SALAD_CARD ->
+                init(2,3,2);
+            case GameConstants.POKE_BOWL_CARD ->
+                init(3,2,4);
+            case GameConstants.PUMPKIN_SOUP_CARD ->
+                init(4,2,7);
+            case GameConstants.NOODLE_SOUP_CARD ->
+                init(4,5,3);
+            case GameConstants.SPRING_ROLLS_CARD ->
+                init(5,3,7);
+            case GameConstants.BAKED_SALMON_CARD ->
+                init(5,8,2);
+            default ->
                 throw(new RuntimeException("Name not recognized."));
         }
     }
