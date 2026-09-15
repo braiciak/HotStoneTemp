@@ -16,7 +16,7 @@ public class TestGammaStone {
     /** Fixture for AlphaStone testing. */
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(new AlphaManaStrategy(), new AlphaVictoryStrategy(), new GammaHeroStrategy());
+        game = new StandardHotStoneGame(new AlphaManaStrategy(), new GammaVictoryStrategy(), new GammaHeroStrategy());
     }
 
     @Test
@@ -53,6 +53,18 @@ public class TestGammaStone {
         // (Assume that the Sovs card is added to the 0th index of the field.)
         List<Card> field = game.getField(player);
         assertThat(field.get(0).getName(), is(GameConstants.SOVS_CARD));
+    }
+
+    @Test
+    public void winnerIsFirstPersonThatClearsOpponentFieldAfter3rounds() {
+        // Given a game,
+
+        // When one player has cards on field and clears the other persons field after 3 rounds,
+        game.playCard(2, 0);
+        for(int i = 0; i < 6; i++)
+            game.endTurn();
+        // Then the player is the winner.
+        assertThat(game.getWinner(), is(Player.FINDUS));
     }
 
 }

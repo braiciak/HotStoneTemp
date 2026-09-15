@@ -101,9 +101,9 @@ GammaStone:
 [OK] Sovs adds a card to field.
 [OK] Sovs card has 1 attack 1 health.
 [OK] Sovs has description "Summon Sovs card."
-Winner is the player that first clears the other persons field. 
-Player can only win after round 3.
-If both fields are empty after round 3, Pedderson wins. 
+[OK] Winner is the player that first clears the other persons field. 
+[OK] Player can only win after round 3.
+[OK] If both fields are empty after round 3, Pedderson wins. 
 
 DeltaStone: (identical to alphastone).
 Each turn starts with 5 mana for each hero. 
