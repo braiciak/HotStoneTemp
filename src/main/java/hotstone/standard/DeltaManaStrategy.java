@@ -8,4 +8,5 @@ public class DeltaManaStrategy implements ManaStrategy {
     public int calculate(int roundCount) {
         return 5;
     }
+
 }

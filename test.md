@@ -106,7 +106,7 @@ GammaStone:
 [OK] If both fields are empty after round 3, Pedderson wins. 
 
 DeltaStone: (identical to alphastone).
-Each turn starts with 5 mana for each hero. 
+[OK] Each turn starts with 5 mana for each hero. 
 The deck called DishDeck has (mana cost, attack, health): 
 - Brown rice: (1,1,2)
 - French Fries: (1,2,1)

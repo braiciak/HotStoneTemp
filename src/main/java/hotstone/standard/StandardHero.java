@@ -4,7 +4,7 @@ import hotstone.framework.*;
 
 public class StandardHero implements Hero {
 
-    private int mana; // initial mana
+    private int mana; // Initial mana.
     private int health;
     private boolean usedPower = false;
     private String heroType;
