@@ -152,7 +152,7 @@ public class StandardHotStoneGame implements Game {
         turnNumber++;
 
         BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
-        currentHero.setMana(manaStrategy.calculate(getTurnNumber()));
+        currentHero.setMana(manaStrategy.calculate(getRoundCount()));
         currentHero.resetUsedPower();
         for(Card c: getField(getPlayerInTurn())) {
             ((StandardCard) c).setActive(true);
@@ -240,7 +240,7 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public int getRoundCount() {
-        return Math.round(turnNumber/2);
+        return Math.round((float) turnNumber / 2);
     }
 }
 
