@@ -71,7 +71,7 @@ public class TestBabyHero {
         // Given a Baby hero,
         // When we check its power's effect description,
         // Then it should be "Does nothing".
-        assertThat(heroFindus.getEffectDescription(), is("Does nothing"));
+        assertThat(heroFindus.getEffectDescription(), is("Does nothing."));
     }
 
     @Test

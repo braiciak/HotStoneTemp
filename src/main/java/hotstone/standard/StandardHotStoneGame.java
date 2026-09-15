@@ -220,7 +220,7 @@ public class StandardHotStoneGame implements Game {
     @Override
     public Status usePower() {
         StandardHero currentHero = getHero(getPlayerInTurn());
-        return currentHero.usePower();
+        return currentHero.usePower(this);
     }
 
     @Override

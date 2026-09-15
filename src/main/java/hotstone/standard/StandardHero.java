@@ -1,33 +1,25 @@
 package hotstone.standard;
 
-import hotstone.framework.Hero;
-import hotstone.framework.Player;
-import hotstone.framework.Status;
+import hotstone.framework.*;
 
 public class StandardHero implements Hero {
 
-    private int powerManaCost;
     private int mana; // initial mana
     private int health;
     private boolean usedPower = false;
     private String heroType;
-    private String powerName;
-    private String powerDescription;
+    private PowerStrategy powerStrategy;
 
     public StandardHero(
             int mana,
             int health,
-            int powerManaCost,
             String heroType,
-            String powerName,
-            String powerDescription
+            PowerStrategy powerStrategy
     ) {
        this.mana = mana;
        this.health = health;
-       this.powerManaCost = powerManaCost;
        this.heroType = heroType;
-       this.powerName = powerName;
-       this.powerDescription = powerDescription;
+       this.powerStrategy = powerStrategy;
     }
 
     @Override
@@ -41,12 +33,12 @@ public class StandardHero implements Hero {
 
     @Override
     public String getPowerName() {
-        return powerName;
+        return powerStrategy.getName();
     }
 
     @Override
     public int getPowerManaCost() {
-        return powerManaCost;
+        return powerStrategy.getPowerCost();
     }
 
     @Override
@@ -66,15 +58,16 @@ public class StandardHero implements Hero {
 
     @Override
     public String getEffectDescription() {
-        return powerDescription;
+        return powerStrategy.getDescription();
     }
 
     @Override
-    public Status usePower() {
+    public Status usePower(Game game) {
         if(!usedPower) {
-            if (mana >= powerManaCost) {
+            if (mana >= powerStrategy.getPowerCost()) {
                 usedPower = true;
-                mana -= powerManaCost;
+                mana -= powerStrategy.getPowerCost();
+                powerStrategy.usePower(game);
                 return Status.OK;
             }
             return Status.NOT_ENOUGH_MANA;
