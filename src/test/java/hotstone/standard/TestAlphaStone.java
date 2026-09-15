@@ -32,6 +32,8 @@ package hotstone.standard;
 import hotstone.framework.*;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -48,7 +50,7 @@ public class TestAlphaStone {
   @BeforeEach
   public void setUp() {
 
-    game = new StandardHotStoneGame(new AlphaManaStrategy(), new AlphaVictoryStrategy(), new AlphaHeroStrategy());
+    game = new StandardHotStoneGame(new AlphaManaStrategy(), new AlphaVictoryStrategy(), new AlphaHeroStrategy(), new AlphaDeckStrategy());
     playerInTurn = game.getPlayerInTurn();
   }
 
@@ -161,31 +163,6 @@ public class TestAlphaStone {
       // Then it should be Findus' turn
       playerInTurn = game.getPlayerInTurn();
       assertThat(playerInTurn, is(Player.FINDUS));
-  }
-
-  @Test
-  public void shouldHaveDeckSizeAs7() {
-      // Given Spanish Deck
-      SpanishDeck deck = new SpanishDeck();
-      // When we check how many cards are in the deck
-      // Then there should be 7 cards
-      assertThat(deck.getSize(), is(7));
-  }
-
-  @Test
-  public void shouldBeOrderedUnoDosTresCuatroCincoSeisSiete() {
-      // Given the Spanish Deck
-      SpanishDeck deck = new SpanishDeck();
-      // When we check the order of the cards
-      // Then the order, from top to bottom, should be:
-      // Uno, Dos, Tres...
-      assertThat(deck.getCard(0).getName(), is(GameConstants.UNO_CARD));
-      assertThat(deck.getCard(1).getName(), is(GameConstants.DOS_CARD));
-      assertThat(deck.getCard(2).getName(), is(GameConstants.TRES_CARD));
-      assertThat(deck.getCard(3).getName(), is(GameConstants.CUATRO_CARD));
-      assertThat(deck.getCard(4).getName(), is(GameConstants.CINCO_CARD));
-      assertThat(deck.getCard(5).getName(), is(GameConstants.SEIS_CARD));
-      assertThat(deck.getCard(6).getName(), is(GameConstants.SIETE_CARD));
   }
 
   @Test

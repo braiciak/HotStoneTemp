@@ -19,7 +19,8 @@ public class TestBabyHero {
         game = new StandardHotStoneGame(
                 new AlphaManaStrategy(),
                 new AlphaVictoryStrategy(),
-                new AlphaHeroStrategy()
+                new AlphaHeroStrategy(),
+                new AlphaDeckStrategy()
         );
         heroFindus = (StandardHero) game.getHero(Player.FINDUS); // Both players are type babyHero
     }

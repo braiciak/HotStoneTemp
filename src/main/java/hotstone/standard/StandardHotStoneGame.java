@@ -49,25 +49,25 @@ public class StandardHotStoneGame implements Game {
 
     private final StandardHero findus;
     private final StandardHero peddersen;
-    private final HashMap<Player, SpanishDeck> deck = new HashMap<>();
+    private final HashMap<Player, StandardDeck> deck = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
     private int turnNumber = 0;
 
     private ManaStrategy manaStrategy;
     private VictoryStrategy victoryStrategy;
-    private HeroStrategy heroStrategy;
 
 
 
     public StandardHotStoneGame(
             ManaStrategy manaStrategy,
             VictoryStrategy victoryStrategy,
-            HeroStrategy heroStrategy
+            HeroStrategy heroStrategy,
+            DeckStrategy deckStrategy
     ) {
 
-        deck.put(Player.FINDUS, new SpanishDeck());
-        deck.put(Player.PEDDERSEN, new SpanishDeck());
+        deck.put(Player.FINDUS, (StandardDeck) deckStrategy.generate());
+        deck.put(Player.PEDDERSEN, (StandardDeck) deckStrategy.generate());
         hand.put(Player.FINDUS, new ArrayList<>());
         hand.put(Player.PEDDERSEN, new ArrayList<>());
         field.put(Player.FINDUS, new ArrayList<>());
