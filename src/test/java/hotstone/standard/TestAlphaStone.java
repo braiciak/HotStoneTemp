@@ -73,7 +73,7 @@ public class TestAlphaStone {
   public void shouldStartFindusWithBabyHero() {
       // Given a new game,
       // When we check Findus' hero type,
-      BabyHero hero = (BabyHero) game.getHero(Player.FINDUS);
+      Hero hero = game.getHero(Player.FINDUS);
       // Then we should get "Baby".
       assertThat(hero, notNullValue());
       assertThat(hero.getType(), is("Baby"));
@@ -83,7 +83,7 @@ public class TestAlphaStone {
   public void shouldStartPeddersenWithBabyHero() {
       // Given a new game,
       // When we check Peddersen's hero type,
-      BabyHero hero = (BabyHero) game.getHero(Player.PEDDERSEN);
+      Hero hero = game.getHero(Player.PEDDERSEN);
       // Then we should get "Baby".
       assertThat(hero, notNullValue());
       assertThat(hero.getType(), is("Baby"));
@@ -285,7 +285,7 @@ public class TestAlphaStone {
       game.endTurn();
       game.endTurn();
       // Then their hero's mana is reset to 3
-      BabyHero hero = (BabyHero) game.getHero(playerInTurn);
+      Hero hero = game.getHero(playerInTurn);
       assertThat(hero.getMana(), is(3));
   }
 

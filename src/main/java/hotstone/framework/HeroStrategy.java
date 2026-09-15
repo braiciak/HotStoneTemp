@@ -1,7 +1,9 @@
 package hotstone.framework;
 
+import hotstone.standard.StandardHero;
+
 public interface HeroStrategy {
 
-    Hero generate(Player p);
+    StandardHero generate(Player p);
 
 }

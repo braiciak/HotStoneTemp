@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBabyHero {
     private Game game;
-    private BabyHero heroFindus;
+    private StandardHero heroFindus;
 
     @BeforeEach
     public void setUp() {
@@ -21,7 +21,7 @@ public class TestBabyHero {
                 new AlphaVictoryStrategy(),
                 new AlphaHeroStrategy()
         );
-        heroFindus = (BabyHero) game.getHero(Player.FINDUS); // Both players are type babyHero
+        heroFindus = (StandardHero) game.getHero(Player.FINDUS); // Both players are type babyHero
     }
 
     @Test

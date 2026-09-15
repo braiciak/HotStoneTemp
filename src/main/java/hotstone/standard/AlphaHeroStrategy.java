@@ -7,8 +7,15 @@ import hotstone.framework.Player;
 public class AlphaHeroStrategy implements HeroStrategy {
 
     @Override
-    public Hero generate(Player p) {
-        return new BabyHero();
+    public StandardHero generate(Player p) {
+        return new StandardHero(
+                3,
+                21,
+                2,
+                "Baby",
+                "Cute",
+                "Does nothing"
+        );
     }
 
 }

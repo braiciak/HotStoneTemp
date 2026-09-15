@@ -47,8 +47,8 @@ import java.util.List;
 
 public class StandardHotStoneGame implements Game {
 
-    private final BabyHero findus;
-    private final BabyHero peddersen;
+    private final StandardHero findus;
+    private final StandardHero peddersen;
     private final HashMap<Player, SpanishDeck> deck = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
@@ -73,9 +73,8 @@ public class StandardHotStoneGame implements Game {
         field.put(Player.FINDUS, new ArrayList<>());
         field.put(Player.PEDDERSEN, new ArrayList<>());
 
-        // TODO: Expose mutators in the Hero interface so that we can use the Hero interface in game logic.
-        findus = (BabyHero) heroStrategy.generate(Player.FINDUS);
-        peddersen = (BabyHero) heroStrategy.generate(Player.PEDDERSEN);
+        findus = heroStrategy.generate(Player.FINDUS);
+        peddersen = heroStrategy.generate(Player.PEDDERSEN);
         this.manaStrategy = manaStrategy;
         this.victoryStrategy = victoryStrategy;
 
@@ -92,7 +91,7 @@ public class StandardHotStoneGame implements Game {
     }
 
     @Override
-    public Hero getHero(Player who) {
+    public StandardHero getHero(Player who) {
         if (who == Player.PEDDERSEN) return peddersen;
         else return findus;
     }
@@ -151,7 +150,7 @@ public class StandardHotStoneGame implements Game {
     public void endTurn() {
         turnNumber++;
 
-        BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
+        StandardHero currentHero = getHero(getPlayerInTurn());
         currentHero.setMana(manaStrategy.calculate(getRoundCount()));
         currentHero.resetUsedPower();
         for(Card c: getField(getPlayerInTurn())) {
@@ -169,7 +168,7 @@ public class StandardHotStoneGame implements Game {
     public boolean drawCard() {
         Player who = getPlayerInTurn();
         if (this.getDeckSize(who) <= 0) {
-            BabyHero hero = (BabyHero) getHero(who);
+            StandardHero hero = getHero(who);
             hero.hurt(2);
             return false;
         }
@@ -213,14 +212,14 @@ public class StandardHotStoneGame implements Game {
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
         }
         ((StandardCard) attackingCard).setActive(false);
-        BabyHero hero = (BabyHero) getHero(Player.computeOpponent(playerInTurn));
+        StandardHero hero = getHero(Player.computeOpponent(playerInTurn));
         hero.hurt(attackingCard.getAttack());
         return Status.OK;
     }
 
     @Override
     public Status usePower() {
-        BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
+        StandardHero currentHero = getHero(getPlayerInTurn());
         return currentHero.usePower();
     }
 
@@ -228,7 +227,7 @@ public class StandardHotStoneGame implements Game {
     public Status playCard(int handIndex, int fieldIndex) {
         Player who = getPlayerInTurn();
         Card card = getCardInHand(who, handIndex);
-        BabyHero hero = (BabyHero) getHero(who);
+        StandardHero hero = getHero(who);
 
         if (hero.getMana() < card.getManaCost()) {
             return Status.NOT_ENOUGH_MANA;
