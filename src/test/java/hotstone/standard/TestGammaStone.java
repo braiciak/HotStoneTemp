@@ -21,11 +21,11 @@ public class TestGammaStone {
 
     @Test
     public void findusShouldHaveHeroTypeThaiChef() {
-        assertThat(game.getHero(Player.FINDUS).getType(), is("ThaiChef"));
+        assertThat(game.getHero(Player.FINDUS).getType(), is(GameConstants.THAI_CHEF_HERO_TYPE));
     }
     @Test
     public void peddersonShouldHaveHeroTypeDanishChef() {
-        assertThat(game.getHero(Player.PEDDERSEN).getType(), is("DanishChef"));
+        assertThat(game.getHero(Player.PEDDERSEN).getType(), is(GameConstants.DANISH_CHEF_HERO_TYPE));
     }
 
     @Test

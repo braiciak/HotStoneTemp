@@ -1,9 +1,6 @@
 package hotstone.standard;
 
-import hotstone.framework.HeroStrategy;
-import hotstone.framework.ManaStrategy;
-import hotstone.framework.Player;
-import hotstone.framework.PowerStrategy;
+import hotstone.framework.*;
 
 public class GammaHeroStrategy implements HeroStrategy {
     @Override
@@ -12,7 +9,7 @@ public class GammaHeroStrategy implements HeroStrategy {
             return new StandardHero(
                 3,
                 21,
-                "ThaiChef",
+                GameConstants.THAI_CHEF_HERO_TYPE,
                     new ThaiChefPowerStrategy()
 
             );
@@ -20,7 +17,7 @@ public class GammaHeroStrategy implements HeroStrategy {
             return new StandardHero(
                     3,
                     21,
-                    "DanishChef",
+                    GameConstants.DANISH_CHEF_HERO_TYPE,
                     new DanishChefPowerStrategy()
             );
 

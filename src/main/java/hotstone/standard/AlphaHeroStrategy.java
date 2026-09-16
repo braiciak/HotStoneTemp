@@ -10,7 +10,7 @@ public class AlphaHeroStrategy implements HeroStrategy {
         return new StandardHero(
                 3,
                 21,
-                "Baby",
+                GameConstants.BABY_HERO_TYPE,
                 new BabyPowerStrategy()
         );
     }

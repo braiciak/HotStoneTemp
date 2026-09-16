@@ -41,7 +41,7 @@ Attacks
 [OK] When a card attacks another card, it takes X damage, where X is the attack value of the target card.
 [OK] When a card's health <= 0, the card is defeated and removed from the field and from the game.
 
-Defeat and vicotry
+Defeat and victory
 [OK] Findus wins at the start of turn 8.
 [OK] When hero health <= 0, the hero is defeated.
 [] When a player's hero is defeated, the other player wins. - Not alphastone.

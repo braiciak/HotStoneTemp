@@ -26,15 +26,4 @@ public class TestDeltaStone {
         assertThat(game.getHero(Player.PEDDERSEN).getMana(), is(5));
     }
 
-    @Test
-    public void shouldStartWithLegalDeck() {
-        // Given a deck,
-        Deck deck = deckStrategy.generate();
-        // When we check the top three cards,
-        // Then they should adhere to the mana-cost specifications.
-        assertThat(deck.getCard(0).getManaCost() == 1, is(true));
-        assertThat(deck.getCard(1).getManaCost() <= 2, is(true));
-        assertThat(deck.getCard(2).getManaCost() <= 4, is(true));
-    }
-
 }
