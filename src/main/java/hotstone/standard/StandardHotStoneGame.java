@@ -156,21 +156,11 @@ public class StandardHotStoneGame implements Game {
             for (int i = 0; i < 2; i++) {
                 drawCard();
             }
-        }
+
+        } else drawCard();
     }
 
-    @Override
-    public boolean drawCard() {
-        Player who = getPlayerInTurn();
-        if (this.getDeckSize(who) <= 0) {
-            BabyHero hero = (BabyHero) getHero(who);
-            hero.hurt(2);
-            return false;
-        }
-        hand.get(who).addFirst(getCardInDeck(who, 0));
-        deck.get(who).removeCard();
-        return true;
-    }
+
 
     @Override
     public Status attackCard(int ownFieldIndex, int oppFieldIndex) {
@@ -230,6 +220,17 @@ public class StandardHotStoneGame implements Game {
         field.get(who).add(fieldIndex, hand.get(who).remove(handIndex));
         hero.setMana(hero.getMana() - card.getManaCost());
         return Status.OK;
+    }
+
+    private void drawCard() {
+        Player who = getPlayerInTurn();
+        if (this.getDeckSize(who) <= 0) {
+            BabyHero hero = (BabyHero) getHero(who);
+            hero.hurt(2);
+            return;
+        }
+        hand.get(who).addFirst(getCardInDeck(who, 0));
+        deck.get(who).removeCard();
     }
 }
 

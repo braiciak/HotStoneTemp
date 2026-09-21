@@ -44,7 +44,6 @@ Attacks
 Defeat and vicotry
 [OK] Findus wins at the start of turn 8.
 [OK] When hero health <= 0, the hero is defeated.
-[] When a player's hero is defeated, the other player wins. - Not alphastone.
 
 Other Functionalities
 [OK] A player can only perform allowed actions on their turn.

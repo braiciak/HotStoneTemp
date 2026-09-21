@@ -153,12 +153,6 @@ public interface Game {
    */
   void endTurn();
 
-    /**
-     * Draws a card for the current player in turn.
-     * @return whether the draw succeeded
-     */
-  boolean drawCard();
-
   /** Play a card from the hand of the player-in-turn to the field.
    *
    * PRECONDITION: handIndex in range [0, getHandSize(who)]

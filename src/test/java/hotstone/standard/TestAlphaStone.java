@@ -201,7 +201,8 @@ public class TestAlphaStone {
       // Given a player's turn
       // When a card is drawn (happens in turn 3)
       Card cardInDeck = game.getCardInDeck(playerInTurn, 0);
-      game.drawCard();
+      game.endTurn();
+      game.endTurn();
       Card cardInHand = game.getCardInHand(playerInTurn, 0);
       // Then it is added to the hand of the player
       assertThat(cardInDeck, is(cardInHand));
@@ -212,32 +213,23 @@ public class TestAlphaStone {
       // Given a player's turn
       // When a card is drawn from the deck (happens in turn 3)
       Card cardTopOfDeck = game.getCardInDeck(playerInTurn, 0);
-      game.drawCard();
+      game.endTurn();
+      game.endTurn();
       // Then it is removed from the top of the deck
       assertThat(cardTopOfDeck, not(sameInstance(game.getCardInDeck(playerInTurn,0))));
-  }
-
-  @Test
-  public void shouldNotBeAbleToDrawIfDeckEmpty() {
-      // Given an empty deck,
-      while (game.getDeckSize(playerInTurn) > 0) {
-          game.drawCard();
-      }
-      // When a player draws,
-      boolean isOK = game.drawCard();
-      // Then they are denied the draw.
-      assertThat(isOK, is(false));
   }
 
   @Test
   public void shouldTakeTwoHeroDamageIfCannotDraw() {
       // Given a player cannot draw
       while (game.getDeckSize(playerInTurn) > 0) {
-          game.drawCard();
+          game.endTurn();
+          game.endTurn();
       }
       // When a player tries to draw a card
       int healthBefore = game.getHero(playerInTurn).getHealth();
-      game.drawCard();
+      game.endTurn();
+      game.endTurn();
       int healthAfter = game.getHero(playerInTurn).getHealth();
       // Then hero loses two health
       assertThat(healthAfter, is(healthBefore-2));
