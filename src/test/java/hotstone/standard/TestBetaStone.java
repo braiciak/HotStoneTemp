@@ -44,7 +44,8 @@ public class TestBetaStone {
         // Given a game,
         // When the opponent's hero's health >= 0,
         while (game.getHero(Player.FINDUS).getHealth() > 0) {
-            game.drawCard();
+            game.endTurn();
+            game.endTurn();
         }
         // Then the other player wins.
         assertThat(game.getWinner(), is(Player.PEDDERSEN));
