@@ -7,9 +7,10 @@ public class AlphaHeroStrategy implements HeroStrategy {
 
     @Override
     public StandardHero generate(Player p) {
+        AlphaManaStrategy manaStrategy = new AlphaManaStrategy();
         return new StandardHero(
-                3,
-                21,
+                manaStrategy.calculate(0),
+                GameConstants.HERO_MAX_HEALTH,
                 GameConstants.BABY_HERO_TYPE,
                 new BabyPowerStrategy()
         );
