@@ -41,7 +41,7 @@ Attacks
 [OK] When a card attacks another card, it takes X damage, where X is the attack value of the target card.
 [OK] When a card's health <= 0, the card is defeated and removed from the field and from the game.
 
-Defeat and vicotry
+Defeat and victory
 [OK] Findus wins at the start of turn 8.
 [OK] When hero health <= 0, the hero is defeated.
 
@@ -82,3 +82,41 @@ Tests for each card:
 
 -- Siete --
 [OK] Has attributes: (3,2,4)
+
+All 3 are identical to alphastone, except following changes: 
+
+BetaStone:
+[OK] Player mana should equal number of rounds.
+[OK] Max val of player mana is 7.
+[OK] Winner is the player that decreases opponent health to zero or less.
+
+GammaStone:
+[OK] Findus has hero type ThaiChef.
+[OK] Pedderson has hero type DanishChef.
+[OK] Hero thaiChef has power named Chili.
+[OK] Chili power decreases opponent health by 2.
+[OK] Chili has description. "Deal 2 damage to opponent hero."
+[OK] DanishChef has power named "Sovs".
+[OK] Sovs adds a card to field.
+[OK] Sovs card has 1 attack 1 health.
+[OK] Sovs has description "Summon Sovs card."
+[OK] Winner is the player that first clears the other persons field. 
+[OK] Player can only win after round 3.
+[OK] If both fields are empty after round 3, Pedderson wins. 
+
+DeltaStone: (identical to alphastone).
+[OK] Each turn starts with 5 mana for each hero. 
+[OK] The deck called DishDeck has (mana cost, attack, health): 
+- Brown rice: (1,1,2)
+- French Fries: (1,2,1)
+- Green salad: (2,2,3)
+- Tomato salad: (2,3,2)
+- Poke bowl: (3,2,4)
+- Pumpkin Soup: (4,2,7)
+- Noodle soup: (4,5,3)
+- Spring rolls: (5,3,7)
+- Baked Salmon: (5,8,2)
+
+[OK] Deck has 2 of each(18 in total), and randomly shuffled.
+[OK] Such that, the first card in deck, costs 1 mana. Second card costs 2 mana or less. And third card costs 4 mana or less.
+[OK] No restrictions on rest of cards.

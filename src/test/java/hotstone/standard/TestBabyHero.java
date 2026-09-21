@@ -12,12 +12,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBabyHero {
     private Game game;
-    private BabyHero heroFindus;
+    private StandardHero heroFindus;
 
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame();
-        heroFindus = (BabyHero) game.getHero(Player.FINDUS); // Both players are type babyHero
+        game = new StandardHotStoneGame(
+                new AlphaManaStrategy(),
+                new AlphaVictoryStrategy(),
+                new AlphaHeroStrategy(),
+                new AlphaDeckStrategy()
+        );
+        heroFindus = (StandardHero) game.getHero(Player.FINDUS); // Both players are type babyHero
     }
 
     @Test
@@ -67,7 +72,7 @@ public class TestBabyHero {
         // Given a Baby hero,
         // When we check its power's effect description,
         // Then it should be "Does nothing".
-        assertThat(heroFindus.getEffectDescription(), is("Does nothing"));
+        assertThat(heroFindus.getEffectDescription(), is("Does nothing."));
     }
 
     @Test

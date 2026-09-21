@@ -21,7 +21,6 @@ import hotstone.framework.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This is the 'temporary test stub' in TDD
@@ -48,32 +47,41 @@ import java.util.Map;
 
 public class StandardHotStoneGame implements Game {
 
-    private final BabyHero findus;
-    private final BabyHero peddersen;
-    private final HashMap<Player, SpanishDeck> deck = new HashMap<>();
+    private final StandardHero findus;
+    private final StandardHero peddersen;
+    private final HashMap<Player, StandardDeck> deck = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
     private int turnNumber = 0;
 
+    private ManaStrategy manaStrategy;
+    private VictoryStrategy victoryStrategy;
 
 
-    public StandardHotStoneGame() {
 
-        deck.put(Player.FINDUS, new SpanishDeck());
-        deck.put(Player.PEDDERSEN, new SpanishDeck());
+    public StandardHotStoneGame(
+            ManaStrategy manaStrategy,
+            VictoryStrategy victoryStrategy,
+            HeroStrategy heroStrategy,
+            DeckStrategy deckStrategy
+    ) {
+
+        deck.put(Player.FINDUS, (StandardDeck) deckStrategy.generate());
+        deck.put(Player.PEDDERSEN, (StandardDeck) deckStrategy.generate());
         hand.put(Player.FINDUS, new ArrayList<>());
         hand.put(Player.PEDDERSEN, new ArrayList<>());
         field.put(Player.FINDUS, new ArrayList<>());
         field.put(Player.PEDDERSEN, new ArrayList<>());
 
-        findus = new BabyHero();
-        peddersen = new BabyHero();
+        findus = heroStrategy.generate(Player.FINDUS);
+        peddersen = heroStrategy.generate(Player.PEDDERSEN);
+        this.manaStrategy = manaStrategy;
+        this.victoryStrategy = victoryStrategy;
 
         for (int i = 0; i < 3; i++) {
             drawCard();
         }
     }
-
 
     @Override
     public Player getPlayerInTurn() {
@@ -82,18 +90,14 @@ public class StandardHotStoneGame implements Game {
     }
 
     @Override
-    public Hero getHero(Player who) {
+    public StandardHero getHero(Player who) {
         if (who == Player.PEDDERSEN) return peddersen;
         else return findus;
     }
 
     @Override
     public Player getWinner() {
-        if (turnNumber == 8) {
-            return Player.FINDUS;
-        } else {
-            return null;
-        }
+        return victoryStrategy.getWinner(this);
     }
 
     @Override
@@ -138,15 +142,15 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public int getFieldSize(Player who) {
-        return 0;
+        return getField(who).size();
     }
 
     @Override
     public void endTurn() {
         turnNumber++;
 
-        BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
-        currentHero.setMana(3);
+        StandardHero currentHero = getHero(getPlayerInTurn());
+        currentHero.setMana(manaStrategy.calculate(getRoundCount()));
         currentHero.resetUsedPower();
         for(Card c: getField(getPlayerInTurn())) {
             ((StandardCard) c).setActive(true);
@@ -197,40 +201,51 @@ public class StandardHotStoneGame implements Game {
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
         }
         ((StandardCard) attackingCard).setActive(false);
-        BabyHero hero = (BabyHero) getHero(Player.computeOpponent(playerInTurn));
+        StandardHero hero = getHero(Player.computeOpponent(playerInTurn));
         hero.hurt(attackingCard.getAttack());
         return Status.OK;
     }
 
     @Override
     public Status usePower() {
-        BabyHero currentHero = (BabyHero) getHero(getPlayerInTurn());
-        return currentHero.usePower();
+        StandardHero currentHero = getHero(getPlayerInTurn());
+        return currentHero.usePower(this);
+    }
+
+    public void addToField(Player who, Card card, int index) {
+        field.get(who).add(index, card);
     }
 
     @Override
     public Status playCard(int handIndex, int fieldIndex) {
         Player who = getPlayerInTurn();
+        StandardHero hero = getHero(who);
         Card card = getCardInHand(who, handIndex);
-        BabyHero hero = (BabyHero) getHero(who);
 
         if (hero.getMana() < card.getManaCost()) {
             return Status.NOT_ENOUGH_MANA;
         }
-        field.get(who).add(fieldIndex, hand.get(who).remove(handIndex));
+        addToField(who, hand.get(who).remove(handIndex), fieldIndex);
         hero.setMana(hero.getMana() - card.getManaCost());
         return Status.OK;
+    }
+
+    @Override
+    public int getRoundCount() {
+        return Math.round((float) turnNumber / 2);
     }
 
     private void drawCard() {
         Player who = getPlayerInTurn();
         if (this.getDeckSize(who) <= 0) {
-            BabyHero hero = (BabyHero) getHero(who);
+            StandardHero hero = getHero(who);
             hero.hurt(2);
             return;
         }
         hand.get(who).addFirst(getCardInDeck(who, 0));
         deck.get(who).removeCard();
     }
+
+
 }
 

@@ -1,14 +1,26 @@
 package hotstone.standard;
 
-import hotstone.framework.Player;
-import hotstone.framework.Status;
+import hotstone.framework.*;
 
-public class BabyHero implements hotstone.framework.Hero {
+public class StandardHero implements Hero {
 
-    private final int powerManaCost = 2;
-    private int mana = 3; // initial mana
-    private int health = 21;
+    private int mana; // Initial mana.
+    private int health;
     private boolean usedPower = false;
+    private String heroType;
+    private PowerStrategy powerStrategy;
+
+    public StandardHero(
+            int mana,
+            int health,
+            String heroType,
+            PowerStrategy powerStrategy
+    ) {
+       this.mana = mana;
+       this.health = health;
+       this.heroType = heroType;
+       this.powerStrategy = powerStrategy;
+    }
 
     @Override
     public int getMana() {
@@ -21,12 +33,12 @@ public class BabyHero implements hotstone.framework.Hero {
 
     @Override
     public String getPowerName() {
-        return "Cute";
+        return powerStrategy.getName();
     }
 
     @Override
     public int getPowerManaCost() {
-        return powerManaCost;
+        return powerStrategy.getPowerCost();
     }
 
     @Override
@@ -36,7 +48,7 @@ public class BabyHero implements hotstone.framework.Hero {
 
     @Override
     public String getType() {
-        return "Baby";
+        return heroType;
     }
 
     @Override
@@ -46,15 +58,16 @@ public class BabyHero implements hotstone.framework.Hero {
 
     @Override
     public String getEffectDescription() {
-        return "Does nothing";
+        return powerStrategy.getDescription();
     }
 
     @Override
-    public Status usePower() {
+    public Status usePower(Game game) {
         if(!usedPower) {
-            if (mana >= powerManaCost) {
+            if (mana >= powerStrategy.getPowerCost()) {
                 usedPower = true;
-                mana -= powerManaCost;
+                mana -= powerStrategy.getPowerCost();
+                powerStrategy.usePower(game);
                 return Status.OK;
             }
             return Status.NOT_ENOUGH_MANA;
