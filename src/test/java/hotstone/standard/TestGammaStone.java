@@ -59,11 +59,11 @@ public class TestGammaStone {
     public void winnerIsFirstPersonThatClearsOpponentFieldAfter3rounds() {
         // Given a game,
 
-        // When one player has cards on field and clears the other persons field after 3 rounds,
+        // When Findus has cards on field and clears the other persons field after 3 rounds,
         game.playCard(2, 0);
         for(int i = 0; i < 6; i++)
             game.endTurn();
-        // Then the player is the winner.
+        // Then Findus is the winner.
         assertThat(game.getWinner(), is(Player.FINDUS));
     }
 

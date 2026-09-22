@@ -120,3 +120,7 @@ DeltaStone: (identical to alphastone).
 [OK] Deck has 2 of each(18 in total), and randomly shuffled.
 [OK] Such that, the first card in deck, costs 1 mana. Second card costs 2 mana or less. And third card costs 4 mana or less.
 [OK] No restrictions on rest of cards.
+
+ZetaStone: (like alphastone, except...)
+[OK] Uses gammaVictoryStrategy if roundcount is less than 7
+[OK] Uses betaVictoryStrategy otherwise
