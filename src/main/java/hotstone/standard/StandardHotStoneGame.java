@@ -78,6 +78,7 @@ public class StandardHotStoneGame implements Game {
         this.manaStrategy = manaStrategy;
         this.victoryStrategy = victoryStrategy;
 
+        // draws for findus
         for (int i = 0; i < 3; i++) {
             drawCard();
         }
@@ -156,7 +157,7 @@ public class StandardHotStoneGame implements Game {
             ((StandardCard) c).setActive(true);
         }
         // Second player draws three cards on their first turn.
-        if (getTurnNumber() == 1) {
+        if (getTurnNumber() <= 1) {
             for (int i = 0; i < 2; i++) {
                 drawCard();
             }
@@ -168,25 +169,31 @@ public class StandardHotStoneGame implements Game {
 
     @Override
     public Status attackCard(int ownFieldIndex, int oppFieldIndex) {
-        Player playerInTurn = getPlayerInTurn();
-        Player opponent = Player.computeOpponent(playerInTurn);
-        Card attackingCard = getCardInField(playerInTurn, ownFieldIndex);
-        Card defendingCard = getCardInField(opponent, oppFieldIndex);
+        Card attackingCard = getCardInField(getPlayerInTurn(), ownFieldIndex);
+        Card defendingCard = getCardInField(Player.computeOpponent(getPlayerInTurn()), oppFieldIndex);
 
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION; }
         ((StandardCard) attackingCard).setActive(false);
 
+        hurtCard(attackingCard, defendingCard);
+
+        return Status.OK;
+    }
+
+    private void hurtCard(Card attackingCard, Card defendingCard) {
+
         ((StandardCard) defendingCard).hurt(attackingCard.getAttack());
         ((StandardCard) attackingCard).hurt(defendingCard.getAttack());
 
-        if (defendingCard.getHealth() <= 0) {
-            removeFromField(opponent, defendingCard);
-        }
-        if (attackingCard.getHealth() <= 0) {
-            removeFromField(playerInTurn, attackingCard);
-        }
+        boolean isDefendingCardDefeated = defendingCard.getHealth() <= 0;
+        boolean isAttackingCardDefeated = attackingCard.getHealth() <= 0;
 
-        return Status.OK;
+        if (isDefendingCardDefeated) {
+            removeFromField(Player.computeOpponent(getPlayerInTurn()), defendingCard);
+        }
+        if (isAttackingCardDefeated) {
+            removeFromField(getPlayerInTurn(), attackingCard);
+        }
     }
 
     private void removeFromField(Player who, Card card) {
