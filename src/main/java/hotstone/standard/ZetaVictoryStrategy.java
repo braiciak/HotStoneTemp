@@ -6,16 +6,18 @@ import hotstone.framework.VictoryStrategy;
 
 
 public class ZetaVictoryStrategy implements VictoryStrategy {
-    VictoryStrategy victoryStrategy;
+
+    VictoryStrategy gammaStrat = new GammaVictoryStrategy();
+    VictoryStrategy betaStrat = new BetaVictoryStrategy();
 
     @Override
     public Player getWinner(Game game) {
         boolean roundCountLessThan6 = (game.getRoundCount() <= 6);
 
         if (roundCountLessThan6) {
-            victoryStrategy = new GammaVictoryStrategy();
-        }else victoryStrategy = new BetaVictoryStrategy();
-
-        return victoryStrategy.getWinner(game);
+            return gammaStrat.getWinner(game);
+        } else {
+            return betaStrat.getWinner(game);
+        }
     }
 }
