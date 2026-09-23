@@ -51,7 +51,6 @@ public class TestBetaStone {
             game.endTurn();
         }
         // Then the other player wins.
-        System.out.println(game.getHero(Player.FINDUS).getHealth());
         assertThat(game.getWinner(), is(Player.PEDDERSEN));
 
     }
