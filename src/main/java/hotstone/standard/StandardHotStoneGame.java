@@ -127,8 +127,8 @@ public class StandardHotStoneGame implements Game {
     }
 
     @Override
-    public Iterable<? extends StandardCard> getHand(Player who) {
-        return null;
+    public Iterable<Card> getHand(Player who) {
+        return hand.get(who);
     }
 
     @Override
