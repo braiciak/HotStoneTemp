@@ -8,9 +8,8 @@ import java.util.List;
 
 public class StandardDeck implements Deck {
     private final List < Card > deck;
-    StandardDeck(
-            List < Card > cards
-    ){
+
+    public StandardDeck(List<Card> cards) {
         deck = cards;
     }
 

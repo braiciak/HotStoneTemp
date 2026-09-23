@@ -1,4 +1,4 @@
-package hotstone.standard;
+package hotstone.standard.VictoryStrategy;
 
 import hotstone.framework.Game;
 import hotstone.framework.Player;

@@ -1,8 +1,9 @@
-package hotstone.standard;
+package hotstone.standard.PowerStrategy;
 
 import hotstone.framework.Game;
 import hotstone.framework.Player;
 import hotstone.framework.PowerStrategy;
+import hotstone.standard.StandardHotStoneGame;
 
 public class ThaiChefPowerStrategy implements PowerStrategy {
     @Override

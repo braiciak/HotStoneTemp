@@ -1,10 +1,13 @@
 package hotstone.standard;
 
 import hotstone.framework.*;
+import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
+import hotstone.standard.HeroStrategy.GammaHeroStrategy;
+import hotstone.standard.ManaStrategy.AlphaManaStrategy;
+import hotstone.standard.VictoryStrategy.GammaVictoryStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;

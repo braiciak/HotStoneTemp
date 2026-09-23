@@ -1,8 +1,11 @@
-package hotstone.standard;
+package hotstone.standard.DeckStrategy;
 
 import hotstone.framework.Card;
 import hotstone.framework.Deck;
 import hotstone.framework.DeckStrategy;
+import hotstone.standard.GameConstants;
+import hotstone.standard.StandardCard;
+import hotstone.standard.StandardDeck;
 
 import java.util.ArrayList;
 import java.util.List;

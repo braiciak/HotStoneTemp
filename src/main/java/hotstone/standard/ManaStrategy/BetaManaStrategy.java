@@ -1,4 +1,4 @@
-package hotstone.standard;
+package hotstone.standard.ManaStrategy;
 
 import hotstone.framework.ManaStrategy;
 

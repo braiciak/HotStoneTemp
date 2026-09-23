@@ -165,7 +165,17 @@ public class StandardHotStoneGame implements Game {
         } else drawCard();
     }
 
-
+    private void drawCard() {
+        Player who = getPlayerInTurn();
+        boolean isDeckEmpty = this.getDeckSize(who) <= 0;
+        if (isDeckEmpty) {
+            StandardHero hero = getHero(who);
+            hero.hurt(2);
+            return;
+        }
+        hand.get(who).addFirst(getCardInDeck(who, 0));
+        deck.get(who).removeCard();
+    }
 
     @Override
     public Status attackCard(int ownFieldIndex, int oppFieldIndex) {
@@ -241,18 +251,6 @@ public class StandardHotStoneGame implements Game {
     public int getRoundCount() {
         return Math.round((float) turnNumber / 2);
     }
-
-    private void drawCard() {
-        Player who = getPlayerInTurn();
-        if (this.getDeckSize(who) <= 0) {
-            StandardHero hero = getHero(who);
-            hero.hurt(2);
-            return;
-        }
-        hand.get(who).addFirst(getCardInDeck(who, 0));
-        deck.get(who).removeCard();
-    }
-
 
 }
 

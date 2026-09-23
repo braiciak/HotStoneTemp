@@ -2,6 +2,10 @@ package hotstone.standard;
 
 import hotstone.framework.Game;
 import hotstone.framework.Player;
+import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
+import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
+import hotstone.standard.ManaStrategy.AlphaManaStrategy;
+import hotstone.standard.VictoryStrategy.ZetaVictoryStrategy;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

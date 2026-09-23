@@ -1,6 +1,9 @@
 package hotstone.standard;
 
 import hotstone.framework.ManaStrategy;
+import hotstone.standard.ManaStrategy.AlphaManaStrategy;
+import hotstone.standard.ManaStrategy.BetaManaStrategy;
+import hotstone.standard.ManaStrategy.DeltaManaStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

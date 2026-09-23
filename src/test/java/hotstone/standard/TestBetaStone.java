@@ -1,5 +1,9 @@
 package hotstone.standard;
 import hotstone.framework.*;
+import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
+import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
+import hotstone.standard.ManaStrategy.BetaManaStrategy;
+import hotstone.standard.VictoryStrategy.BetaVictoryStrategy;
 import org.junit.jupiter.api.*;
 
 import static org.hamcrest.CoreMatchers.*;
