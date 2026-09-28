@@ -73,6 +73,15 @@ public class StandardHotStoneGame implements Game {
         field.put(Player.FINDUS, new ArrayList<>());
         field.put(Player.PEDDERSEN, new ArrayList<>());
 
+        for (int i = 0; i < deck.get(Player.FINDUS).getSize(); i++) {
+            ((StandardCard) deck.get(Player.FINDUS).getCard(i))
+                    .setOwner(Player.FINDUS);
+        }
+        for (int i = 0; i < deck.get(Player.PEDDERSEN).getSize(); i++) {
+            ((StandardCard) deck.get(Player.PEDDERSEN).getCard(i))
+                    .setOwner(Player.PEDDERSEN);
+        }
+
         findus = heroStrategy.generate(Player.FINDUS);
         peddersen = heroStrategy.generate(Player.PEDDERSEN);
         this.manaStrategy = manaStrategy;
@@ -185,24 +194,16 @@ public class StandardHotStoneGame implements Game {
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION; }
         ((StandardCard) attackingCard).setActive(false);
 
-        hurtCard(attackingCard, defendingCard);
+        hurtCard((StandardCard) attackingCard, defendingCard.getAttack());
+        hurtCard((StandardCard) defendingCard, attackingCard.getAttack());
 
         return Status.OK;
     }
 
-    private void hurtCard(Card attackingCard, Card defendingCard) {
-
-        ((StandardCard) defendingCard).hurt(attackingCard.getAttack());
-        ((StandardCard) attackingCard).hurt(defendingCard.getAttack());
-
-        boolean isDefendingCardDefeated = defendingCard.getHealth() <= 0;
-        boolean isAttackingCardDefeated = attackingCard.getHealth() <= 0;
-
-        if (isDefendingCardDefeated) {
-            removeFromField(Player.computeOpponent(getPlayerInTurn()), defendingCard);
-        }
-        if (isAttackingCardDefeated) {
-            removeFromField(getPlayerInTurn(), attackingCard);
+    public void hurtCard(StandardCard card, int amount) {
+        card.hurt(amount);
+        if (card.getHealth() <= 0) {
+            removeFromField(card.getOwner(), card);
         }
     }
 

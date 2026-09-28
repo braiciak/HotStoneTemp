@@ -4,6 +4,7 @@ import hotstone.framework.Player;
 
 public class StandardCard implements hotstone.framework.Card {
 
+    private Player owner;
     private final String name;
     private int mana;
     private int attack;
@@ -17,6 +18,7 @@ public class StandardCard implements hotstone.framework.Card {
     }
 
     public StandardCard(String name) {
+        this.owner = null;
         this.name = name;
         switch (name) {
             case GameConstants.UNO_CARD ->
@@ -83,9 +85,13 @@ public class StandardCard implements hotstone.framework.Card {
         return isActive;
     }
 
+    public void setOwner(Player player) {
+        owner = player;
+    }
+
     @Override
     public Player getOwner() {
-        return null;
+        return owner;
     }
 
     @Override
