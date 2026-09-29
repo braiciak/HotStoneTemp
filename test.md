@@ -129,5 +129,9 @@ EpsilonStone: (like AlphaStone, except...)
 [] Findus has FrenchChef, Peddersen has ItalianChef
 [] FrenchChef's power "Redwine" picks random opp. minion and removes 2 health
 [] ItalianChef's power "Pasta" picks random own minion and adds 2 attack
-[] "Redwine" does nothing if there are no opp. minions.
-[] "Pasta" does nothing if there are no own minions.
+[OK] "Redwine" does nothing if there are no opp. minions.
+[OK] "Pasta" does nothing if there are no own minions.
+
+TODO:
+- Factories inherits from AlphaFactory
+- Change hardcoded strings and ints
