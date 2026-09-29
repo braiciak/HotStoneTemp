@@ -17,10 +17,7 @@
 package hotstone.standard;
 
 import hotstone.framework.*;
-import hotstone.framework.Strategies.DeckStrategy;
-import hotstone.framework.Strategies.HeroStrategy;
-import hotstone.framework.Strategies.ManaStrategy;
-import hotstone.framework.Strategies.VictoryStrategy;
+import hotstone.framework.Strategies.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

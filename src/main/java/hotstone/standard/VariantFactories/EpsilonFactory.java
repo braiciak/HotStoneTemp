@@ -1,9 +1,6 @@
 package hotstone.standard.VariantFactories;
 
-import hotstone.framework.Strategies.DeckStrategy;
-import hotstone.framework.Strategies.HeroStrategy;
-import hotstone.framework.Strategies.ManaStrategy;
-import hotstone.framework.Strategies.VictoryStrategy;
+import hotstone.framework.Strategies.*;
 import hotstone.framework.VariantFactory;
 import hotstone.standard.Strategies.DeckStrategy.AlphaDeckStrategy;
 import hotstone.standard.Strategies.HeroStrategy.AlphaHeroStrategy;
@@ -12,6 +9,11 @@ import hotstone.standard.Strategies.ManaStrategy.AlphaManaStrategy;
 import hotstone.standard.Strategies.VictoryStrategy.AlphaVictoryStrategy;
 
 public class EpsilonFactory implements VariantFactory {
+    private FieldIndexStrategy fieldIndexStrategy;
+
+    public EpsilonFactory(FieldIndexStrategy fieldIndexStrategy) {
+        this.fieldIndexStrategy = fieldIndexStrategy;
+    }
     @Override
     public DeckStrategy makeDeckStrategy() {
         return new AlphaDeckStrategy();
@@ -19,7 +21,7 @@ public class EpsilonFactory implements VariantFactory {
 
     @Override
     public HeroStrategy makeHeroStrategy() {
-        return new EpsilonHeroStrategy();
+        return new EpsilonHeroStrategy(fieldIndexStrategy);
     }
 
     @Override

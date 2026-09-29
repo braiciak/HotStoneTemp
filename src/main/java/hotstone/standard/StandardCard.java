@@ -75,6 +75,8 @@ public class StandardCard implements hotstone.framework.Card {
         return attack;
     }
 
+    public void setAttack(int attack) {this.attack = attack;}
+
     @Override
     public int getHealth() {
         return health;

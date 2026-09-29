@@ -126,12 +126,13 @@ ZetaStone: (like alphastone, except...)
 [OK] Uses betaVictoryStrategy otherwise
 
 EpsilonStone: (like AlphaStone, except...)
-[] Findus has FrenchChef, Peddersen has ItalianChef
-[] FrenchChef's power "Redwine" picks random opp. minion and removes 2 health
-[] ItalianChef's power "Pasta" picks random own minion and adds 2 attack
+[OK] Findus has FrenchChef, Peddersen has ItalianChef
+[OK] FrenchChef's power "Redwine" picks random opp. minion and removes 2 health
+[OK] ItalianChef's power "Pasta" picks random own minion and adds 2 attack
 [OK] "Redwine" does nothing if there are no opp. minions.
 [OK] "Pasta" does nothing if there are no own minions.
 
 TODO:
 - Factories inherits from AlphaFactory
+- Mutable classes separation
 - Change hardcoded strings and ints

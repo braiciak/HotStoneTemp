@@ -1,11 +1,11 @@
 package hotstone.standard;
 
+import hotstone.framework.Card;
 import hotstone.framework.Game;
 import hotstone.framework.Player;
 import hotstone.framework.Status;
+import hotstone.framework.Strategies.FieldIndexStrategy;
 import hotstone.standard.VariantFactories.EpsilonFactory;
-import hotstone.standard.VariantFactories.ZetaFactory;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,13 @@ public class TestEpsilonStone {
 
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(new EpsilonFactory());
+        class FixedFieldIndexStrategy implements FieldIndexStrategy {
+            @Override
+            public int calculate(int fieldSize) {
+                return 0;
+            }
+        }
+        game = new StandardHotStoneGame(new EpsilonFactory(new FixedFieldIndexStrategy()));
     }
 
     @Test
@@ -38,6 +44,22 @@ public class TestEpsilonStone {
         Status status = game.usePower();
         // Then it should do nothing (doesn't give error).
         assertThat(status, is(Status.OK));
+    }
+
+    @Test
+    public void shouldRedWinePowerRemove2HealthFromRandomOpponentMinion() {
+        // Given a game where the opponent has minions on field
+        game.endTurn();
+        game.playCard(0, 0);
+        game.endTurn();
+        // When redwine power is used
+        Card card = game.getCardInField(Player.computeOpponent(game.getPlayerInTurn()),0);
+        int healthBefore = card.getHealth();
+        game.usePower();
+        int healthAfter = card.getHealth();
+        // Then 2 health is removed from random minion of opponent field
+        assertThat(healthAfter, is(healthBefore-2));
+
     }
 }
 
