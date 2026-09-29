@@ -1,10 +1,10 @@
 package hotstone.standard;
 
 import hotstone.framework.Hero;
-import hotstone.framework.HeroStrategy;
+import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Player;
-import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
-import hotstone.standard.HeroStrategy.GammaHeroStrategy;
+import hotstone.standard.Strategies.HeroStrategy.AlphaHeroStrategy;
+import hotstone.standard.Strategies.HeroStrategy.GammaHeroStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

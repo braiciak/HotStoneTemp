@@ -1,8 +1,8 @@
-package hotstone.standard.DeckStrategy;
+package hotstone.standard.Strategies.DeckStrategy;
 
 import hotstone.framework.Card;
 import hotstone.framework.Deck;
-import hotstone.framework.DeckStrategy;
+import hotstone.framework.Strategies.DeckStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardCard;
 import hotstone.standard.StandardDeck;

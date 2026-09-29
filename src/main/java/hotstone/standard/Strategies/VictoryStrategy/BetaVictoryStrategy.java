@@ -1,8 +1,8 @@
-package hotstone.standard.VictoryStrategy;
+package hotstone.standard.Strategies.VictoryStrategy;
 
 import hotstone.framework.Game;
 import hotstone.framework.Player;
-import hotstone.framework.VictoryStrategy;
+import hotstone.framework.Strategies.VictoryStrategy;
 
 public class BetaVictoryStrategy implements VictoryStrategy {
 

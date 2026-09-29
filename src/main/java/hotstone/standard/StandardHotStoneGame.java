@@ -17,6 +17,10 @@
 package hotstone.standard;
 
 import hotstone.framework.*;
+import hotstone.framework.Strategies.DeckStrategy;
+import hotstone.framework.Strategies.HeroStrategy;
+import hotstone.framework.Strategies.ManaStrategy;
+import hotstone.framework.Strategies.VictoryStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,12 +63,13 @@ public class StandardHotStoneGame implements Game {
 
 
 
-    public StandardHotStoneGame(
-            ManaStrategy manaStrategy,
-            VictoryStrategy victoryStrategy,
-            HeroStrategy heroStrategy,
-            DeckStrategy deckStrategy
-    ) {
+    public StandardHotStoneGame(VariantFactory variant) {
+
+        manaStrategy = variant.makeManaStrategy();
+        victoryStrategy = variant.makeVictoryStrategy();
+
+        DeckStrategy deckStrategy = variant.makeDeckStrategy();
+        HeroStrategy heroStrategy = variant.makeHeroStrategy();
 
         deck.put(Player.FINDUS, (StandardDeck) deckStrategy.generate());
         deck.put(Player.PEDDERSEN, (StandardDeck) deckStrategy.generate());
@@ -84,8 +89,6 @@ public class StandardHotStoneGame implements Game {
 
         findus = heroStrategy.generate(Player.FINDUS);
         peddersen = heroStrategy.generate(Player.PEDDERSEN);
-        this.manaStrategy = manaStrategy;
-        this.victoryStrategy = victoryStrategy;
 
         // draws for findus
         for (int i = 0; i < 3; i++) {

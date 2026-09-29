@@ -4,10 +4,7 @@ import hotstone.framework.Game;
 import hotstone.framework.Hero;
 import hotstone.framework.Player;
 import hotstone.framework.Status;
-import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
-import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
-import hotstone.standard.ManaStrategy.AlphaManaStrategy;
-import hotstone.standard.VictoryStrategy.AlphaVictoryStrategy;
+import hotstone.standard.VariantFactories.AlphaFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,12 +17,7 @@ public class TestBabyHero {
 
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(
-                new AlphaManaStrategy(),
-                new AlphaVictoryStrategy(),
-                new AlphaHeroStrategy(),
-                new AlphaDeckStrategy()
-        );
+        game = new StandardHotStoneGame(new AlphaFactory());
         heroFindus = (StandardHero) game.getHero(Player.FINDUS); // Both players are type babyHero
     }
 

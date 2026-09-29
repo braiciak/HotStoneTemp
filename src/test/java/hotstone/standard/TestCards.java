@@ -4,10 +4,7 @@ package hotstone.standard;
 import hotstone.framework.Card;
 import hotstone.framework.Game;
 import hotstone.framework.Player;
-import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
-import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
-import hotstone.standard.ManaStrategy.AlphaManaStrategy;
-import hotstone.standard.VictoryStrategy.AlphaVictoryStrategy;
+import hotstone.standard.VariantFactories.AlphaFactory;
 import org.junit.jupiter.api.*;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -20,7 +17,7 @@ public class TestCards {
 
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(new AlphaManaStrategy(), new AlphaVictoryStrategy(), new AlphaHeroStrategy(), new AlphaDeckStrategy());
+        game = new StandardHotStoneGame(new AlphaFactory());
         playerInTurn = game.getPlayerInTurn();
     }
 

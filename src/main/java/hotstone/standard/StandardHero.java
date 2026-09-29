@@ -1,6 +1,7 @@
 package hotstone.standard;
 
 import hotstone.framework.*;
+import hotstone.framework.Strategies.PowerStrategy;
 
 public class StandardHero implements Hero {
 

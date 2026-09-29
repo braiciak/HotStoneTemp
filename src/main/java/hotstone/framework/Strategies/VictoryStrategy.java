@@ -1,4 +1,7 @@
-package hotstone.framework;
+package hotstone.framework.Strategies;
+
+import hotstone.framework.Game;
+import hotstone.framework.Player;
 
 public interface VictoryStrategy {
 

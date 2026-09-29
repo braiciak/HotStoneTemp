@@ -2,10 +2,7 @@ package hotstone.standard;
 
 import hotstone.framework.Game;
 import hotstone.framework.Player;
-import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
-import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
-import hotstone.standard.ManaStrategy.AlphaManaStrategy;
-import hotstone.standard.VictoryStrategy.ZetaVictoryStrategy;
+import hotstone.standard.VariantFactories.ZetaFactory;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +15,7 @@ public class TestZetaStone {
 
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(new AlphaManaStrategy(), new ZetaVictoryStrategy(), new AlphaHeroStrategy(), new AlphaDeckStrategy());
+        game = new StandardHotStoneGame(new ZetaFactory());
     }
 
     @Test

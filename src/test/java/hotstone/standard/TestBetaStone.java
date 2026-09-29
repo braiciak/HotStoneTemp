@@ -1,9 +1,7 @@
 package hotstone.standard;
 import hotstone.framework.*;
-import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
-import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
-import hotstone.standard.ManaStrategy.BetaManaStrategy;
-import hotstone.standard.VictoryStrategy.BetaVictoryStrategy;
+import hotstone.framework.Strategies.ManaStrategy;
+import hotstone.standard.VariantFactories.BetaFactory;
 import org.junit.jupiter.api.*;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -11,18 +9,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class TestBetaStone {
     private Game game;
     private ManaStrategy manaStrategy;
-    private VictoryStrategy victoryStrategy;
-    private HeroStrategy heroStrategy;
-    private DeckStrategy deckStrategy;
 
     /** Fixture for BetaStone testing. */
     @BeforeEach
     public void setUp() {
-        manaStrategy = new BetaManaStrategy();
-        victoryStrategy = new BetaVictoryStrategy();
-        deckStrategy = new AlphaDeckStrategy();
-        heroStrategy = new AlphaHeroStrategy();
-        game = new StandardHotStoneGame(manaStrategy, victoryStrategy, heroStrategy, deckStrategy);
+        BetaFactory factory = new BetaFactory();
+        game = new StandardHotStoneGame(factory);
+        manaStrategy = factory.makeManaStrategy();
     }
 
     @Test

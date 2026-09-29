@@ -1,8 +1,8 @@
-package hotstone.standard.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
 import hotstone.framework.Player;
-import hotstone.framework.PowerStrategy;
+import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.StandardHotStoneGame;
 
 public class ThaiChefPowerStrategy implements PowerStrategy {

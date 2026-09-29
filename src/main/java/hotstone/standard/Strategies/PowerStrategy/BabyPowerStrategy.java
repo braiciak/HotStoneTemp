@@ -1,7 +1,7 @@
-package hotstone.standard;
+package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
-import hotstone.framework.PowerStrategy;
+import hotstone.framework.Strategies.PowerStrategy;
 
 public class BabyPowerStrategy implements PowerStrategy {
     @Override

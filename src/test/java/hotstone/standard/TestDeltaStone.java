@@ -1,9 +1,7 @@
 package hotstone.standard;
 import hotstone.framework.*;
-import hotstone.standard.DeckStrategy.DeltaDeckStrategy;
-import hotstone.standard.HeroStrategy.AlphaHeroStrategy;
-import hotstone.standard.ManaStrategy.DeltaManaStrategy;
-import hotstone.standard.VictoryStrategy.AlphaVictoryStrategy;
+import hotstone.framework.Strategies.DeckStrategy;
+import hotstone.standard.VariantFactories.DeltaFactory;
 import org.junit.jupiter.api.*;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -15,13 +13,9 @@ public class TestDeltaStone {
 
     @BeforeEach
     public void setUp() {
-        deckStrategy = new DeltaDeckStrategy();
-        game = new StandardHotStoneGame(
-                new DeltaManaStrategy(),
-                new AlphaVictoryStrategy(),
-                new AlphaHeroStrategy(),
-                deckStrategy
-        );
+        DeltaFactory factory = new DeltaFactory();
+        deckStrategy = factory.makeDeckStrategy();
+        game = new StandardHotStoneGame(factory);
     }
 
     @Test

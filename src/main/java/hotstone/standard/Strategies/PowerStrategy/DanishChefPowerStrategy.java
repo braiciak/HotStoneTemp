@@ -1,7 +1,7 @@
-package hotstone.standard.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
-import hotstone.framework.PowerStrategy;
+import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardCard;
 import hotstone.standard.StandardHotStoneGame;

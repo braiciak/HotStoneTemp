@@ -124,3 +124,10 @@ DeltaStone: (identical to alphastone).
 ZetaStone: (like alphastone, except...)
 [OK] Uses gammaVictoryStrategy if roundcount is less than 7
 [OK] Uses betaVictoryStrategy otherwise
+
+EpsilonStone: (like AlphaStone, except...)
+[] Findus has FrenchChef, Peddersen has ItalianChef
+[] FrenchChef's power "Redwine" picks random opp. minion and removes 2 health
+[] ItalianChef's power "Pasta" picks random own minion and adds 2 attack
+[] "Redwine" does nothing if there are no opp. minions.
+[] "Pasta" does nothing if there are no own minions.

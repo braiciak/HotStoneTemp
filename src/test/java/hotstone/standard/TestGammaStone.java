@@ -1,10 +1,7 @@
 package hotstone.standard;
 
 import hotstone.framework.*;
-import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
-import hotstone.standard.HeroStrategy.GammaHeroStrategy;
-import hotstone.standard.ManaStrategy.AlphaManaStrategy;
-import hotstone.standard.VictoryStrategy.GammaVictoryStrategy;
+import hotstone.standard.VariantFactories.GammaFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +16,7 @@ public class TestGammaStone {
     /** Fixture for AlphaStone testing. */
     @BeforeEach
     public void setUp() {
-        game = new StandardHotStoneGame(new AlphaManaStrategy(), new GammaVictoryStrategy(), new GammaHeroStrategy(), new AlphaDeckStrategy());
+        game = new StandardHotStoneGame(new GammaFactory());
     }
 
     @Test

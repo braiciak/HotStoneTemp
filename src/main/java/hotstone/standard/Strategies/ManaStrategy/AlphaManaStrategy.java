@@ -1,6 +1,6 @@
-package hotstone.standard.ManaStrategy;
+package hotstone.standard.Strategies.ManaStrategy;
 
-import hotstone.framework.ManaStrategy;
+import hotstone.framework.Strategies.ManaStrategy;
 
 public class AlphaManaStrategy implements ManaStrategy {
 

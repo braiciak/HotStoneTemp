@@ -1,10 +1,10 @@
-package hotstone.standard.HeroStrategy;
+package hotstone.standard.Strategies.HeroStrategy;
 
-import hotstone.framework.HeroStrategy;
+import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Player;
-import hotstone.standard.BabyPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.BabyPowerStrategy;
 import hotstone.standard.GameConstants;
-import hotstone.standard.ManaStrategy.AlphaManaStrategy;
+import hotstone.standard.Strategies.ManaStrategy.AlphaManaStrategy;
 import hotstone.standard.StandardHero;
 
 public class AlphaHeroStrategy implements HeroStrategy {

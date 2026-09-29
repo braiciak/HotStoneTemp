@@ -1,9 +1,9 @@
 package hotstone.standard;
 
 import hotstone.framework.Deck;
-import hotstone.framework.DeckStrategy;
-import hotstone.standard.DeckStrategy.AlphaDeckStrategy;
-import hotstone.standard.DeckStrategy.DeltaDeckStrategy;
+import hotstone.framework.Strategies.DeckStrategy;
+import hotstone.standard.Strategies.DeckStrategy.AlphaDeckStrategy;
+import hotstone.standard.Strategies.DeckStrategy.DeltaDeckStrategy;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
