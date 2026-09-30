@@ -5,6 +5,7 @@ import hotstone.framework.Game;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.FieldIndexStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.GameConstants;
 import hotstone.standard.StandardCard;
 import hotstone.standard.StandardHotStoneGame;
 
@@ -20,22 +21,22 @@ public class FrenchChefPowerStrategy implements PowerStrategy {
         boolean fieldNotEmpty = (game.getFieldSize(Player.computeOpponent(game.getPlayerInTurn())) > 0);
         if(fieldNotEmpty) {
             StandardCard card = (StandardCard) game.getCardInField(Player.computeOpponent(game.getPlayerInTurn()), fieldIndexStrategy.calculate(game.getFieldSize(Player.computeOpponent(game.getPlayerInTurn()))));
-            game.hurtCard(card, 2);
+            game.hurtCard(card, GameConstants.FRENCH_CHEF_HERO_POWER_CARD_ATTACK_OPPONENT_CARD);
         }
     }
 
     @Override
     public String getName() {
-        return "RedWine";
+        return GameConstants.FRENCH_CHEF_HERO_POWER_NAME;
     }
 
     @Override
     public String getDescription() {
-        return "";
+        return GameConstants.FRENCH_CHEF_HERO_POWER_DESCRIPTION;
     }
 
     @Override
     public int getPowerCost() {
-        return 2;
+        return GameConstants.HERO_POWER_COST;
     }
 }

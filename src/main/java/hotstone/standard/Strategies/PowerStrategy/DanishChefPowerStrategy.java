@@ -26,11 +26,11 @@ public class DanishChefPowerStrategy implements PowerStrategy {
 
     @Override
     public String getDescription() {
-        return "Summon Sovs card.";
+        return GameConstants.DANISH_CHEF_HERO_POWER_DESCRIPTION;
     }
 
     @Override
     public int getPowerCost() {
-        return 2;
+        return GameConstants.HERO_POWER_COST;
     }
 }

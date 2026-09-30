@@ -41,6 +41,21 @@ public class GameConstants {
   public static final String FRENCH_CHEF_HERO_TYPE = "Bocuse";
   public static final String ITALIAN_CHEF_HERO_TYPE = "Bottura";
 
+  // Power attributes
+  public static final String BABY_HERO_POWER_NAME = "Cute";
+  public static final String BABY_HERO_POWER_DESCRIPTION = "Does nothing.";
+  public static final String DANISH_CHEF_HERO_POWER_DESCRIPTION = "Summon Sovs card.";
+  public static final String FRENCH_CHEF_HERO_POWER_NAME = "RedWine";
+  public static final String FRENCH_CHEF_HERO_POWER_DESCRIPTION = "Deals 2 damage to random opponent's minion.";
+  public static final int FRENCH_CHEF_HERO_POWER_CARD_ATTACK_OPPONENT_CARD = 2;
+  public static final String ITALIAN_CHEF_HERO_POWER_NAME = "Pasta";
+  public static final String ITALIAN_CHEF_HERO_POWER_DESCRIPTION = "Adds 2 attack to one's own random minion.";
+  public static final int ITALIAN_CHEF_HERO_POWER_CARD_ADD_TO_ATTACK_VALUE = 2;
+  public static final String THAI_CHEF_HERO_POWER_NAME = "Chili";
+  public static final String THAI_CHEF_HERO_POWER_DESCRIPTION = "Deals 2 damage to opponent hero.";
+  public static final int THAI_CHEF_HERO_POWER_ATTACK_OPPONENT_HERO_VALUE = 2;
+
+
   // Card names for Alpha
   public static final String DOS_CARD = "Dos";
   public static final String UNO_CARD = "Uno";

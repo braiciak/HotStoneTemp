@@ -3,27 +3,28 @@ package hotstone.standard.Strategies.PowerStrategy;
 import hotstone.framework.Game;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.GameConstants;
 import hotstone.standard.StandardHotStoneGame;
 
 public class ThaiChefPowerStrategy implements PowerStrategy {
     @Override
     public void usePower(Game game) {
         StandardHotStoneGame g = (StandardHotStoneGame) game;
-        g.getHero(Player.computeOpponent(g.getPlayerInTurn())).hurt(2);
+        g.getHero(Player.computeOpponent(g.getPlayerInTurn())).hurt(GameConstants.THAI_CHEF_HERO_POWER_ATTACK_OPPONENT_HERO_VALUE);
     }
 
     @Override
     public String getName() {
-        return "Chili";
+        return GameConstants.THAI_CHEF_HERO_POWER_NAME;
     }
 
     @Override
     public String getDescription() {
-        return "Deals 2 damage to opponent hero.";
+        return GameConstants.THAI_CHEF_HERO_POWER_DESCRIPTION;
     }
 
     @Override
     public int getPowerCost() {
-        return 2;
+        return GameConstants.HERO_POWER_COST;
     }
 }

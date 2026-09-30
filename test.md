@@ -134,4 +134,3 @@ EpsilonStone: (like AlphaStone, except...)
 
 TODO:
 - Mutable classes separation
-- Change hardcoded strings and ints

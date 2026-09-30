@@ -4,6 +4,7 @@ import hotstone.framework.Game;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.FieldIndexStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.GameConstants;
 import hotstone.standard.StandardCard;
 import hotstone.standard.StandardHotStoneGame;
 
@@ -20,22 +21,22 @@ public class ItalianChefPowerStrategy implements PowerStrategy {
         boolean fieldNotEmpty = (game.getFieldSize(game.getPlayerInTurn()) > 0);
         if(fieldNotEmpty) {
             StandardCard card = (StandardCard) game.getCardInField(game.getPlayerInTurn(), fieldIndexStrategy.calculate(game.getFieldSize(game.getPlayerInTurn())));
-            card.setAttack(card.getAttack()+2);
+            card.setAttack(card.getAttack() + GameConstants.ITALIAN_CHEF_HERO_POWER_CARD_ADD_TO_ATTACK_VALUE);
         }
     }
 
     @Override
     public String getName() {
-        return "Pasta";
+        return GameConstants.ITALIAN_CHEF_HERO_POWER_NAME;
     }
 
     @Override
     public String getDescription() {
-        return "";
+        return GameConstants.ITALIAN_CHEF_HERO_POWER_DESCRIPTION;
     }
 
     @Override
     public int getPowerCost() {
-        return 2;
+        return GameConstants.HERO_POWER_COST;
     }
 }

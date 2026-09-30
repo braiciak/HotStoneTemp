@@ -179,7 +179,7 @@ public class StandardHotStoneGame implements Game {
         boolean isDeckEmpty = this.getDeckSize(who) <= 0;
         if (isDeckEmpty) {
             StandardHero hero = getHero(who);
-            hero.hurt(2);
+            hero.hurt(GameConstants.HERO_HEALTH_PENALTY_ON_EMPTY_DECK);
             return;
         }
         hand.get(who).addFirst(getCardInDeck(who, 0));

@@ -56,7 +56,7 @@ public class StandardCard implements hotstone.framework.Card {
             case GameConstants.BAKED_SALMON_CARD ->
                 init(5,8,2);
             default ->
-                throw(new RuntimeException("Name not recognized."));
+                throw(new IllegalArgumentException("Name not recognized."));
         }
     }
 
