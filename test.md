@@ -133,6 +133,5 @@ EpsilonStone: (like AlphaStone, except...)
 [OK] "Pasta" does nothing if there are no own minions.
 
 TODO:
-- Factories inherits from AlphaFactory
 - Mutable classes separation
 - Change hardcoded strings and ints
