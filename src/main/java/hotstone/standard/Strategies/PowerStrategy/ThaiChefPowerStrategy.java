@@ -1,6 +1,7 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
+import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
@@ -8,8 +9,7 @@ import hotstone.standard.StandardHotStoneGame;
 
 public class ThaiChefPowerStrategy implements PowerStrategy {
     @Override
-    public void usePower(Game game) {
-        StandardHotStoneGame g = (StandardHotStoneGame) game;
+    public void usePower(MutableGame g) {
         g.getHero(Player.computeOpponent(g.getPlayerInTurn())).hurt(GameConstants.THAI_CHEF_HERO_POWER_ATTACK_OPPONENT_HERO_VALUE);
     }
 

@@ -1,6 +1,7 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
+import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
@@ -16,8 +17,7 @@ public class FrenchChefPowerStrategy implements PowerStrategy {
     }
 
     @Override
-    public void usePower(Game g) {
-        StandardHotStoneGame game = (StandardHotStoneGame) g;
+    public void usePower(MutableGame game) {
         Player opponent = Player.computeOpponent(game.getPlayerInTurn());
         int fieldSizeOpponent = game.getFieldSize(opponent);
 

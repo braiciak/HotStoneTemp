@@ -79,5 +79,5 @@ public interface Hero {
      *
      * @return OK if it was used, NOT_ENOUGH_MANA if there wasn't enough mana to use the power.
      */
-    Status usePower(Game game);
+    Status usePower(MutableGame game);
 }

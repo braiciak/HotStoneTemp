@@ -1,12 +1,13 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
+import hotstone.framework.MutableGame;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
 
 public class BabyPowerStrategy implements PowerStrategy {
     @Override
-    public void usePower(Game game) {}
+    public void usePower(MutableGame game) {}
 
     @Override
     public String getName() {

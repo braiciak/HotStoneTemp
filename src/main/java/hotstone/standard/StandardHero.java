@@ -63,7 +63,7 @@ public class StandardHero implements Hero {
     }
 
     @Override
-    public Status usePower(Game game) {
+    public Status usePower(MutableGame game) {
         if(!usedPower) {
             if (mana >= powerStrategy.getPowerCost()) {
                 usedPower = true;

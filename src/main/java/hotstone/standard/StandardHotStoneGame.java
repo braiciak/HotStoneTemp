@@ -46,7 +46,7 @@ import java.util.List;
  * why it is not called 'AlphaGame'.
  */
 
-public class StandardHotStoneGame implements Game {
+public class StandardHotStoneGame implements Game,MutableGame {
 
     private final StandardHero findus;
     private final StandardHero peddersen;
@@ -200,6 +200,7 @@ public class StandardHotStoneGame implements Game {
         return Status.OK;
     }
 
+    @Override
     public void hurtCard(StandardCard card, int amount) {
         card.hurt(amount);
         if (card.getHealth() <= 0) {

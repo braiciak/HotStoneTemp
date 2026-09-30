@@ -1,6 +1,7 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
+import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
@@ -16,9 +17,7 @@ public class ItalianChefPowerStrategy implements PowerStrategy {
     }
 
     @Override
-    public void usePower(Game g) {
-        //TODO: Implement a MutableGame interface for strategies instead of casting.
-        StandardHotStoneGame game = (StandardHotStoneGame) g;
+    public void usePower(MutableGame game) {
         Player playerInTurn = game.getPlayerInTurn();
         int fieldSize = game.getFieldSize(playerInTurn);
 
