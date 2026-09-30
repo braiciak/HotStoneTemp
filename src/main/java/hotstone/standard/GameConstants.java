@@ -31,6 +31,9 @@ public class GameConstants {
    * card from an empty deck.
    */
   public static final int HERO_HEALTH_PENALTY_ON_EMPTY_DECK = 2;
+  /** The initial default mana for hero.
+   */
+  public static final int HERO_INITIAL_MANA = 3;
 
   // The alpha variant's hero type
   public static final String BABY_HERO_TYPE = "Baby";

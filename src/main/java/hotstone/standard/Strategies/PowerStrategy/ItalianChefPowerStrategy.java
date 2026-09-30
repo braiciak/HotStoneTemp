@@ -18,9 +18,13 @@ public class ItalianChefPowerStrategy implements PowerStrategy {
     @Override
     public void usePower(Game g) {
         StandardHotStoneGame game = (StandardHotStoneGame) g;
-        boolean fieldNotEmpty = (game.getFieldSize(game.getPlayerInTurn()) > 0);
+        Player playerInTurn = game.getPlayerInTurn();
+        int fieldSize = game.getFieldSize(playerInTurn);
+
+        boolean fieldNotEmpty = (fieldSize > 0);
+
         if(fieldNotEmpty) {
-            StandardCard card = (StandardCard) game.getCardInField(game.getPlayerInTurn(), fieldIndexStrategy.calculate(game.getFieldSize(game.getPlayerInTurn())));
+            StandardCard card = (StandardCard) game.getCardInField(playerInTurn, fieldIndexStrategy.calculate(fieldSize));
             card.setAttack(card.getAttack() + GameConstants.ITALIAN_CHEF_HERO_POWER_CARD_ADD_TO_ATTACK_VALUE);
         }
     }

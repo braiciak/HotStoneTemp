@@ -1,6 +1,5 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
-import hotstone.framework.Card;
 import hotstone.framework.Game;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.FieldIndexStrategy;
@@ -15,12 +14,17 @@ public class FrenchChefPowerStrategy implements PowerStrategy {
     public FrenchChefPowerStrategy(FieldIndexStrategy fieldIndexStrategy) {
         this.fieldIndexStrategy = fieldIndexStrategy;
     }
+
     @Override
     public void usePower(Game g) {
         StandardHotStoneGame game = (StandardHotStoneGame) g;
-        boolean fieldNotEmpty = (game.getFieldSize(Player.computeOpponent(game.getPlayerInTurn())) > 0);
+        Player opponent = Player.computeOpponent(game.getPlayerInTurn());
+        int fieldSizeOpponent = game.getFieldSize(opponent);
+
+        boolean fieldNotEmpty = (fieldSizeOpponent > 0);
+
         if(fieldNotEmpty) {
-            StandardCard card = (StandardCard) game.getCardInField(Player.computeOpponent(game.getPlayerInTurn()), fieldIndexStrategy.calculate(game.getFieldSize(Player.computeOpponent(game.getPlayerInTurn()))));
+            StandardCard card = (StandardCard) game.getCardInField(opponent, fieldIndexStrategy.calculate(fieldSizeOpponent));
             game.hurtCard(card, GameConstants.FRENCH_CHEF_HERO_POWER_CARD_ATTACK_OPPONENT_CARD);
         }
     }
