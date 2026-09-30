@@ -8,10 +8,10 @@ import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
 
 public class ItalianChefPowerStrategy implements PowerStrategy {
-    NumberGeneratorStrategy fieldIndexStrategy;
+    NumberGeneratorStrategy generatorStrategy;
 
-    public ItalianChefPowerStrategy(NumberGeneratorStrategy fieldIndexStrategy) {
-        this.fieldIndexStrategy = fieldIndexStrategy;
+    public ItalianChefPowerStrategy(NumberGeneratorStrategy generatorStrategy) {
+        this.generatorStrategy = generatorStrategy;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ItalianChefPowerStrategy implements PowerStrategy {
         if(fieldNotEmpty) {
             MutableCard card = game.getCardInField(
                             playerInTurn,
-                            fieldIndexStrategy.generate(0, fieldSize - 1)
+                            generatorStrategy.generate(0, fieldSize - 1)
                     );
             card.setAttack(card.getAttack() +
                     GameConstants.ITALIAN_CHEF_HERO_POWER_CARD_ADD_TO_ATTACK_VALUE
