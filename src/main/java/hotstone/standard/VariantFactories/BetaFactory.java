@@ -1,26 +1,11 @@
 package hotstone.standard.VariantFactories;
 
-import hotstone.framework.*;
-import hotstone.framework.Strategies.DeckStrategy;
-import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Strategies.ManaStrategy;
 import hotstone.framework.Strategies.VictoryStrategy;
-import hotstone.standard.Strategies.DeckStrategy.AlphaDeckStrategy;
-import hotstone.standard.Strategies.HeroStrategy.AlphaHeroStrategy;
 import hotstone.standard.Strategies.ManaStrategy.BetaManaStrategy;
 import hotstone.standard.Strategies.VictoryStrategy.BetaVictoryStrategy;
 
-public class BetaFactory implements VariantFactory {
-
-    @Override
-    public DeckStrategy makeDeckStrategy() {
-        return new AlphaDeckStrategy();
-    }
-
-    @Override
-    public HeroStrategy makeHeroStrategy() {
-        return new AlphaHeroStrategy();
-    }
+public class BetaFactory extends AlphaFactory {
 
     @Override
     public ManaStrategy makeManaStrategy() {
