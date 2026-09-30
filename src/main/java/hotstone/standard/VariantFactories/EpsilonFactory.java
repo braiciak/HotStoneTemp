@@ -4,15 +4,15 @@ import hotstone.framework.Strategies.*;
 import hotstone.standard.Strategies.HeroStrategy.EpsilonHeroStrategy;
 
 public class EpsilonFactory extends AlphaFactory {
-    private FieldIndexStrategy fieldIndexStrategy;
+    private NumberGeneratorStrategy generatorStrategy;
 
-    public EpsilonFactory(FieldIndexStrategy fieldIndexStrategy) {
-        this.fieldIndexStrategy = fieldIndexStrategy;
+    public EpsilonFactory(NumberGeneratorStrategy generatorStrategy) {
+        this.generatorStrategy = generatorStrategy;
     }
 
     @Override
     public HeroStrategy makeHeroStrategy() {
-        return new EpsilonHeroStrategy(fieldIndexStrategy);
+        return new EpsilonHeroStrategy(generatorStrategy);
     }
 
 }

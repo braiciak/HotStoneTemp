@@ -1,7 +1,7 @@
 package hotstone.standard.Strategies.HeroStrategy;
 import hotstone.framework.Player;
-import hotstone.framework.Strategies.FieldIndexStrategy;
 import hotstone.framework.Strategies.HeroStrategy;
+import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardHero;
@@ -9,10 +9,10 @@ import hotstone.standard.Strategies.PowerStrategy.FrenchChefPowerStrategy;
 import hotstone.standard.Strategies.PowerStrategy.ItalianChefPowerStrategy;
 
 public class EpsilonHeroStrategy implements HeroStrategy {
-    FieldIndexStrategy fieldIndexStrategy;
+    NumberGeneratorStrategy generatorStrategy;
 
-    public EpsilonHeroStrategy(FieldIndexStrategy fieldIndexStrategy) {
-        this.fieldIndexStrategy = fieldIndexStrategy;
+    public EpsilonHeroStrategy(NumberGeneratorStrategy generatorStrategy) {
+        this.generatorStrategy = generatorStrategy;
     }
     @Override
     public StandardHero generate(Player p) {
@@ -21,10 +21,10 @@ public class EpsilonHeroStrategy implements HeroStrategy {
 
         if(p == Player.FINDUS) {
             heroType = GameConstants.FRENCH_CHEF_HERO_TYPE;
-            powerStrategy = new FrenchChefPowerStrategy(fieldIndexStrategy);
+            powerStrategy = new FrenchChefPowerStrategy(generatorStrategy);
         } else {
             heroType = GameConstants.ITALIAN_CHEF_HERO_TYPE;
-            powerStrategy = new ItalianChefPowerStrategy(fieldIndexStrategy);
+            powerStrategy = new ItalianChefPowerStrategy(generatorStrategy);
         }
 
         return new StandardHero(

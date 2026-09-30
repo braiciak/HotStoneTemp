@@ -2,17 +2,17 @@ package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
 import hotstone.framework.Player;
-import hotstone.framework.Strategies.FieldIndexStrategy;
+import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardCard;
 import hotstone.standard.StandardHotStoneGame;
 
 public class FrenchChefPowerStrategy implements PowerStrategy {
-    FieldIndexStrategy fieldIndexStrategy;
+    NumberGeneratorStrategy generatorStrategy;
 
-    public FrenchChefPowerStrategy(FieldIndexStrategy fieldIndexStrategy) {
-        this.fieldIndexStrategy = fieldIndexStrategy;
+    public FrenchChefPowerStrategy(NumberGeneratorStrategy generatorStrategy) {
+        this.generatorStrategy = generatorStrategy;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class FrenchChefPowerStrategy implements PowerStrategy {
         boolean fieldNotEmpty = (fieldSizeOpponent > 0);
 
         if(fieldNotEmpty) {
-            StandardCard card = (StandardCard) game.getCardInField(opponent, fieldIndexStrategy.calculate(fieldSizeOpponent));
+            StandardCard card = (StandardCard) game.getCardInField(opponent, generatorStrategy.generate(0, fieldSizeOpponent - 1));
             game.hurtCard(card, GameConstants.FRENCH_CHEF_HERO_POWER_CARD_ATTACK_OPPONENT_CARD);
         }
     }

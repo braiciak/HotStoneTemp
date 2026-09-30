@@ -4,7 +4,6 @@ import hotstone.framework.Card;
 import hotstone.framework.Game;
 import hotstone.framework.Player;
 import hotstone.framework.Status;
-import hotstone.framework.Strategies.FieldIndexStrategy;
 import hotstone.standard.VariantFactories.EpsilonFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,13 +16,7 @@ public class TestEpsilonStone {
 
     @BeforeEach
     public void setUp() {
-        class FixedFieldIndexStrategy implements FieldIndexStrategy {
-            @Override
-            public int calculate(int fieldSize) {
-                return 0;
-            }
-        }
-        game = new StandardHotStoneGame(new EpsilonFactory(new FixedFieldIndexStrategy()));
+        game = new StandardHotStoneGame(new EpsilonFactory(new FixedGeneratorStrategy(0)));
     }
 
     @Test
