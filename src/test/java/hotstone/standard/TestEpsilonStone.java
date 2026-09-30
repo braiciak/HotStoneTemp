@@ -40,7 +40,7 @@ public class TestEpsilonStone {
     public void shouldPastaDoNothingIfNoFriendlyMinion() {
         // Given a game where opponent field is empty,
         game.endTurn();
-        // When FrenchChef uses pasta power,
+        // When ItalianChef uses pasta power,
         Status status = game.usePower();
         // Then it should do nothing (doesn't give error).
         assertThat(status, is(Status.OK));
@@ -59,7 +59,23 @@ public class TestEpsilonStone {
         int healthAfter = card.getHealth();
         // Then 2 health is removed from random minion of opponent field
         assertThat(healthAfter, is(healthBefore-2));
+    }
 
+    @Test
+    public void shouldPastaPowerAdd2AttackPowerToRandomFriendlyMinion() {
+        // Given a game where the player has minions on field
+        game.endTurn();
+        game.playCard(0, 0);
+        game.endTurn();
+        game.endTurn();
+        // When pasta power is used
+        Card card = game.getCardInField(game.getPlayerInTurn(),0);
+        int attackBefore = card.getAttack();
+        game.usePower();
+        int attackAfter = card.getAttack();
+
+        // Then 2 attack is added to random friendly minion
+        assertThat(attackAfter, is(attackBefore+2));
     }
 }
 
