@@ -13,7 +13,7 @@ import java.util.List;
 public class AlphaDeckStrategy implements DeckStrategy {
     @Override
     public Deck generate() {
-        List < Card > deck = new ArrayList<>();
+        List <StandardCard> deck = new ArrayList<>();
         deck.add(new StandardCard(GameConstants.UNO_CARD));
         deck.add(new StandardCard(GameConstants.DOS_CARD));
         deck.add(new StandardCard(GameConstants.TRES_CARD));

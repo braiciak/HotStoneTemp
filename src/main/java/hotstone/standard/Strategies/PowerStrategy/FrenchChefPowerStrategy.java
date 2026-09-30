@@ -1,6 +1,7 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
 import hotstone.framework.Game;
+import hotstone.framework.MutableCard;
 import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
@@ -24,7 +25,7 @@ public class FrenchChefPowerStrategy implements PowerStrategy {
         boolean fieldNotEmpty = (fieldSizeOpponent > 0);
 
         if(fieldNotEmpty) {
-            StandardCard card = (StandardCard) game.getCardInField(opponent, generatorStrategy.generate(0, fieldSizeOpponent - 1));
+            MutableCard card = game.getCardInField(opponent, generatorStrategy.generate(0, fieldSizeOpponent - 1));
             game.hurtCard(card, GameConstants.FRENCH_CHEF_HERO_POWER_CARD_ATTACK_OPPONENT_CARD);
         }
     }

@@ -51,8 +51,8 @@ public class StandardHotStoneGame implements Game,MutableGame {
     private final StandardHero findus;
     private final StandardHero peddersen;
     private final HashMap<Player, StandardDeck> deck = new HashMap<>();
-    private final HashMap<Player, ArrayList<Card>> hand = new HashMap<>();
-    private final HashMap<Player, ArrayList<Card>> field = new HashMap<>();
+    private final HashMap<Player, ArrayList<MutableCard>> hand = new HashMap<>();
+    private final HashMap<Player, ArrayList<MutableCard>> field = new HashMap<>();
     private int turnNumber = 0;
 
     private ManaStrategy manaStrategy;
@@ -76,12 +76,10 @@ public class StandardHotStoneGame implements Game,MutableGame {
         field.put(Player.PEDDERSEN, new ArrayList<>());
 
         for (int i = 0; i < deck.get(Player.FINDUS).getSize(); i++) {
-            ((StandardCard) deck.get(Player.FINDUS).getCard(i))
-                    .setOwner(Player.FINDUS);
+            deck.get(Player.FINDUS).getCard(i).setOwner(Player.FINDUS);
         }
         for (int i = 0; i < deck.get(Player.PEDDERSEN).getSize(); i++) {
-            ((StandardCard) deck.get(Player.PEDDERSEN).getCard(i))
-                    .setOwner(Player.PEDDERSEN);
+            deck.get(Player.PEDDERSEN).getCard(i).setOwner(Player.PEDDERSEN);
         }
 
         findus = heroStrategy.generate(Player.FINDUS);
@@ -121,22 +119,22 @@ public class StandardHotStoneGame implements Game,MutableGame {
     }
 
     @Override
-    public Card getCardInDeck(Player who, int indexInDeck) {
+    public MutableCard getCardInDeck(Player who, int indexInDeck) {
         return deck.get(who).getCard(indexInDeck);
     }
 
     @Override
-    public Card getCardInHand(Player who, int indexInHand) {
+    public MutableCard getCardInHand(Player who, int indexInHand) {
         return hand.get(who).get(indexInHand);
     }
 
     @Override
-    public Card getCardInField(Player who, int indexInField) {
+    public MutableCard getCardInField(Player who, int indexInField) {
         return field.get(who).get(indexInField);
     }
 
     @Override
-    public Iterable<Card> getHand(Player who) {
+    public Iterable<MutableCard> getHand(Player who) {
         return hand.get(who);
     }
 
@@ -146,7 +144,7 @@ public class StandardHotStoneGame implements Game,MutableGame {
     }
 
     @Override
-    public List<Card> getField(Player who) {
+    public List<MutableCard> getField(Player who) {
         return field.get(who);
     }
 
@@ -162,8 +160,8 @@ public class StandardHotStoneGame implements Game,MutableGame {
         StandardHero currentHero = getHero(getPlayerInTurn());
         currentHero.setMana(manaStrategy.calculate(getRoundCount()));
         currentHero.resetUsedPower();
-        for(Card c: getField(getPlayerInTurn())) {
-            ((StandardCard) c).setActive(true);
+        for(MutableCard c: getField(getPlayerInTurn())) {
+            c.setActive(true);
         }
         // Second player draws three cards on their first turn.
         if (getTurnNumber() <= 1) {
@@ -188,20 +186,20 @@ public class StandardHotStoneGame implements Game,MutableGame {
 
     @Override
     public Status attackCard(int ownFieldIndex, int oppFieldIndex) {
-        Card attackingCard = getCardInField(getPlayerInTurn(), ownFieldIndex);
-        Card defendingCard = getCardInField(Player.computeOpponent(getPlayerInTurn()), oppFieldIndex);
+        MutableCard attackingCard = getCardInField(getPlayerInTurn(), ownFieldIndex);
+        MutableCard defendingCard = getCardInField(Player.computeOpponent(getPlayerInTurn()), oppFieldIndex);
 
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION; }
-        ((StandardCard) attackingCard).setActive(false);
+        attackingCard.setActive(false);
 
-        hurtCard((StandardCard) attackingCard, defendingCard.getAttack());
-        hurtCard((StandardCard) defendingCard, attackingCard.getAttack());
+        hurtCard(attackingCard, defendingCard.getAttack());
+        hurtCard(defendingCard, attackingCard.getAttack());
 
         return Status.OK;
     }
 
     @Override
-    public void hurtCard(StandardCard card, int amount) {
+    public void hurtCard(MutableCard card, int amount) {
         card.hurt(amount);
         if (card.getHealth() <= 0) {
             removeFromField(card.getOwner(), card);
@@ -215,11 +213,11 @@ public class StandardHotStoneGame implements Game,MutableGame {
     @Override
     public Status attackHero(int fieldIndex) {
         Player playerInTurn = getPlayerInTurn();
-        Card attackingCard = getCardInField(getPlayerInTurn(), fieldIndex);
+        MutableCard attackingCard = getCardInField(getPlayerInTurn(), fieldIndex);
 
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
         }
-        ((StandardCard) attackingCard).setActive(false);
+        attackingCard.setActive(false);
         StandardHero hero = getHero(Player.computeOpponent(playerInTurn));
         hero.hurt(attackingCard.getAttack());
         return Status.OK;
@@ -231,7 +229,7 @@ public class StandardHotStoneGame implements Game,MutableGame {
         return currentHero.usePower(this);
     }
 
-    public void addToField(Player who, Card card, int index) {
+    public void addToField(Player who, MutableCard card, int index) {
         field.get(who).add(index, card);
     }
 

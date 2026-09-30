@@ -33,6 +33,8 @@ import hotstone.framework.*;
 import hotstone.standard.VariantFactories.AlphaFactory;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -403,7 +405,9 @@ public class TestAlphaStone {
       assertThat(attacker.getAttack(), is(greaterThanOrEqualTo(defender.getHealth())));
       game.attackCard(0,0);
       // Then the defender is removed from the game.
-      assertThat(game.getField(opp), not(hasItem(defender)));
+      for (Card c : game.getField(opp)) {
+          assertThat(c, not(defender));
+      }
     }
 
 }

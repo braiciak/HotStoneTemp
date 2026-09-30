@@ -1,8 +1,8 @@
 package hotstone.standard;
 
-import hotstone.framework.Player;
+import hotstone.framework.*;
 
-public class StandardCard implements hotstone.framework.Card {
+public class StandardCard implements Card,MutableCard {
 
     private Player owner;
     private final String name;

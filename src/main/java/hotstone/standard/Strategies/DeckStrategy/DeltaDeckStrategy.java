@@ -2,6 +2,7 @@ package hotstone.standard.Strategies.DeckStrategy;
 
 import hotstone.framework.Card;
 import hotstone.framework.Deck;
+import hotstone.framework.MutableCard;
 import hotstone.framework.Strategies.DeckStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardCard;
@@ -25,7 +26,7 @@ public class DeltaDeckStrategy implements DeckStrategy {
                 GameConstants.SPRING_ROLLS_CARD,
                 GameConstants.BAKED_SALMON_CARD
         };
-        final ArrayList<Card> deck = new ArrayList<>();
+        final ArrayList<MutableCard> deck = new ArrayList<>();
 
         // Populate the deck with two of each card, then shuffle.
         for (String card : cards) {

@@ -133,7 +133,7 @@ public interface Game {
    * @param who the player owning the field
    * @return an iterable over the cards on the field
    */
-  List<Card> getField(Player who);
+  List<? extends Card> getField(Player who);
   
   /** Get the number of cards on the field.
    *

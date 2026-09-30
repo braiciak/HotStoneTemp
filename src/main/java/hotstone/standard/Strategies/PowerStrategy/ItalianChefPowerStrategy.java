@@ -1,13 +1,11 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
-import hotstone.framework.Game;
+import hotstone.framework.MutableCard;
 import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
-import hotstone.standard.StandardCard;
-import hotstone.standard.StandardHotStoneGame;
 
 public class ItalianChefPowerStrategy implements PowerStrategy {
     NumberGeneratorStrategy fieldIndexStrategy;
@@ -24,13 +22,13 @@ public class ItalianChefPowerStrategy implements PowerStrategy {
         boolean fieldNotEmpty = (fieldSize > 0);
 
         if(fieldNotEmpty) {
-            //TODO: Implement MutableCard to replace casting.
-            StandardCard card =
-                    (StandardCard) game.getCardInField(
+            MutableCard card = game.getCardInField(
                             playerInTurn,
                             fieldIndexStrategy.generate(0, fieldSize - 1)
                     );
-            card.setAttack(card.getAttack() + GameConstants.ITALIAN_CHEF_HERO_POWER_CARD_ADD_TO_ATTACK_VALUE);
+            card.setAttack(card.getAttack() +
+                    GameConstants.ITALIAN_CHEF_HERO_POWER_CARD_ADD_TO_ATTACK_VALUE
+            );
         }
     }
 

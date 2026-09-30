@@ -51,8 +51,8 @@ public class TestGammaStone {
         game.usePower();
         // Then the Sovs card is added to the field.
         // (Assume that the Sovs card is added to the 0th index of the field.)
-        List<Card> field = game.getField(player);
-        assertThat(field.get(0).getName(), is(GameConstants.SOVS_CARD));
+        List<? extends Card> field = game.getField(player);
+        assertThat(field.getFirst().getName(), is(GameConstants.SOVS_CARD));
     }
 
     @Test
