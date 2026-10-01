@@ -3,7 +3,7 @@ package hotstone.standard;
 import hotstone.framework.*;
 import hotstone.framework.Strategies.PowerStrategy;
 
-public class StandardHero implements Hero {
+public class StandardHero implements MutableHero {
 
     private int mana; // Initial mana.
     private int health;
@@ -28,6 +28,7 @@ public class StandardHero implements Hero {
         return mana;
     }
 
+    @Override
     public void setMana(int mana) {
         this.mana = mana;
     }
@@ -76,14 +77,17 @@ public class StandardHero implements Hero {
         return Status.POWER_USE_NOT_ALLOWED_TWICE_PR_ROUND;
     }
 
+    @Override
     public void hurt(int amount) {
         health -= amount;
     }
 
+    @Override
     public boolean isDefeated() {
         return getHealth() <= 0;
     }
 
+    @Override
     public void resetUsedPower() {
         usedPower = false;
     }

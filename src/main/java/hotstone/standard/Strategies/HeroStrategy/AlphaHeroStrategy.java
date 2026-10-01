@@ -1,5 +1,6 @@
 package hotstone.standard.Strategies.HeroStrategy;
 
+import hotstone.framework.MutableHero;
 import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Player;
 import hotstone.standard.Strategies.PowerStrategy.BabyPowerStrategy;
@@ -10,7 +11,7 @@ import hotstone.standard.StandardHero;
 public class AlphaHeroStrategy implements HeroStrategy {
 
     @Override
-    public StandardHero generate(Player p) {
+    public MutableHero generate(Player p) {
         AlphaManaStrategy manaStrategy = new AlphaManaStrategy();
         return new StandardHero(
                 manaStrategy.calculate(0),

@@ -1,7 +1,5 @@
 package hotstone.framework;
 
-import hotstone.standard.StandardHero;
-
 public interface MutableGame {
 
     Player getPlayerInTurn();
@@ -9,7 +7,6 @@ public interface MutableGame {
     int getFieldSize(Player p);
     MutableCard getCardInField(Player p, int index);
     void hurtCard(MutableCard c, int amount);
-    //TODO: MutableHero instead?
-    StandardHero getHero(Player p);
+    MutableHero getHero(Player p);
 
 }

@@ -48,8 +48,8 @@ import java.util.List;
 
 public class StandardHotStoneGame implements Game,MutableGame {
 
-    private final StandardHero findus;
-    private final StandardHero peddersen;
+    private final MutableHero findus;
+    private final MutableHero peddersen;
     private final HashMap<Player, StandardDeck> deck = new HashMap<>();
     private final HashMap<Player, ArrayList<MutableCard>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<MutableCard>> field = new HashMap<>();
@@ -98,7 +98,7 @@ public class StandardHotStoneGame implements Game,MutableGame {
     }
 
     @Override
-    public StandardHero getHero(Player who) {
+    public MutableHero getHero(Player who) {
         if (who == Player.PEDDERSEN) return peddersen;
         else return findus;
     }
@@ -157,7 +157,7 @@ public class StandardHotStoneGame implements Game,MutableGame {
     public void endTurn() {
         turnNumber++;
 
-        StandardHero currentHero = getHero(getPlayerInTurn());
+        MutableHero currentHero = getHero(getPlayerInTurn());
         currentHero.setMana(manaStrategy.calculate(getRoundCount()));
         currentHero.resetUsedPower();
         for(MutableCard c: getField(getPlayerInTurn())) {
@@ -176,7 +176,7 @@ public class StandardHotStoneGame implements Game,MutableGame {
         Player who = getPlayerInTurn();
         boolean isDeckEmpty = this.getDeckSize(who) <= 0;
         if (isDeckEmpty) {
-            StandardHero hero = getHero(who);
+            MutableHero hero = getHero(who);
             hero.hurt(GameConstants.HERO_HEALTH_PENALTY_ON_EMPTY_DECK);
             return;
         }
@@ -218,17 +218,18 @@ public class StandardHotStoneGame implements Game,MutableGame {
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
         }
         attackingCard.setActive(false);
-        StandardHero hero = getHero(Player.computeOpponent(playerInTurn));
+        MutableHero hero = getHero(Player.computeOpponent(playerInTurn));
         hero.hurt(attackingCard.getAttack());
         return Status.OK;
     }
 
     @Override
     public Status usePower() {
-        StandardHero currentHero = getHero(getPlayerInTurn());
+        MutableHero currentHero = getHero(getPlayerInTurn());
         return currentHero.usePower(this);
     }
 
+    @Override
     public void addToField(Player who, MutableCard card, int index) {
         field.get(who).add(index, card);
     }
@@ -236,7 +237,7 @@ public class StandardHotStoneGame implements Game,MutableGame {
     @Override
     public Status playCard(int handIndex, int fieldIndex) {
         Player who = getPlayerInTurn();
-        StandardHero hero = getHero(who);
+        MutableHero hero = getHero(who);
         Card card = getCardInHand(who, handIndex);
 
         if (hero.getMana() < card.getManaCost()) {

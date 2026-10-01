@@ -10,7 +10,7 @@ import hotstone.standard.Strategies.PowerStrategy.ThaiChefPowerStrategy;
 
 public class GammaHeroStrategy implements HeroStrategy {
     @Override
-    public StandardHero generate(Player p) {
+    public MutableHero generate(Player p) {
         String heroType;
         PowerStrategy powerStrategy;
 

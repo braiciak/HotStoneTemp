@@ -1,4 +1,5 @@
 package hotstone.standard.Strategies.HeroStrategy;
+import hotstone.framework.MutableHero;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
@@ -17,7 +18,7 @@ public class EpsilonHeroStrategy implements HeroStrategy {
 
     //TODO: MutableHero instead of StandardHero.
     @Override
-    public StandardHero generate(Player p) {
+    public MutableHero generate(Player p) {
         String heroType;
         PowerStrategy powerStrategy;
 

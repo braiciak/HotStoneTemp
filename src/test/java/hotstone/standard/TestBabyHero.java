@@ -1,9 +1,6 @@
 package hotstone.standard;
 
-import hotstone.framework.Game;
-import hotstone.framework.Hero;
-import hotstone.framework.Player;
-import hotstone.framework.Status;
+import hotstone.framework.*;
 import hotstone.standard.VariantFactories.AlphaFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,12 +10,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBabyHero {
     private Game game;
-    private StandardHero heroFindus;
+    private MutableHero heroFindus;
 
     @BeforeEach
     public void setUp() {
         game = new StandardHotStoneGame(new AlphaFactory());
-        heroFindus = (StandardHero) game.getHero(Player.FINDUS); // Both players are type babyHero
+        heroFindus = (MutableHero) game.getHero(Player.FINDUS); // Both players are type babyHero
     }
 
     @Test

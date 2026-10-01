@@ -2,7 +2,7 @@ package hotstone.standard;
 
 import hotstone.framework.*;
 
-public class StandardCard implements Card,MutableCard {
+public class StandardCard implements MutableCard {
 
     private Player owner;
     private final String name;
