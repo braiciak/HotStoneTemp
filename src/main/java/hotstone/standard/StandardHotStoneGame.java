@@ -55,8 +55,8 @@ public class StandardHotStoneGame implements Game,MutableGame {
     private final HashMap<Player, ArrayList<MutableCard>> field = new HashMap<>();
     private int turnNumber = 0;
 
-    private ManaStrategy manaStrategy;
-    private VictoryStrategy victoryStrategy;
+    private final ManaStrategy manaStrategy;
+    private final VictoryStrategy victoryStrategy;
 
 
 
