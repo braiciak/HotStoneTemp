@@ -206,7 +206,7 @@ public class StandardHotStoneGame implements Game,MutableGame {
         }
     }
 
-    private void removeFromField(Player who, Card card) {
+    private void removeFromField(Player who, MutableCard card) {
         field.get(who).remove(card);
     }
 
