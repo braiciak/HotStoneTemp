@@ -1,6 +1,6 @@
 package hotstone.standard;
 
-import hotstone.framework.Hero;
+import hotstone.framework.SecureHero;
 import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Player;
 import hotstone.standard.Strategies.HeroStrategy.AlphaHeroStrategy;
@@ -23,23 +23,23 @@ public class TestHeroAndPowerStrategy {
 
     @Test
     public void alphaShouldBeBabyHeroWithPowerCute() {
-        Hero findus = alpha.generate(Player.FINDUS);
+        SecureHero findus = alpha.generate(Player.FINDUS);
         assertThat(findus.getType(), is(GameConstants.BABY_HERO_TYPE));
         assertThat(findus.getPowerName(), is("Cute"));
     }
 
     @Test
     public void gammaShouldBeThaiChefForFindusAndDanishForPedderson() {
-        Hero findus = gamma.generate(Player.FINDUS);
-        Hero peddersen = gamma.generate(Player.PEDDERSEN);
+        SecureHero findus = gamma.generate(Player.FINDUS);
+        SecureHero peddersen = gamma.generate(Player.PEDDERSEN);
         assertThat(findus.getType(), is(GameConstants.THAI_CHEF_HERO_TYPE));
         assertThat(peddersen.getType(), is(GameConstants.DANISH_CHEF_HERO_TYPE));
     }
 
     @Test
     public void gammaShouldHavePowerChiliForThaiAndSovsForDanish() {
-        Hero findus = gamma.generate(Player.FINDUS);
-        Hero peddersen = gamma.generate(Player.PEDDERSEN);
+        SecureHero findus = gamma.generate(Player.FINDUS);
+        SecureHero peddersen = gamma.generate(Player.PEDDERSEN);
         assertThat(findus.getPowerName(), is("Chili"));
         assertThat(peddersen.getPowerName(), is("Sovs"));
     }

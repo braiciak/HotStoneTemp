@@ -75,6 +75,7 @@ public class StandardCard implements MutableCard {
         return attack;
     }
 
+    @Override
     public void setAttack(int attack) {this.attack = attack;}
 
     @Override
@@ -87,6 +88,7 @@ public class StandardCard implements MutableCard {
         return isActive;
     }
 
+    @Override
     public void setOwner(Player player) {
         owner = player;
     }
@@ -101,12 +103,14 @@ public class StandardCard implements MutableCard {
         return "";
     }
 
+    @Override
     public void setActive(boolean b) {
         isActive = b;
     }
 
-    public void hurt(int amount) {
-        health -= amount;
+    @Override
+    public void setHealth(int amount) {
+        health = amount;
     }
 
 }

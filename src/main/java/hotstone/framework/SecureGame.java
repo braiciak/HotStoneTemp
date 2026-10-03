@@ -2,11 +2,14 @@ package hotstone.framework;
 
 import java.util.List;
 
-/** Accessor-only interface for the game object. **/
-
+/** Accessor-only interface for the game object. */
 public interface SecureGame {
     // === Accessors for Game state
 
+    /** Get the current round-count.
+     *
+     * @return the current round-count.
+     */
     int getRoundCount();
 
     /** Get the player who currently can make actions (call mutators) on
@@ -22,7 +25,7 @@ public interface SecureGame {
      * @param who the owning player
      * @return the hero
      */
-    Hero getHero(Player who);
+    SecureHero getHero(Player who);
 
     /** Get who has won the game.
      *
@@ -47,6 +50,12 @@ public interface SecureGame {
      */
     int getDeckSize(Player who);
 
+    /** Get the Card at some index in the Player's Deck.
+     *
+     * @param who the owner of the Deck.
+     * @param indexInDeck the index in the Deck.
+     * @return the Card at the given index of the Player's Deck.
+     */
     Card getCardInDeck(Player who, int indexInDeck);
 
     // === Accessors for Hand

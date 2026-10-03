@@ -74,7 +74,7 @@ public class TestAlphaStone {
   public void shouldStartFindusWithBabyHero() {
       // Given a new game,
       // When we check Findus' hero type,
-      Hero hero = game.getHero(Player.FINDUS);
+      SecureHero hero = game.getHero(Player.FINDUS);
       // Then we should get "Baby".
       assertThat(hero, notNullValue());
       assertThat(hero.getType(), is("Baby"));
@@ -84,7 +84,7 @@ public class TestAlphaStone {
   public void shouldStartPeddersenWithBabyHero() {
       // Given a new game,
       // When we check Peddersen's hero type,
-      Hero hero = game.getHero(Player.PEDDERSEN);
+      SecureHero hero = game.getHero(Player.PEDDERSEN);
       // Then we should get "Baby".
       assertThat(hero, notNullValue());
       assertThat(hero.getType(), is("Baby"));
@@ -253,14 +253,14 @@ public class TestAlphaStone {
       game.endTurn();
       game.endTurn();
       // Then their hero's mana is reset to 3
-      Hero hero = game.getHero(playerInTurn);
+      SecureHero hero = game.getHero(playerInTurn);
       assertThat(hero.getMana(), is(3));
   }
 
   @Test
   public void shouldRejectCardPlayIfManaInsufficient() {
       // Given a player in turn without enough mana,
-      Hero hero = game.getHero(playerInTurn);
+      SecureHero hero = game.getHero(playerInTurn);
       // (Play the Tres card, whose mana-cost is 3. It should drain all mana.)
       game.playCard(0,0);
       // When they attempt to play a card,
@@ -274,7 +274,7 @@ public class TestAlphaStone {
       // Given a player in turn,
       // When they play a card,
       int cost = game.getCardInHand(playerInTurn,0).getManaCost();
-      Hero hero = game.getHero(playerInTurn);
+      SecureHero hero = game.getHero(playerInTurn);
       int mana = hero.getMana();
 
       game.playCard(0,0);
@@ -333,7 +333,7 @@ public class TestAlphaStone {
         game.endTurn();
         game.endTurn();
         Card card = game.getCardInField(playerInTurn, 0);
-        Hero hero = game.getHero(Player.computeOpponent(playerInTurn));
+        SecureHero hero = game.getHero(Player.computeOpponent(playerInTurn));
         int healthBefore = hero.getHealth();
         // When the card attacks the opponent hero
         game.attackHero(0);

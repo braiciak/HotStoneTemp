@@ -3,11 +3,21 @@ package hotstone.framework;
 import java.util.List;
 
 /** Interface for directly mutating Game state. */
-
 public interface MutableGame extends SecureGame {
 
+    /** Add some card to some index in the Player's field.
+     *
+     * @param p the Player receiving the Card.
+     * @param c the Card to add.
+     * @param index the field-index the Card will be placed at.
+     */
     void addToField(Player p, MutableCard c, int index);
 
+    /** Hurt a Card by some amount.
+     *
+     * @param c the Card to hurt.
+     * @param amount the amount of damage to inflict.
+     */
     void hurtCard(MutableCard c, int amount);
 
     @Override

@@ -5,6 +5,7 @@ import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Strategies.ManaStrategy;
 import hotstone.framework.Strategies.VictoryStrategy;
 
+/** Factory for generating Hotstone variant-specific components. */
 public interface VariantFactory {
 
     DeckStrategy makeDeckStrategy();

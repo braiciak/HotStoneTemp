@@ -200,7 +200,7 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
 
     @Override
     public void hurtCard(MutableCard card, int amount) {
-        card.hurt(amount);
+        card.setHealth(card.getHealth() - amount);
         if (card.getHealth() <= 0) {
             removeFromField(card.getOwner(), card);
         }

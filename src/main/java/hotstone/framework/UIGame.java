@@ -19,7 +19,6 @@ package hotstone.framework;
 /** The game object's private interface for the UI. */
 
 public interface UIGame extends SecureGame {
-  // === Mutators
 
   /**
    * Perform end of turn for current player, to prepare for the

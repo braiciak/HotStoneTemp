@@ -21,7 +21,7 @@ package hotstone.framework;
  * read-only view of the hero to respect that a client may only alter
  * the internal state of a hero through the Game's mutator methods.
  */
-public interface Hero {
+public interface SecureHero {
     /**
      * Get the amount of mana this hero has available
      * for playing cards to the field.
@@ -75,9 +75,10 @@ public interface Hero {
     String getEffectDescription();
 
     /**
-     * If Hero has enough mana to use the power, it gets used.
+     * Get whether the hero is defeated.
      *
-     * @return OK if it was used, NOT_ENOUGH_MANA if there wasn't enough mana to use the power.
-     */
-    Status usePower(MutableGame game);
+     * @return whether the hero is defeated.
+     *
+     * */
+    boolean isDefeated();
 }

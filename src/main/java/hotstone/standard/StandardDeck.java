@@ -23,6 +23,7 @@ public class StandardDeck implements Deck {
     public MutableCard getCard(int i) {
         return deck.get(i);
     }
+
     public void removeCard(){
         deck.removeFirst();
     }

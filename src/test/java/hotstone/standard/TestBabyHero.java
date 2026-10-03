@@ -22,7 +22,7 @@ public class TestBabyHero {
     public void bothPlayersHaveHeroTypeBaby() {
         // Given both players,
         // When we check their hero types,
-        Hero heroPeddersen = game.getHero(Player.PEDDERSEN);
+        SecureHero heroPeddersen = game.getHero(Player.PEDDERSEN);
         // Then it will be type "Baby"
         assertThat(heroFindus.getType(), is("Baby"));
         assertThat(heroPeddersen.getType(), is("Baby"));

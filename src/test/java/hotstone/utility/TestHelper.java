@@ -18,7 +18,7 @@ package hotstone.utility;
 
 import hotstone.framework.Card;
 import hotstone.framework.UIGame;
-import hotstone.framework.Hero;
+import hotstone.framework.SecureHero;
 import hotstone.framework.Player;
 
 /** Useful helper functions during TDD of the
@@ -41,7 +41,7 @@ public class TestHelper {
       + ", Turn number: " + game.getTurnNumber());
     for (Player player: Player.values()) {
       System.out.println("--- Player: " + player.toString() + " ---");
-      Hero hero = game.getHero(player);
+      SecureHero hero = game.getHero(player);
       System.out.println("  Hero (" + hero.getType()
               + ") Mana: " + hero.getMana()
               + ", Health: " + hero.getHealth());
