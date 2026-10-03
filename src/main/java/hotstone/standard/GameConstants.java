@@ -23,6 +23,7 @@ package hotstone.standard;
  */
 
 public class GameConstants {
+
   /** The maximum health of a hero initially. */
   public static final int HERO_MAX_HEALTH = 21;
   /** The cost of a hero using its power. */
