@@ -1,12 +1,12 @@
 package hotstone.standard.Strategies.VictoryStrategy;
 
-import hotstone.framework.Game;
+import hotstone.framework.SecureGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.VictoryStrategy;
 
 public class GammaVictoryStrategy implements VictoryStrategy {
     @Override
-    public Player getWinner(Game game) {
+    public Player getWinner(SecureGame game) {
         if(game.getRoundCount() < 3)
             return null;
         if(game.getFieldSize(Player.FINDUS) == 0)

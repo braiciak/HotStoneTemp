@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestDeltaStone {
-    private Game game;
+    private UIGame game;
     private DeckStrategy deckStrategy;
 
     @BeforeEach

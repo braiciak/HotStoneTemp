@@ -1,14 +1,11 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
-import hotstone.framework.Game;
 import hotstone.framework.MutableCard;
 import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
-import hotstone.standard.StandardCard;
-import hotstone.standard.StandardHotStoneGame;
 
 public class FrenchChefPowerStrategy implements PowerStrategy {
     NumberGeneratorStrategy generatorStrategy;

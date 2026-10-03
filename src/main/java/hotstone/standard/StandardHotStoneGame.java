@@ -46,7 +46,7 @@ import java.util.List;
  * why it is not called 'AlphaGame'.
  */
 
-public class StandardHotStoneGame implements Game,MutableGame {
+public class StandardHotStoneGame implements UIGame,MutableGame {
 
     private final MutableHero findus;
     private final MutableHero peddersen;

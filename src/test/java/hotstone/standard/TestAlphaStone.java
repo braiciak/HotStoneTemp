@@ -33,8 +33,6 @@ import hotstone.framework.*;
 import hotstone.standard.VariantFactories.AlphaFactory;
 import org.junit.jupiter.api.*;
 
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -44,7 +42,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * requirements for the alpha stone game.
  */
 public class TestAlphaStone {
-  private Game game;
+  private UIGame game;
   private Player playerInTurn;
 
   /** Fixture for AlphaStone testing. */

@@ -2,7 +2,7 @@
 package hotstone.standard;
 
 import hotstone.framework.Card;
-import hotstone.framework.Game;
+import hotstone.framework.UIGame;
 import hotstone.framework.Player;
 import hotstone.standard.VariantFactories.AlphaFactory;
 import org.junit.jupiter.api.*;
@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestCards {
 
-    private Game game;
+    private UIGame game;
     private Player playerInTurn;
 
     @BeforeEach

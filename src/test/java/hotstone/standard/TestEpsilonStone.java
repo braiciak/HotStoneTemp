@@ -1,7 +1,7 @@
 package hotstone.standard;
 
 import hotstone.framework.Card;
-import hotstone.framework.Game;
+import hotstone.framework.UIGame;
 import hotstone.framework.Player;
 import hotstone.framework.Status;
 import hotstone.standard.VariantFactories.EpsilonFactory;
@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class TestEpsilonStone {
-    private Game game;
+    private UIGame game;
 
     @BeforeEach
     public void setUp() {

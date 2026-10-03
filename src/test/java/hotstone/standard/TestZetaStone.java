@@ -1,6 +1,6 @@
 package hotstone.standard;
 
-import hotstone.framework.Game;
+import hotstone.framework.UIGame;
 import hotstone.framework.Player;
 import hotstone.standard.VariantFactories.ZetaFactory;
 import org.hamcrest.CoreMatchers;
@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class TestZetaStone {
-    private Game game;
+    private UIGame game;
 
     @BeforeEach
     public void setUp() {

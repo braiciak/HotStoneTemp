@@ -1,11 +1,9 @@
 package hotstone.standard.Strategies.PowerStrategy;
 
-import hotstone.framework.Game;
 import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
-import hotstone.standard.StandardHotStoneGame;
 
 public class ThaiChefPowerStrategy implements PowerStrategy {
     @Override
