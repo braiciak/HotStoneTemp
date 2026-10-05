@@ -4,6 +4,7 @@ import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.Strategies.PowerStrategy.BrownRicePowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.TomatoSoupPowerStrategy;
 import hotstone.standard.VariantFactories.EtaFactory;
 import hotstone.standard.VariantFactories.ZetaFactory;
 import org.hamcrest.CoreMatchers;
@@ -17,30 +18,37 @@ import static org.hamcrest.core.Is.is;
 
 public class TestEtaStone {
 
+    private MutableGameSpy gameSpy;
+
     @BeforeEach
     public void setUp() {
+        gameSpy = new MutableGameSpy(new CardSpy("Spy", 1,1,1));
     }
 
     @Test
     public void shouldBrownRicePowerHurtHero() {
         // Given the BrownRicePowerStrategy,
-        MutableGameSpy spy = new MutableGameSpy();
         PowerStrategy strat = new BrownRicePowerStrategy();
         // When the power is invoked,
-        strat.usePower(spy);
+        strat.usePower(gameSpy);
         // Then the Strategy hurts the opp. hero by 1 point.
-        assertThat(spy.getLastActionType(), is(GameAction.CHANGE_HERO_HEALTH));
-        assertThat(spy.getLastActionParams(), is(-1));
+        assertThat(gameSpy.getLastActionType(), is(GameAction.CHANGE_HERO_HEALTH));
+        assertThat(gameSpy.getLastActionParams(), is(-1));
     }
 
     @Test
-    public void shouldInvokePowerOnPlay() {
-        // Given some card,
-
-        // When the card is played,
-
-        // Then its power is invoked.
-
+    public void shouldTomatoSaladAddAtkToRandomMinion() {
+        // Given the TomatoSoupPowerStrategy,
+        CardSpy cardSpy = gameSpy.getCardSpy();
+        PowerStrategy strat = new TomatoSoupPowerStrategy();
+        // When the power is invoked,
+        int initialAttack = cardSpy.getAttack();
+        strat.usePower(gameSpy);
+        // Then the Strategy adds +1 atk. to a random minion.
+        assertThat(cardSpy.getLastActionType(), is(GameAction.CHANGE_ATTACK));
+        assertThat(cardSpy.getLastActionParams(), is(
+                initialAttack + 1
+        ));
     }
 
 }

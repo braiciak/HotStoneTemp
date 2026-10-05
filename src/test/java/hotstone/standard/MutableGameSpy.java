@@ -6,10 +6,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MutableGameSpy implements UIGame, MutableGame {
+public class MutableGameSpy implements Spy, UIGame, MutableGame {
+
+    private final CardSpy cardSpy;
 
     private GameAction lastActionType;
     private int lastParams;
+
+    public MutableGameSpy(CardSpy cardSpy) {
+        this.cardSpy = cardSpy;
+    }
+
+    public CardSpy getCardSpy() {
+        return cardSpy;
+    }
 
     public GameAction getLastActionType() {
         return lastActionType;
@@ -97,7 +107,7 @@ public class MutableGameSpy implements UIGame, MutableGame {
 
     @Override
     public MutableCard getCardInField(Player p, int indexInField) {
-        return null;
+        return cardSpy;
     }
 
     @Override
