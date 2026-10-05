@@ -10,30 +10,32 @@ import hotstone.standard.StandardDeck;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class DeltaDeckStrategy implements DeckStrategy {
 
     @Override
     public Deck generate() {
-        final String[] cards = {
-                GameConstants.BROWN_RICE_CARD,
-                GameConstants.FRENCH_FRIES_CARD,
-                GameConstants.GREEN_SALAD_CARD,
-                GameConstants.TOMATO_SALAD_CARD,
-                GameConstants.POKE_BOWL_CARD,
-                GameConstants.PUMPKIN_SOUP_CARD,
-                GameConstants.NOODLE_SOUP_CARD,
-                GameConstants.SPRING_ROLLS_CARD,
-                GameConstants.BAKED_SALMON_CARD
-        };
+        final HashMap<String,int[]> cards = new HashMap<>();
+        cards.put(GameConstants.BROWN_RICE_CARD, new int[]{1,1,2});
+        cards.put(GameConstants.FRENCH_FRIES_CARD, new int[]{1,2,1});
+        cards.put(GameConstants.GREEN_SALAD_CARD, new int[]{2,2,3});
+        cards.put(GameConstants.TOMATO_SALAD_CARD, new int[]{2,3,2});
+        cards.put(GameConstants.POKE_BOWL_CARD, new int[]{3,2,4});
+        cards.put(GameConstants.PUMPKIN_SOUP_CARD, new int[]{4,2,7});
+        cards.put(GameConstants.NOODLE_SOUP_CARD, new int[]{4,5,3});
+        cards.put(GameConstants.SPRING_ROLLS_CARD, new int[]{5,3,7});
+        cards.put(GameConstants.BAKED_SALMON_CARD, new int[]{5,8,2});
         final ArrayList<MutableCard> deck = new ArrayList<>();
 
         // Populate the deck with two of each card, then shuffle.
-        for (String card : cards) {
+        cards.forEach((String name, int[] values) -> {
             for (int j = 0; j < 2; j++) {
-                deck.add(new StandardCard(card));
+                deck.add(new StandardCard(
+                        name, values[0], values[1], values[2]
+                ));
             }
-        }
+        });
         Collections.shuffle(deck);
 
         // The top card (highest index) must have mana cost == 1.

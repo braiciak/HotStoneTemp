@@ -17,47 +17,10 @@ public class StandardCard implements MutableCard {
         this.health = health;
     }
 
-    public StandardCard(String name) {
+    public StandardCard(String name, int mana, int attack, int health) {
         this.owner = null;
         this.name = name;
-        switch (name) {
-            case GameConstants.UNO_CARD ->
-               init(1,1,1);
-            case GameConstants.DOS_CARD ->
-                init(2,2,2);
-            case GameConstants.TRES_CARD ->
-                init(3,3,3);
-            case GameConstants.CUATRO_CARD ->
-                init(2,3,1);
-            case GameConstants.CINCO_CARD ->
-                init(3,5,1);
-            case GameConstants.SEIS_CARD ->
-                init(2,1,3);
-            case GameConstants.SIETE_CARD ->
-                init(3,2,4);
-            case GameConstants.SOVS_CARD ->
-                init(0,1,1);
-            case GameConstants.BROWN_RICE_CARD ->
-                init(1,1,2);
-            case GameConstants.FRENCH_FRIES_CARD ->
-                init(1,2,1);
-            case GameConstants.GREEN_SALAD_CARD ->
-                init(2,2,3);
-            case GameConstants.TOMATO_SALAD_CARD ->
-                init(2,3,2);
-            case GameConstants.POKE_BOWL_CARD ->
-                init(3,2,4);
-            case GameConstants.PUMPKIN_SOUP_CARD ->
-                init(4,2,7);
-            case GameConstants.NOODLE_SOUP_CARD ->
-                init(4,5,3);
-            case GameConstants.SPRING_ROLLS_CARD ->
-                init(5,3,7);
-            case GameConstants.BAKED_SALMON_CARD ->
-                init(5,8,2);
-            default ->
-                throw(new IllegalArgumentException("Name not recognized."));
-        }
+        init(mana, attack, health);
     }
 
     @Override

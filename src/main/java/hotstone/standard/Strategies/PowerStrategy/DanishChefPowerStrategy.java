@@ -8,7 +8,10 @@ import hotstone.standard.StandardCard;
 public class DanishChefPowerStrategy implements PowerStrategy {
     @Override
     public void usePower(MutableGame game) {
-        StandardCard card = new StandardCard(GameConstants.SOVS_CARD);
+        StandardCard card = new StandardCard(
+                GameConstants.SOVS_CARD,
+                1,1,1
+        );
 
         game.addToField(
                 game.getPlayerInTurn(),
