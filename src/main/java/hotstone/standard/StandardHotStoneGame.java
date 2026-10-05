@@ -218,9 +218,13 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
         if (!attackingCard.isActive()) { return Status.ATTACK_NOT_ALLOWED_FOR_NON_ACTIVE_MINION;
         }
         attackingCard.setActive(false);
-        MutableHero hero = getHero(Player.computeOpponent(playerInTurn));
-        hero.hurt(attackingCard.getAttack());
+        hurtHero(Player.computeOpponent(playerInTurn), attackingCard.getAttack());
         return Status.OK;
+    }
+
+    @Override
+    public void hurtHero(Player p, int amount) {
+        getHero(p).hurt(amount);
     }
 
     @Override

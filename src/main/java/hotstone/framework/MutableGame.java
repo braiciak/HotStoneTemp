@@ -20,6 +20,13 @@ public interface MutableGame extends SecureGame {
      */
     void hurtCard(MutableCard c, int amount);
 
+    /** Hurt a Hero by some amount.
+     *
+     * @param p the owner of the target Hero.
+     * @param amount the amount of damage to inflict.
+     */
+    void hurtHero(Player p, int amount);
+
     @Override
     List<MutableCard> getField(Player p);
 
