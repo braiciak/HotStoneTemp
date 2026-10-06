@@ -13,6 +13,8 @@ public interface MutableGame extends SecureGame {
      */
     void addToField(Player p, MutableCard c, int index);
 
+    void drawCard();
+
     /** Hurt a Card by some amount.
      *
      * @param c the Card to hurt.
@@ -41,5 +43,7 @@ public interface MutableGame extends SecureGame {
 
     @Override
     MutableCard getCardInField(Player p, int indexInField);
+
+
 
 }

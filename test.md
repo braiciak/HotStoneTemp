@@ -138,9 +138,9 @@ EtaStone: (like DELTASTONE!, except...)
 [] Card effects are executed when the card is played,
     and take effect before the card enters the field.
 
-- Brown Rice: (1,1,1): Deal 1 damage to opp. hero;
-- Tomato Salad: (2,2,2): Add +1 atk. to rand. minion;
-- Poke Bowl: (3,2,3): Restore +2 health to hero;
-- Noodle Soup: (4,5,3): Draw card;
-- Spring Rolls: (5,3,5): Destroy rand. opp. minion;
+[OK] Brown Rice: (1,1,1): Deal 1 damage to opp. hero;
+[OK] Tomato Salad: (2,2,2): Add +1 atk. to rand. minion; 
+[OK] Poke Bowl: (3,2,3): Restore +2 health to hero;
+[OK] Noodle Soup: (4,5,3): Draw card;
+[] Spring Rolls: (5,3,5): Destroy rand. opp. minion;
 - Baked Salmon: (5,7,6): Add +2 atk. to rand. opp. minion.

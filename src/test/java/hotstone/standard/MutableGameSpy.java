@@ -35,6 +35,11 @@ public class MutableGameSpy implements Spy, UIGame, MutableGame {
     }
 
     @Override
+    public void drawCard() {
+        lastActionType = GameAction.DRAW_CARD;
+    }
+
+    @Override
     public void hurtCard(MutableCard c, int amount) {
 
     }

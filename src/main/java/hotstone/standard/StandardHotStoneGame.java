@@ -172,7 +172,8 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
         } else drawCard();
     }
 
-    private void drawCard() {
+    @Override
+    public void drawCard() {
         Player who = getPlayerInTurn();
         boolean isDeckEmpty = this.getDeckSize(who) <= 0;
         if (isDeckEmpty) {
