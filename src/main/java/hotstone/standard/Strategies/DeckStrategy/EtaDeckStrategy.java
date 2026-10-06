@@ -27,6 +27,7 @@ public class EtaDeckStrategy implements DeckStrategy {
             deck.add(new StandardCard(GameConstants.SPRING_ROLLS_CARD, 5, 3, 5, new SpringRollsPowerStrategy(new RandomNumberGeneratorStrategy())));
             deck.add(new StandardCard(GameConstants.BAKED_SALMON_CARD, 5, 7, 6, new BakedSalmonPowerStrategy(new RandomNumberGeneratorStrategy())));
         }
+        Collections.shuffle(deck);
         int size = deck.size();
         for (int i = 0; i < size; i++) {
             Card card = deck.get(i);
