@@ -52,7 +52,7 @@ public class MutableGameSpy implements Spy, UIGame, MutableGame {
 
     @Override
     public int getFieldSize(Player who) {
-        return 0;
+        return 1;
     }
 
     @Override

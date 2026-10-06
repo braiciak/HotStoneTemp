@@ -1,17 +1,10 @@
 package hotstone.standard;
 
-import hotstone.framework.MutableGame;
-import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.Strategies.PowerStrategy.BrownRicePowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.TomatoSoupPowerStrategy;
-import hotstone.standard.VariantFactories.EtaFactory;
-import hotstone.standard.VariantFactories.ZetaFactory;
-import org.hamcrest.CoreMatchers;
+import hotstone.standard.Strategies.PowerStrategy.TomatoSaladPowerStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -40,7 +33,7 @@ public class TestEtaStone {
     public void shouldTomatoSaladAddAtkToRandomMinion() {
         // Given the TomatoSoupPowerStrategy,
         CardSpy cardSpy = gameSpy.getCardSpy();
-        PowerStrategy strat = new TomatoSoupPowerStrategy();
+        PowerStrategy strat = new TomatoSaladPowerStrategy(new FixedGeneratorStrategy(0));
         // When the power is invoked,
         int initialAttack = cardSpy.getAttack();
         strat.usePower(gameSpy);
