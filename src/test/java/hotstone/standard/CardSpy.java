@@ -1,6 +1,7 @@
 package hotstone.standard;
 
 import hotstone.framework.MutableCard;
+import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 
 public class CardSpy implements Spy, MutableCard {
@@ -32,6 +33,14 @@ public class CardSpy implements Spy, MutableCard {
 
     @Override
     public void setHealth(int amount) {
+        health = amount;
+
+        lastAction = GameAction.SET_CARD_HEALTH;
+        lastParams = amount;
+    }
+
+    @Override
+    public void usePower(MutableGame game) {
 
     }
 
@@ -39,7 +48,7 @@ public class CardSpy implements Spy, MutableCard {
     public void setAttack(int value) {
         attack = value;
 
-        lastAction = GameAction.CHANGE_ATTACK;
+        lastAction = GameAction.SET_ATTACK;
         lastParams = value;
     }
 

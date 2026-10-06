@@ -41,7 +41,7 @@ public class MutableGameSpy implements Spy, UIGame, MutableGame {
 
     @Override
     public void hurtCard(MutableCard c, int amount) {
-
+        c.setHealth(c.getHealth() - amount);
     }
 
     @Override

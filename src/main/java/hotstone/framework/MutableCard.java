@@ -9,6 +9,8 @@ public interface MutableCard extends Card {
      */
     void setHealth(int amount);
 
+    void usePower(MutableGame game);
+
     /** Set the Card's attack power.
      *
      * @param value the new attack power.

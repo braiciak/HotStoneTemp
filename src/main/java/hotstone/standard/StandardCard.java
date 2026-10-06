@@ -1,11 +1,14 @@
 package hotstone.standard;
 
 import hotstone.framework.*;
+import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.NullPowerStrategy;
 
 public class StandardCard implements MutableCard {
 
     private Player owner;
     private final String name;
+    private final PowerStrategy power;
     private int mana;
     private int attack;
     private int health;
@@ -21,6 +24,21 @@ public class StandardCard implements MutableCard {
         this.owner = null;
         this.name = name;
         init(mana, attack, health);
+        power = new NullPowerStrategy();
+    }
+
+    public StandardCard(
+            String name, int mana, int attack, int health,
+            PowerStrategy power) {
+        this.owner = null;
+        this.name = name;
+        init(mana, attack, health);
+        this.power = power;
+    }
+
+    @Override
+    public void usePower(MutableGame game) {
+        power.usePower(game);
     }
 
     @Override

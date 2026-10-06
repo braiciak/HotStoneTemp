@@ -142,5 +142,5 @@ EtaStone: (like DELTASTONE!, except...)
 [OK] Tomato Salad: (2,2,2): Add +1 atk. to rand. minion; 
 [OK] Poke Bowl: (3,2,3): Restore +2 health to hero;
 [OK] Noodle Soup: (4,5,3): Draw card;
-[] Spring Rolls: (5,3,5): Destroy rand. opp. minion;
-- Baked Salmon: (5,7,6): Add +2 atk. to rand. opp. minion.
+[OK] Spring Rolls: (5,3,5): Destroy rand. opp. minion;
+[OK] Baked Salmon: (5,7,6): Add +2 atk. to rand. opp. minion.

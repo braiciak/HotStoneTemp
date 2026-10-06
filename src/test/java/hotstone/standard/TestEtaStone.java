@@ -1,10 +1,7 @@
 package hotstone.standard;
 
 import hotstone.framework.Strategies.PowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.BrownRicePowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.NoodleSoupPowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.PokeBowlPowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.TomatoSaladPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +37,7 @@ public class TestEtaStone {
         int initialAttack = cardSpy.getAttack();
         strat.usePower(gameSpy);
         // Then the Strategy adds +1 atk. to a random minion.
-        assertThat(cardSpy.getLastActionType(), is(GameAction.CHANGE_ATTACK));
+        assertThat(cardSpy.getLastActionType(), is(GameAction.SET_ATTACK));
         assertThat(cardSpy.getLastActionParams(), is(
                 initialAttack + 1
         ));
@@ -66,6 +63,37 @@ public class TestEtaStone {
         // then a card is drawn for the player in turn.
         assertThat(gameSpy.getLastActionType(), is(GameAction.DRAW_CARD));
     }
+
+    @Test
+    public void shouldSpringRollsDestroyRandomMinion() {
+        // Given a SpringRollsPowerStrategy object,
+        CardSpy cardSpy = gameSpy.getCardSpy();
+        PowerStrategy strat = new SpringRollsPowerStrategy(
+                new FixedGeneratorStrategy(0)
+        );
+        // When the power is invoked,
+        strat.usePower(gameSpy);
+        // Then a random opponent minion is destroyed, if any.
+        assertThat(cardSpy.getLastActionType(), is(GameAction.SET_CARD_HEALTH));
+        assertThat(cardSpy.getLastActionParams(), is(0));
+    }
+
+    @Test
+    public void shouldBakedSalmonAdd2AtkToRandOppMinion() {
+        // Given a BakedSalmonPowerStrategy object,
+        CardSpy cardSpy = gameSpy.getCardSpy();
+        PowerStrategy strat = new BakedSalmonPowerStrategy(
+                new FixedGeneratorStrategy(0)
+        );
+        // When the power is invoked,
+        final int initialAttack = cardSpy.getAttack();
+        strat.usePower(gameSpy);
+        // Then a random opponent minion's attack is increased by 2.
+        assertThat(cardSpy.getLastActionType(), is(GameAction.SET_ATTACK));
+        assertThat(cardSpy.getLastActionParams(), is(initialAttack + 2));
+    }
+
+
 
 }
 
