@@ -16,7 +16,6 @@ public class TomatoSaladPowerStrategy implements PowerStrategy {
         this.generator = generator;
     }
 
-    //TODO: Implement power.
     @Override
     public void usePower(MutableGame game) {
         int fieldFindus = game.getFieldSize(Player.FINDUS);

@@ -1,7 +1,10 @@
 package hotstone.standard;
 
+import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.framework.UIGame;
 import hotstone.standard.Strategies.PowerStrategy.*;
+import hotstone.standard.VariantFactories.EtaFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +20,7 @@ public class TestEtaStone {
         gameSpy = new MutableGameSpy(new CardSpy("Spy", 1,1,1));
     }
 
+    // UNIT TESTS
     @Test
     public void shouldBrownRicePowerHurtHero() {
         // Given the BrownRicePowerStrategy,
@@ -93,6 +97,24 @@ public class TestEtaStone {
         assertThat(cardSpy.getLastActionParams(), is(initialAttack + 2));
     }
 
+    // One integration test
+    @Test
+    public void shouldExecuteCardEffectsWithEtaVariant() {
+        // Given a game with etafactory,
+        UIGame game = new StandardHotStoneGame(new EtaFactory());
+        game.endTurn();
+        game.endTurn();
+        // When we play brown rice card,
+        int healthBefore = game.getHero(Player.computeOpponent(game.getPlayerInTurn())).getHealth();
+        game.playCard(3,0);
+        // then should deal one damage to opponent
+        int healthAfter = game.getHero(Player.computeOpponent(game.getPlayerInTurn())).getHealth();
+        assertThat(healthAfter, is(healthBefore-1));
+
+
+
+
+    }
 
 
 }

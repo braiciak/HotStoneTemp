@@ -133,9 +133,9 @@ EpsilonStone: (like AlphaStone, except...)
 [OK] "Pasta" does nothing if there are no own minions.
 
 EtaStone: (like DELTASTONE!, except...)
-[] Players have a new deck: Effect Dish Deck.
-[] Cards in EDDeck have "card effects".
-[] Card effects are executed when the card is played,
+[OK] Players have a new deck: Effect Dish Deck.
+[OK] Cards in EDDeck have "card effects".
+[OK] Card effects are executed when the card is played,
     and take effect before the card enters the field.
 
 [OK] Brown Rice: (1,1,1): Deal 1 damage to opp. hero;

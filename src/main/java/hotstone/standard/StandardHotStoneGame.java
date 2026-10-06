@@ -243,11 +243,12 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
     public Status playCard(int handIndex, int fieldIndex) {
         Player who = getPlayerInTurn();
         MutableHero hero = getHero(who);
-        Card card = getCardInHand(who, handIndex);
+        MutableCard card = getCardInHand(who, handIndex);
 
         if (hero.getMana() < card.getManaCost()) {
             return Status.NOT_ENOUGH_MANA;
         }
+        card.usePower(this);
         addToField(who, hand.get(who).remove(handIndex), fieldIndex);
         hero.setMana(hero.getMana() - card.getManaCost());
         return Status.OK;
