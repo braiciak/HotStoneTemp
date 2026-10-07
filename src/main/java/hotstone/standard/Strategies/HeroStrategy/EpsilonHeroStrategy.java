@@ -16,7 +16,6 @@ public class EpsilonHeroStrategy implements HeroStrategy {
         this.generatorStrategy = generatorStrategy;
     }
 
-    //TODO: MutableHero instead of StandardHero.
     @Override
     public MutableHero generate(Player p) {
         String heroType;

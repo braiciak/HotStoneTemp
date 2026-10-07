@@ -110,12 +110,6 @@ public class TestEtaStone {
         // then should deal one damage to opponent
         int healthAfter = game.getHero(Player.computeOpponent(game.getPlayerInTurn())).getHealth();
         assertThat(healthAfter, is(healthBefore-1));
-
-
-
-
     }
-
-
 }
 

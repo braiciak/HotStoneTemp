@@ -144,3 +144,7 @@ EtaStone: (like DELTASTONE!, except...)
 [OK] Noodle Soup: (4,5,3): Draw card;
 [OK] Spring Rolls: (5,3,5): Destroy rand. opp. minion;
 [OK] Baked Salmon: (5,7,6): Add +2 atk. to rand. opp. minion.
+
+SemiStone:
+[OK] Implemented as SemiFactory, SemiHeroStrategy
+Combination of Strategies from previous variants. No tests (yet).
