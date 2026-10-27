@@ -259,5 +259,9 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
         return Math.round((float) turnNumber / 2);
     }
 
+    @Override
+    public void addObserver(GameObserver observer) {
+
+    }
 }
 

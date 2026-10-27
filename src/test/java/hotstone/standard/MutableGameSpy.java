@@ -139,4 +139,9 @@ public class MutableGameSpy implements Spy, UIGame, MutableGame {
     public Status usePower() {
         return null;
     }
+
+    @Override
+    public void addObserver(GameObserver observer) {
+
+    }
 }
