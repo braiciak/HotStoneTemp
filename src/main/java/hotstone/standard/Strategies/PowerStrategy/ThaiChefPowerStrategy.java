@@ -8,7 +8,10 @@ import hotstone.standard.GameConstants;
 public class ThaiChefPowerStrategy implements PowerStrategy {
     @Override
     public void usePower(MutableGame g) {
-        g.getHero(Player.computeOpponent(g.getPlayerInTurn())).hurt(GameConstants.THAI_CHEF_HERO_POWER_ATTACK_OPPONENT_HERO_VALUE);
+        g.hurtHero(
+                Player.computeOpponent(g.getPlayerInTurn()),
+                GameConstants.THAI_CHEF_HERO_POWER_ATTACK_OPPONENT_HERO_VALUE
+        );
     }
 
     @Override

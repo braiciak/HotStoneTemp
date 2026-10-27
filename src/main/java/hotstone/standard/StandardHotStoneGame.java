@@ -53,6 +53,7 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
     private final HashMap<Player, StandardDeck> deck = new HashMap<>();
     private final HashMap<Player, ArrayList<MutableCard>> hand = new HashMap<>();
     private final HashMap<Player, ArrayList<MutableCard>> field = new HashMap<>();
+    private final ObserverHandler observerHandler = new ObserverHandler();
     private int turnNumber = 0;
 
     private final ManaStrategy manaStrategy;
@@ -226,17 +227,19 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
     @Override
     public void hurtHero(Player p, int amount) {
         getHero(p).hurt(amount);
+        observerHandler.notifyHeroUpdate(p);
     }
 
     @Override
     public Status usePower() {
-        MutableHero currentHero = getHero(getPlayerInTurn());
-        return currentHero.usePower(this);
-    }
-
-    @Override
-    public void addToField(Player who, MutableCard card, int index) {
-        field.get(who).add(index, card);
+        Player player = getPlayerInTurn();
+        MutableHero currentHero = getHero(player);
+        Status status = currentHero.usePower(this);
+        if (status == Status.OK) {
+            observerHandler.notifyUsePower(player);
+            observerHandler.notifyHeroUpdate(player);
+        }
+        return status;
     }
 
     @Override
@@ -255,13 +258,19 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
     }
 
     @Override
+    public void addToField(Player who, MutableCard card, int index) {
+        field.get(who).add(index, card);
+        observerHandler.notifyPlayCard(who, card, index);
+    }
+
+    @Override
     public int getRoundCount() {
         return Math.round((float) turnNumber / 2);
     }
 
     @Override
     public void addObserver(GameObserver observer) {
-
+        observerHandler.addObserver(observer);
     }
 }
 

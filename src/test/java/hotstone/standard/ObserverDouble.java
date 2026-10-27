@@ -20,16 +20,34 @@ import hotstone.framework.Card;
 import hotstone.framework.GameObserver;
 import hotstone.framework.Player;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 /**
- * TODO: Reflect - is this double a spy or a stub?
- *
- * TODO: Implement this test-double in order to test TDD
- * the implementation of observer events emitted from your
- * Game implementations.
+ * No longer a TO-DO: Reflect - is this double a spy or a stub?
+ *  Answer: It's a spy since we're recording indirect outputs.
  */
 class ObserverDouble implements GameObserver {
+
+    private final ArrayList<String> receipts = new ArrayList<>();
+
+    public int receiptCount() {
+        return receipts.size();
+    }
+
+    public String getReceipt(int index) {
+        return receipts.get(index);
+    }
+
   @Override
-  public void onPlayCard(Player who, Card card, int atIndex) {}
+  public void onPlayCard(Player who, Card card, int atIndex) {
+        receipts.add(
+                String.format(
+                        "onPlayCard_%s_%s_%d",
+                        who.toString(), card.getName(), atIndex
+                        )
+        );
+  }
 
   @Override
   public void onChangeTurnTo(Player playerBecomingActive) {}
@@ -41,7 +59,9 @@ class ObserverDouble implements GameObserver {
   public void onAttackHero(Player playerAttacking, Card attackingCard) {}
 
   @Override
-  public void onUsePower(Player who) {}
+  public void onUsePower(Player who) {
+      receipts.add("onUsePower");
+  }
 
   @Override
   public void onCardDraw(Player who, Card drawnCard) {}
@@ -53,7 +73,9 @@ class ObserverDouble implements GameObserver {
   public void onCardRemove(Player who, Card card) {}
 
   @Override
-  public void onHeroUpdate(Player who) {}
+  public void onHeroUpdate(Player who) {
+        receipts.add("onHeroUpdate_" + who.toString());
+  }
 
   @Override
   public void onGameWon(Player playerWinning) {}
