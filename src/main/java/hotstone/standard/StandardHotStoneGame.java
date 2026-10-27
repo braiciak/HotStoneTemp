@@ -235,6 +235,9 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
         Player player = getPlayerInTurn();
         MutableHero currentHero = getHero(player);
         Status status = currentHero.usePower(this);
+        /* TODO: Separate status from usePower call so that
+            usePower can safely be the first notification.
+         */
         if (status == Status.OK) {
             observerHandler.notifyUsePower(player);
             observerHandler.notifyHeroUpdate(player);
