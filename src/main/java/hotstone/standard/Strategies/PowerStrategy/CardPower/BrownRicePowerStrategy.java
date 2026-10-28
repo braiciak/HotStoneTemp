@@ -1,17 +1,18 @@
-package hotstone.standard.Strategies.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy.CardPower;
 
 import hotstone.framework.MutableGame;
-import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.WizardHubAdapter;
+import wizardhub.EffectWizard;
+
 
 public class BrownRicePowerStrategy implements PowerStrategy {
 
     @Override
     public void usePower(MutableGame game) {
-        game.hurtHero(
-                Player.computeOpponent(game.getPlayerInTurn()),
-                1
-        );
+        new EffectWizard(new WizardHubAdapter(game))
+                .forOpponent().forHero()
+                .doChangeHealthOrRemove(-1);
     }
 
     @Override

@@ -1,12 +1,11 @@
-package hotstone.standard.Strategies.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy.CardPower;
 
-import hotstone.framework.MutableCard;
 import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
-
-import java.util.ArrayList;
+import hotstone.standard.WizardHubAdapter;
+import wizardhub.EffectWizard;
 
 public class TomatoSaladPowerStrategy implements PowerStrategy {
 
@@ -26,18 +25,20 @@ public class TomatoSaladPowerStrategy implements PowerStrategy {
         }
         int index = generator.generate(0, fieldFindus + fieldPeddersen - 1);
 
-        MutableCard card;
+        Player player;
         if (index < fieldFindus) {
-            card = game.getCardInField(
-                    Player.FINDUS, index
-            );
+            player = Player.FINDUS;
         } else {
-            card = game.getCardInField(
-                    Player.PEDDERSEN, index - fieldFindus
-            );
+            player = Player.PEDDERSEN;
+            index = index - fieldFindus;
         }
 
-        card.setAttack(card.getAttack() + 1);
+        EffectWizard effectWizard = new EffectWizard(new WizardHubAdapter(game));
+        if (player == game.getPlayerInTurn()) {
+            effectWizard.forMe().forMinionAt(index).doChangeAttack(1);
+        } else {
+            effectWizard.forOpponent().forMinionAt(index).doChangeAttack(1);
+        }
     }
 
     @Override

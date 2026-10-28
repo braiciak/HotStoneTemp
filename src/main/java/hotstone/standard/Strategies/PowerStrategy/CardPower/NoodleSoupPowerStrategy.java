@@ -1,12 +1,14 @@
-package hotstone.standard.Strategies.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy.CardPower;
 
 import hotstone.framework.MutableGame;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.WizardHubAdapter;
+import wizardhub.EffectWizard;
 
 public class NoodleSoupPowerStrategy implements PowerStrategy {
     @Override
     public void usePower(MutableGame game) {
-        game.drawCard();
+        new EffectWizard(new WizardHubAdapter(game)).forMe().doDrawCard();
     }
 
     @Override

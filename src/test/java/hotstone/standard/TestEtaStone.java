@@ -3,7 +3,7 @@ package hotstone.standard;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.framework.UIGame;
-import hotstone.standard.Strategies.PowerStrategy.*;
+import hotstone.standard.Strategies.PowerStrategy.CardPower.*;
 import hotstone.standard.VariantFactories.EtaFactory;
 import hotstone.standard.utilities.CardSpy;
 import hotstone.standard.utilities.FixedGeneratorStrategy;

@@ -1,10 +1,11 @@
-package hotstone.standard.Strategies.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy.CardPower;
 
-import hotstone.framework.MutableCard;
 import hotstone.framework.MutableGame;
 import hotstone.framework.Player;
 import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.WizardHubAdapter;
+import wizardhub.EffectWizard;
 
 public class BakedSalmonPowerStrategy implements PowerStrategy {
 
@@ -16,16 +17,13 @@ public class BakedSalmonPowerStrategy implements PowerStrategy {
 
     @Override
     public void usePower(MutableGame game) {
-        final Player opp = Player.computeOpponent(game.getPlayerInTurn());
-        int fieldSize = game.getFieldSize(opp);
+        int fieldSize = game.getFieldSize(Player.computeOpponent(game.getPlayerInTurn()));
 
         if (fieldSize < 1) {return;}
-        final MutableCard target = game.getCardInField(
-                opp,
-                generator.generate(0, fieldSize - 1)
-        );
 
-        target.setAttack(target.getAttack() + 2);
+        new EffectWizard(new WizardHubAdapter(game)).forOpponent()
+                .forMinionAt(generator.generate(0, fieldSize - 1))
+                .doChangeAttack(2);
     }
 
     @Override

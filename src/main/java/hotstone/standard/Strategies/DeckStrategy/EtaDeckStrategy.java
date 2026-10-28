@@ -7,7 +7,7 @@ import hotstone.standard.GameConstants;
 import hotstone.standard.StandardCard;
 import hotstone.standard.StandardDeck;
 import hotstone.standard.Strategies.NumberGeneratorStrategy.RandomNumberGeneratorStrategy;
-import hotstone.standard.Strategies.PowerStrategy.*;
+import hotstone.standard.Strategies.PowerStrategy.CardPower.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

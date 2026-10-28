@@ -1,12 +1,16 @@
-package hotstone.standard.Strategies.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy.CardPower;
 
 import hotstone.framework.MutableGame;
 import hotstone.framework.Strategies.PowerStrategy;
+import hotstone.standard.WizardHubAdapter;
+import wizardhub.EffectWizard;
 
 public class PokeBowlPowerStrategy implements PowerStrategy {
     @Override
     public void usePower(MutableGame game) {
-        game.hurtHero(game.getPlayerInTurn(), -2);
+        new EffectWizard(new WizardHubAdapter(game)).forMe()
+                .forHero()
+                .doChangeHealthOrRemove(2);
     }
 
     @Override
