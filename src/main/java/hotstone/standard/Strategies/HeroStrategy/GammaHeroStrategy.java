@@ -3,10 +3,10 @@ package hotstone.standard.Strategies.HeroStrategy;
 import hotstone.framework.*;
 import hotstone.framework.Strategies.HeroStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.DanishChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.DanishChefPowerStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardHero;
-import hotstone.standard.Strategies.PowerStrategy.ThaiChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.ThaiChefPowerStrategy;
 
 public class GammaHeroStrategy implements HeroStrategy {
     @Override

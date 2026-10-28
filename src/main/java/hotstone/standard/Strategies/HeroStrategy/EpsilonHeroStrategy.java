@@ -6,8 +6,8 @@ import hotstone.framework.Strategies.NumberGeneratorStrategy;
 import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardHero;
-import hotstone.standard.Strategies.PowerStrategy.FrenchChefPowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.ItalianChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.FrenchChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.ItalianChefPowerStrategy;
 
 public class EpsilonHeroStrategy implements HeroStrategy {
     NumberGeneratorStrategy generatorStrategy;

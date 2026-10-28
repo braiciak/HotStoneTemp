@@ -1,4 +1,4 @@
-package hotstone.standard.Strategies.PowerStrategy;
+package hotstone.standard.Strategies.PowerStrategy.HeroPower;
 
 import hotstone.framework.MutableGame;
 import hotstone.framework.Player;

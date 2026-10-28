@@ -8,10 +8,10 @@ import hotstone.framework.Strategies.PowerStrategy;
 import hotstone.standard.GameConstants;
 import hotstone.standard.StandardHero;
 import hotstone.standard.Strategies.NumberGeneratorStrategy.RandomNumberGeneratorStrategy;
-import hotstone.standard.Strategies.PowerStrategy.DanishChefPowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.FrenchChefPowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.ItalianChefPowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.ThaiChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.DanishChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.FrenchChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.ItalianChefPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.ThaiChefPowerStrategy;
 
 public class SemiHeroStrategy implements HeroStrategy {
     private final NumberGeneratorStrategy generator;
