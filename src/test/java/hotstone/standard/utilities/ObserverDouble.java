@@ -14,20 +14,19 @@
  * limitations under the License.
  */
 
-package hotstone.standard;
+package hotstone.standard.utilities;
 
 import hotstone.framework.Card;
 import hotstone.framework.GameObserver;
 import hotstone.framework.Player;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 /**
  * No longer a TO-DO: Reflect - is this double a spy or a stub?
  *  Answer: It's a spy since we're recording indirect outputs.
  */
-class ObserverDouble implements GameObserver {
+public class ObserverDouble implements GameObserver {
 
     private final ArrayList<String> receipts = new ArrayList<>();
 

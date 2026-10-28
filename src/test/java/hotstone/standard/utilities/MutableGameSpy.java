@@ -1,10 +1,8 @@
-package hotstone.standard;
+package hotstone.standard.utilities;
 
 import hotstone.framework.*;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MutableGameSpy implements Spy, UIGame, MutableGame {
 

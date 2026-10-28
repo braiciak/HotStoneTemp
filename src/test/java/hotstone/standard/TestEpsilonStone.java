@@ -5,6 +5,7 @@ import hotstone.framework.UIGame;
 import hotstone.framework.Player;
 import hotstone.framework.Status;
 import hotstone.standard.VariantFactories.EpsilonFactory;
+import hotstone.standard.utilities.FixedGeneratorStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

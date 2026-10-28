@@ -1,4 +1,4 @@
-package hotstone.standard;
+package hotstone.standard.utilities;
 
 import hotstone.framework.MutableCard;
 import hotstone.framework.MutableGame;

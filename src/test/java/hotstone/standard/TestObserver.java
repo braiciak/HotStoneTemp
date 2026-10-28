@@ -16,11 +16,10 @@
 
 package hotstone.standard;
 
-import hotstone.framework.GameObserver;
 import hotstone.framework.Player;
 import hotstone.framework.UIGame;
-import hotstone.standard.VariantFactories.AlphaFactory;
 import hotstone.standard.VariantFactories.GammaFactory;
+import hotstone.standard.utilities.ObserverDouble;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;

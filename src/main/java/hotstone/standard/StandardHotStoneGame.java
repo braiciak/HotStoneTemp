@@ -166,7 +166,7 @@ public class StandardHotStoneGame implements UIGame,MutableGame {
         }
         // Second player draws three cards on their first turn.
         if (getTurnNumber() <= 1) {
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 3; i++) {
                 drawCard();
             }
 

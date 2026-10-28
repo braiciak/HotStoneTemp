@@ -1,4 +1,4 @@
-package hotstone.standard;
+package hotstone.standard.utilities;
 
 public enum GameAction {
     CHANGE_HERO_HEALTH,
