@@ -20,7 +20,7 @@ public class TestTranscriptor {
         // Given a transcriptor game,
         UIGame game = new TranscriptorHotStoneGame(new AlphaFactory());
         // When game actions are successfully invoked,
-        System.out.println("-- TRANSCRIPT OF EXAMPLE GAME --");
+        System.out.println("\n-- TRANSCRIPT OF EXAMPLE GAME --");
         game.playCard(2,0);
         game.endTurn();
         game.playCard(0,0);
@@ -30,7 +30,7 @@ public class TestTranscriptor {
         game.usePower();
         game.attackHero(0);
         // Then those actions should be transcribed.
-        System.out.println("-- END OF TRANSCRIPT --");
+        System.out.println("-- END OF TRANSCRIPT --\n");
     }
 
 }
