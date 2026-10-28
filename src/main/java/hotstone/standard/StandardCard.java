@@ -2,7 +2,7 @@ package hotstone.standard;
 
 import hotstone.framework.*;
 import hotstone.framework.Strategies.PowerStrategy;
-import hotstone.standard.Strategies.PowerStrategy.NullPowerStrategy;
+import hotstone.standard.Strategies.PowerStrategy.HeroPower.NullPowerStrategy;
 
 public class StandardCard implements MutableCard {
 
