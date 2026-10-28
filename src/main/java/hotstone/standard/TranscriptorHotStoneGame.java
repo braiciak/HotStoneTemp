@@ -1,23 +1,35 @@
 package hotstone.standard;
 
 import hotstone.framework.*;
+import hotstone.framework.Strategies.PrinterStrategy;
+import hotstone.standard.Strategies.PrinterStrategy.CommandLinePrinterStrategy;
+import hotstone.standard.Strategies.PrinterStrategy.NullPrinterStrategy;
 
 import java.util.List;
 
 public class TranscriptorHotStoneGame implements UIGame {
 
     private final StandardHotStoneGame game;
+    private PrinterStrategy printer;
 
-    //TODO: Method for toggling transcripting.
     public TranscriptorHotStoneGame(VariantFactory variant) {
         game = new StandardHotStoneGame(variant);
+        printer = new CommandLinePrinterStrategy();
+    }
+
+    public void transcribingOn() {
+        printer = new CommandLinePrinterStrategy();
+    }
+
+    public void transcribingOff() {
+        printer = new NullPrinterStrategy();
     }
 
     @Override
     public void endTurn() {
         Player p = game.getPlayerInTurn();
         game.endTurn();
-        System.out.printf(
+        printer.printf(
                 "%s ended turn.\n",
                 p
         );
@@ -31,7 +43,7 @@ public class TranscriptorHotStoneGame implements UIGame {
         Status s = game.playCard(handIndex, fieldIndex);
 
         if (s == Status.OK) {
-            System.out.printf(
+            printer.printf(
                     "%s played %s at index %d.\n",
                     p,
                     c.getName(),
@@ -49,7 +61,7 @@ public class TranscriptorHotStoneGame implements UIGame {
 
         Status s = game.attackCard(ownFieldIndex, oppFieldIndex);
         if (s == Status.OK) {
-            System.out.printf(
+            printer.printf(
                     "%s attacked %s with %s.\n",
                     p, defender.getName(), attacker.getName()
             );
@@ -64,7 +76,7 @@ public class TranscriptorHotStoneGame implements UIGame {
 
         Status s = game.attackHero(fieldIndex);
         if (s == Status.OK) {
-            System.out.printf(
+            printer.printf(
                     "%s attacked Hero with %s.\n",
                     p,
                     attacker.getName()
@@ -77,7 +89,7 @@ public class TranscriptorHotStoneGame implements UIGame {
     public Status usePower() {
         Status s = game.usePower();
         if (s == Status.OK) {
-            System.out.printf(
+            printer.printf(
                     "%s used Hero power.\n",
                     game.getPlayerInTurn()
             );
