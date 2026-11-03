@@ -92,4 +92,7 @@ public class StandardHero implements MutableHero {
         usedPower = false;
     }
 
+    @Override
+    public boolean canUsePower() {return usedPower;}
+
 }

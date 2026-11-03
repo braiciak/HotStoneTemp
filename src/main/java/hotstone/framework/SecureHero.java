@@ -81,4 +81,6 @@ public interface SecureHero {
      *
      * */
     boolean isDefeated();
+
+    boolean canUsePower();
 }
