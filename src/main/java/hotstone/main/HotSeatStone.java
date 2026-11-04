@@ -19,9 +19,13 @@ package hotstone.main;
 import hotstone.doubles.FakeObjectGame;
 import hotstone.framework.UIGame;
 import hotstone.framework.Player;
-import hotstone.standard.VariantFactories.AlphaFactory;
+import hotstone.framework.VariantFactory;
+import hotstone.standard.StandardHotStoneGame;
+import hotstone.standard.Strategies.NumberGeneratorStrategy.RandomNumberGeneratorStrategy;
+import hotstone.standard.VariantFactories.*;
 import hotstone.view.core.HotStoneDrawingType;
 import hotstone.view.core.HotStoneFactory;
+import hotstone.view.tool.HotSeatStateTool;
 import minidraw.framework.DrawingEditor;
 import minidraw.standard.MiniDrawApplication;
 import minidraw.standard.SelectionTool;
@@ -33,15 +37,28 @@ public class HotSeatStone {
   public static void main(String[] args) {
 
     System.out.println("=== Starting HotSeat on game variant: " + args[0] + " ===");
-    // TODO: Do some switching on args[0] to make the right game variant
-    UIGame game = new FakeObjectGame(new AlphaFactory());
+    VariantFactory variant;
+    switch (args[0]) {
+        case "AlphaStone" -> variant = new AlphaFactory();
+        case "BetaStone" -> variant = new BetaFactory();
+        case "DeltaStone" -> variant = new DeltaFactory();
+        case "EpsilonStone" -> variant = new EpsilonFactory(new RandomNumberGeneratorStrategy());
+        case "EtaStone" -> variant = new EtaFactory();
+        case "GammaStone" -> variant = new GammaFactory();
+        case "SemiStone" -> variant =  new SemiFactory();
+        case "ZetaStone" -> variant = new ZetaFactory();
+        default -> {
+            System.out.println("Invalid variant argument given. Defaulting to AlphaStone.");
+            variant = new AlphaFactory();
+        }
+    }
+    UIGame game = new StandardHotStoneGame(variant);
 
     DrawingEditor editor =
             new MiniDrawApplication( "HotSeat: Variant " + args[0],
                     new HotStoneFactory(game, Player.FINDUS,
                             HotStoneDrawingType.HOTSEAT_MODE) );
     editor.open();
-    // TODO: Change to the hotseat state tool
-    editor.setTool(new SelectionTool(editor));
+    editor.setTool(new HotSeatStateTool(editor, game));
   }
 }

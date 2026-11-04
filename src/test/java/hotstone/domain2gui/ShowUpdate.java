@@ -36,8 +36,7 @@ import java.awt.event.MouseEvent;
  */
 public class ShowUpdate {
   public static void main(String[] args) {
-    // TODO: Replace the below assignment into a stable and well
-    // tested variant of HotStone
+    // TODO: Replace the below assignment into a stable and well-tested variant of HotStone
     UIGame game = new FakeObjectGame(new AlphaFactory());
 
     DrawingEditor editor =
